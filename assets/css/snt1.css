@@ -1,0 +1,314 @@
+/*  25/8/19 2236 */
+
+.hidden {
+    display: none;
+}
+
+body {
+    font-family: 'Bungee Inline', cursive;
+}
+
+.intro {
+    text-align: center;
+    
+}
+
+.red {
+    color: #dd1534;
+}
+
+.green {
+    color:  #0E7C4A;
+}
+
+/* NNNNNNNNNNNNNNNNNNNNN */
+/* TRY ALIGNING ONE TO THE LEFT AND THE OTHER TO THE RIGHT */
+
+.introStats {
+    float: left;
+    text-align: center;
+    /* margin: 5px 10%; */
+    margin-top: 5px;
+    margin-left: 10%;
+}
+
+#dispFractionProbs {
+    /* text-align: center; */
+    width: 55.5%;
+    /* height: 40px; */
+    margin-left: 22.25%;
+    margin-bottom: 20px;
+    /* border: 1px solid black; */
+}
+
+/* NNNNNNNNNNNNNNNNNNNNN */
+
+.tablePlay {
+    /* background: grey; */
+    background: #ffa600;
+    border: 5px solid black;
+    /* border-radius: 10px; */
+    padding-right: 5px;
+    height: 65px;
+    width: 55.5%;
+    margin-left: 22.25%;
+    font-size: 1.4rem;
+    font-weight: 700;  
+    /* outline: none; */
+     /* -webkit-box-shadow: 0px 0px 45px 10px rgba(0,0,0,0.58);
+    -moz-box-shadow: 0px 0px 45px 10px rgba(0,0,0,0.58);
+    box-shadow: 0px 0px 45px 10px rgba(0,0,0,0.58); */
+}
+
+li {
+    /* The list items will not be marked */
+    list-style-type: none;
+    /* float: left; */
+    /* margin-right: 10px; */
+}
+
+#sqTableImg {
+    max-width: 54.9%;
+    margin-left: 22.20%;
+    margin-top: 20px;
+    border: 7px solid black;
+    /* border-radius: 5px; */
+    -webkit-box-shadow: 0px 0px 45px 10px rgba(0,0,0,0.58);
+    -moz-box-shadow: 0px 0px 45px 10px rgba(0,0,0,0.58);
+    box-shadow: 0px 0px 45px 10px rgba(0,0,0,0.58);
+}
+
+.description {
+    font-size: 1.2rem;
+}
+
+#container {
+    margin: 20px auto;
+    /* max-width: 600px; */
+    max-width: 55%;
+    /* min-height: 666px; */
+    background: #ffa600;
+    border: 7px solid black;
+    /* border-radius: 10px; */
+
+    /* https://www.cssmatic.com/box-shadow */
+    -webkit-box-shadow: 0px 0px 45px 10px rgba(0,0,0,0.58);
+    -moz-box-shadow: 0px 0px 45px 10px rgba(0,0,0,0.58);
+    box-shadow: 0px 0px 45px 10px rgba(0,0,0,0.58);
+}
+
+.levelButtons {
+    outline: none;
+    background: grey;
+    border: none;
+    margin: none;
+    height: 60px;
+    /* height: 9.40%; */
+    width: 9.54%;
+    font-size: 1.7rem;
+    font-weight: 600;
+}
+
+.levelButtons:hover {
+    color: darkslategrey;
+    /* #1897b4 */
+    background: orange;
+    font-weight: 800;
+}
+
+.selected {
+    /* background: #39ac73; */
+    background: darkcyan;
+} 
+
+
+#buttonsRow {
+    height: 65px;
+    background: #676668;
+    /* background: red; */
+
+}
+
+#dispLevel {
+    font-size: 1.8rem;
+}
+
+#question {
+    color: darkcyan;
+    font-size: 2rem;
+}
+
+#questionSpan {
+    font-size: 2.2rem;
+    color: darkcyan;
+}
+
+input {
+    margin: 0px 30%;
+    width: 33%;
+    height: 30px;
+    /* border: 3px solid #676668; */
+    background: beige;
+    font-size: 2.2rem;
+    padding: 13px 13px 13px 25px;
+    /* border: 5px solid black; */
+    /* border-radius: 10px; */
+    /* outline: none; */
+}
+
+.startPlay {
+    background: grey;
+    border: 4px solid #676668;
+    /* border-radius: 10px; */
+    padding-right: 5px;
+    /* margin: none; */
+    height: 60px;
+    width: 90px;
+    font-size: 1.4rem;
+    font-weight: 700;  
+    margin: 40px 40% 5px 25px;
+    /* outline: none; */
+}
+
+
+h2 {
+    height: 40px;
+    margin: none;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+#myPage #logo {
+    margin: 0px 20px 10% 0%;
+    padding-right: 15px;
+    font-size: 2.5rem;
+}
+
+#instruction {
+    font-size: 1.8rem;
+}
+
+#message {
+    text-align: center;
+    font-size: 2rem;
+}
+
+/* CSS BLINKER */
+.blink {
+    /* animation: blinker 1.1s linear infinite; */
+    animation: blinker 1.1s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes blinker {  
+    50% { opacity: 0.0; }
+}
+
+
+#dispAccuracy {
+    text-align: right;
+    font-weight: 700;
+    font-size: 1.3rem;
+    font-weight: 100;
+    margin: none;
+    margin-right: 10px;
+    /* color: darkcyan; */
+    color: black;
+}
+
+
+#myProgress {
+    width: 80%;
+    margin: auto;
+    /* ??? border not hidden??? */
+    /* border: 3px solid #676668; */
+    /* border-radius: 10px; */
+    background-color: beige;
+}
+
+/* NOT WORKING COS ITS NOT EMPTY */
+/* HAVE TO REMOVE BORDER  ???*/
+/* MAYBE ADD BORDER ONLY WHEN ITS DISPLAYED??? */
+#myProgress:empty{
+    /* display:none; */
+    /* OR */
+    border:none;
+}
+
+#myBar {
+    width: 0%;
+    height: 45px;
+    padding-top: 1px;
+    padding-bottom: 16px;
+    text-align: center;
+
+    background-color: rgba(0,255,0,0.4);
+
+    -webkit-transition: all 1.0s ease-in-out;
+    transition: all 1.0s ease-in-out;
+}
+
+
+/* NNNNNNNNNNNNNNNNNNNNNNNNNNNN */
+/* TEXTCONTENT KEY VALUE PAIRS OF OBJECT
+ */
+#my-div{
+    background: #ffa600;
+    float:left;
+    border: 5px solid black;
+    /* border-radius: 10px; */
+    width: 55.3%;
+    margin-top: 20px;
+    margin-left: 22.1%;
+    min-height: 60px;
+    text-align: center;
+}
+
+/* HIDE BORDER WHEN DIV'S EMPTY */
+#my-div:empty{
+    display:none;
+    /* OR */
+    /* border:none */
+}
+
+#my-div span {
+    float: left;
+    width: 100%;
+    padding: 2px 2px;
+}
+
+/* ALTERNATING COLOR LIST ITEMSS */
+/* span:nth-child(even){
+  color:green;
+}
+span:nth-child(odd){
+  color:red;
+} */
+
+/* NNNNNNNNNNNNNNNNNNNNNNNNNNNN */
+
+#orderedStatTest {
+    background: #ffa600;
+    float:left;
+    border: 5px solid black;
+    /* border-radius: 10px; */
+    width: 55.3%;
+    margin-top: 20px;
+    margin-left: 22.1%;
+    min-height: 60px;
+    text-align: center;
+}
+
+#orderedStatTest:empty{
+    display:none;
+    /* OR */
+    /* border:none */
+}
+
+#orderedStatTest span {
+    float: left;
+    width: 100%;
+    padding: 2px 2px;
+}
+
+
+

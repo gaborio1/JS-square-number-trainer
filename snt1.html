@@ -1,0 +1,87 @@
+<!-- 25/8/19 2236 -->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Square Number Trainer</title>    
+        <script type="text/javascript" src="assets/js/lib/jquery-2.1.4.min.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Bungee+Inline&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="assets/css/snt1.css">
+    </head>
+
+    <body id="myPage">
+        <div>
+            
+            <h1 id="header" class="intro">Square.100 - Square Number Trainer</h1>
+            <p id="intro2" class="intro description">Squares of 1 to 100</p>
+            <p class="intro description">Choose your level -> click play -> guess square.</p>
+
+        <div id="dispFractionProbs" class="">
+            <p id="dispFraction" class="intro description introStats hidden">Accuracy: <span id="fracTotal" class="green" >0</span> / <span   id="fracRight" class="green">0</span></p>
+
+            <p id="probNumbersDisp" class="intro description introStats hidden">Problem Numbers: <span id="probSpan" class="red" ></span></p>
+        </div>
+            
+            
+            <!-- TEST -->
+            <!-- <p id="probNumbersDisp2" class="intro description hidden">Problem Numbers: <span id="probSpan2"></span></p> -->
+
+            <div>
+                <button id="toggle1" class="tablePlay"  >SqTable / Statistics</button>
+                <button id="toggle2" class="tablePlay hidden" >Play</button>
+                </div>
+            </div>
+            <div id="container">
+                <div id="buttonsRow" class="hidden">
+                    <button class="levelButtons hidden" id="lev1">1</button>
+                    <button class="levelButtons hidden" id="lev2">2</button>
+                    <button class="levelButtons hidden" id="lev3">3</button>
+                    <button class="levelButtons hidden" id="lev4">4</button>
+                    <button class="levelButtons hidden" id="lev5">5</button>
+                    <button class="levelButtons hidden" id="lev6">6</button>
+                    <button class="levelButtons hidden" id="lev7">7</button>
+                    <button class="levelButtons hidden" id="lev8">8</button>
+                    <button class="levelButtons hidden" id="lev9">9</button>
+                    <button class="levelButtons hidden" id="lev10">10</button>
+                </div>
+                <br>
+
+                <h2 id="dispLevelMain" class="hidden">you are on level <span id="dispLevel">1 (2-10)</span></h2>
+                <h2 id="instruction" class="hidden"></h2>
+                <h2 id="question" class="hidden">what is <span id="questionSpan"></span> squared?</h2>
+                <br>
+            
+            <!-- ========================================================== -->
+            <!-- !!! autofocus WILL PLACE CURSOR TO INPUT FIELD WHEN PAGE LOADED !!! -->
+            <input  autofocus="autofocus" id="numberIn" class="hidden" type="number" placeholder="Your guess" required>
+            <!-- <br> -->
+            <p id="message" class="hidden"></p>
+            <div id="myProgress" >
+                <div id="myBar" class="hidden">
+                    <h2 id="dispAccuracy" class="hidden"><span id="accuracySpan"></span></h2>
+                </div>
+            </div>
+            <h1><button id="start" class="startPlay">Start</button>
+                <button id="play" class="hidden startPlay">Play</button>
+                <span id="logo">square.100</span>
+            </h1>
+        </div> 
+    </div>
+    <img id="sqTableImg" class="hidden" src="images/math-tables-1to-100.jpg" alt="">
+
+    <!-- TEXTCONTENT KEY VALUE PAIRS OF OBJECT -->
+    <div id="my-div" class="hidden"></div>
+
+    <!-- NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN -->
+    <br>
+    <br>
+
+    <div id="orderedStatTest" class="hidden"></div>
+
+    <!-- NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN -->
+
+
+<script src="assets/js/snt1.js" type="text/javascript"></script>
+</body>
+</html>
