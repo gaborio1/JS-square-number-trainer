@@ -39,66 +39,66 @@ console.log("CONNECTED")
 // ========================================================================
 
 //              MAIN LOGIC VARIABLES
-var num;
-var minNum = 0;
-var maxNum = 0;
-var solution;
-var answer;
-var baseNum = 1;
-var lastProbNumber;
+let num;
+let minNum = 0;
+let maxNum = 0;
+let solution;
+let answer;
+let baseNum = 1;
+let lastProbNumber;
 
 //              LAST NUMBERS & PROBLEM NUMBERS ARRAYS
-var lastNumbers = [];
-var probNumbers = [];
+let lastNumbers = [];
+let probNumbers = [];
 
-var reducedProbNumbers = {};
-var finalProbNumbers = [];
+let reducedProbNumbers = {};
+let finalProbNumbers = [];
 
-var statList = [];
-var reducedStatList = {};
+let statList = [];
+let reducedStatList = {};
 
 // var broblemNumbersCount = {}
 
 //              PROGRESS BAR/INDICATOR VARIABLES
-var isCorrect;
-var rightA = 0;
-var wrongA = 0;
-var totalAttempts = 0;
-var accuracy;
+let isCorrect;
+let rightA = 0;
+let wrongA = 0;
+let totalAttempts = 0;
+let accuracy;
 //              STYLE VARIABLES
-var tablePlay = document.getElementById("tablePlay");
-var container = document.getElementById("container");
-var mathTable = document.getElementById("sqTableImg");
-var intro2 = document.getElementById("intro2");
-var dispFraction = document.getElementById("dispFraction");
-var fractionTotal = document.getElementById("fracTotal");
-var fractionRight = document.getElementById("fracRight");
-var dispLevel = document.querySelector("#dispLevel");
-var span = document.querySelector("#questionSpan");
+// var tablePlay = document.getElementById("tablePlay");
+const playerContainer = document.getElementById("player-container");
+const sqTableImg = document.getElementById("sq-table-img");
+const introText = document.getElementById("intro-text");
+const displayFraction = document.getElementById("display-fraction");
+const fractionTotal = document.getElementById("fraction-total");
+const fractionRight = document.getElementById("fraction-right");
+const displayLevel = document.querySelector("#display-level");
+const questionSpan = document.querySelector("#question-span");
 
 // THIS IS VALUED AS NULL !!!
-var dispFractionProbs = document.getElementById("DispFractionProbs");
+const fractionsContainer = document.getElementById("fractions-container");
 
-var question = document.querySelector("#question");
-var message = document.querySelector("#message");
-var startButton = document.querySelector("#start");
-var playButton = document.querySelector("#play");
-var levelButtons = document.querySelectorAll(".levelButtons");
+const question = document.querySelector("#question");
+const message = document.querySelector("#message");
+const startButton = document.querySelector("#start-button");
+const playButton = document.querySelector("#play-button");
+const levelButtons = document.querySelectorAll(".level-buttons");
 
-var levelButtonIndex;
+let levelButtonIndex;
 // OR AS BELOW:
-// var levelButtons = Array.from(document.querySelectorAll(".levelButtons"));
-var mainDispLevel = document.getElementById("dispLevelMain");
-var userInput = document.getElementById("numberIn");
-var buttonsRow = document.getElementById("buttonsRow");
+// var levelButtons = Array.from(document.querySelectorAll(".level-buttons"));
+const mainDispLevel = document.getElementById("level-message");
+const userInput = document.getElementById("number-input");
+const buttonsRow = document.getElementById("buttons-row");
 // var logo = document.getElementById("logo");
-var dispAccuracy = document.getElementById("dispAccuracy");
-var accuracySpan = document.getElementById("accuracySpan");
-var progBar = document.getElementById("myBar");
+const progBarText = document.getElementById("prog-bar-text");
+const progBarTextSpan = document.getElementById("prog-bar-text__span");
+const progBar = document.getElementById("prog-bar");
 
 
-var dispProbNums = document.getElementById("probNumbersDisp");
-var probSpan = document.getElementById("probSpan");
+const problemNumbers = document.getElementById("problem-numbers");
+const problemNumbersSpan = document.getElementById("problem-numbers__span");
 
 // ========================================================================
 
@@ -106,29 +106,34 @@ var probSpan = document.getElementById("probSpan");
 
 
 // PLACE CURSOR TO START WHEN PAGE LOADS??? DOES NOT WORK ???
-function setFocusStart() {
+// function setFocusStart() {
+//   startButton.focus();
+// }
+
+const setFocusStart = () => {
   startButton.focus();
 }
 
 // PLACE CURSOR AT PLAY
-function setFocusPlay() {
+// function setFocusPlay() {
+//   playButton.focus();
+// }
+
+const setFocusPlay = () => {
   playButton.focus();
 }
 
 // PLACE MOUSE CURSOR TO INPUT FIELD (STACK OVERFLOW)
-function setFocusInput() {
+// function setFocusInput() {
+//   userInput.focus();
+//   // NOT WORKING
+//   userInput.select();
+// }
+
+const setFocusInput = () => {
   userInput.focus();
-
-
-
-
-// NOT WORKING
+  // NOT WORKING
   userInput.select();
-
-
-
-
-
 }
 
 // DECLARE FUNCTION setupLevelButtons()
@@ -150,19 +155,15 @@ function setupLevelButtons() {
   levelButtonsStyle();
 }
 
-function levelButtonsStyle() {
-  
-// UPDATE DISPLEVEL TEXTCONTENT
-  dispLevel.textContent = (levelButtonIndex + " (" + minNum + "-" + maxNum + ")");
+const levelButtonsStyle = () => {
+  // UPDATE DISPLEVEL TEXTCONTENT
+displayLevel.textContent = (levelButtonIndex + " (" + minNum + "-" + maxNum + ")");
   // HIDE INPUT FIELD
   userInput.classList.add("hidden");
   // HIDE QUESTION
   question.classList.add("hidden");
   // HIDE MESSAGE
   message.classList.add("hidden");
-
-
-
   // SHOW INSTRUCTION - NOT WORKING !!!
   // instruction.classList.remove("hidden");
   // THIS WORKS !!! WHYYYYY ???????????
@@ -172,7 +173,7 @@ function levelButtonsStyle() {
 }
 
 // GENERATE RANDOM NUMBER BETWEEN minNUM AND maxNUM 
-function randomSq() {
+const randomSq = () => {
   num = Math.floor(Math.random() * (maxNum - minNum +1)) + minNum;
   console.log("Number: " + num);
   // NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
@@ -190,14 +191,14 @@ function randomSq() {
   console.log("Solution: " + solution);
 }
 
-function randomSqStyle() {
-  span.textContent = num;
+const randomSqStyle = () => {
+  questionSpan.textContent = num;
   question.classList.remove("hidden");
   instruction.classList.add("hidden");
 }
 
 //  CALCULATE ACCURACY PERCENTAGE
-function accuracyFunc() {
+const accuracyFunc = () => {
   totalAttempts = rightA + wrongA;
   // ROUND TO 2 DECIMAL PLACES (66.67 = 66.6666666)
   accuracy = ((rightA / totalAttempts) * 100).toFixed(2);
@@ -205,33 +206,33 @@ function accuracyFunc() {
   accuracyStyle();
 }
 
-function rightAnswerStyle() {
+const rightAnswerStyle = () => {
   userInput.placeholder = solution;
   message.textContent = "That's right, madafaka!";
   message.style.color= " #0E7C4A";
   message.classList.remove("blink");
 }
 
-function wrongAnswerStyle() {
-  $("#numberIn").val("");
+const wrongAnswerStyle = () => {
+  $("#number-input").val("");
   userInput.placeholder="Try again!";
   message.textContent="You're wrong, punk!";
   message.style.color= "#dd1534";
   message.classList.add("blink");
-  dispProbNums.classList.remove("hidden");
+  problemNumbers.classList.remove("hidden");
   fractionTotal.classList.remove("green");
   fractionTotal.classList.add("red");
 
 }
 
-function accuracyStyle() {
+const accuracyStyle = () => {
   // ADD VALUE TO ACC SPAN
-  accuracySpan.textContent = accuracy + "%";
+  progBarTextSpan.textContent = accuracy + "%";
   if (accuracy <= 10) {
-    accuracySpan.textContent = "";
+    progBarTextSpan.textContent = "";
   }
   // SHOW ACCURACY PERCENTAGE
-  dispAccuracy.classList.remove("hidden");
+  progBarText.classList.remove("hidden");
   // SET BAR WIDTH / SHOW BAR
   progBar.style.width = accuracy + '%'; 
   progBar.classList.remove("hidden");
@@ -239,9 +240,9 @@ function accuracyStyle() {
   fractionTotal.textContent = rightA;
   fractionRight.textContent = totalAttempts;
   // SHOW ACCURACY FRACTIONS PARAGRAPH
-  dispFraction.classList.remove("hidden");
+  displayFraction.classList.remove("hidden");
   // HIDE intro2
-  intro2.classList.add("hidden");
+  introText.classList.add("hidden");
 }
 
 // ========================================================================
@@ -254,8 +255,8 @@ setFocusStart();
 
 $(document).ready(function(){
   $("#toggle1").click(function(){
-    $("#container").fadeOut(300);
-    $("#sqTableImg").delay(300).fadeIn(300);
+    $("#player-container").fadeOut(300);
+    $("#sq-table-img").delay(300).fadeIn(300);
     $("#toggle1").addClass("hidden");
     $("#toggle2").removeClass("hidden");
     // NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
@@ -284,8 +285,8 @@ $(document).ready(function(){
   });
 
   $("#toggle2").click(function(){
-    $("#sqTableImg").delay(650).fadeOut(300);
-    $("#container").delay(1000).fadeIn(300);
+    $("#sq-table-img").delay(650).fadeOut(300);
+    $("#player-container").delay(1000).fadeIn(300);
     $("#toggle2").addClass("hidden");
     $("#toggle1").removeClass("hidden");
     setFocusInput();
@@ -309,19 +310,19 @@ for (var i = 0; i < levelButtons.length; i++) {
 
 
 // window.onload=function(){
-//   document.getElementById('play').onclick = function() {
-//       document.getElementById('numberIn').focus();
+//   document.getElementById('play-button').onclick = function() {
+//       document.getElementById('number-input').focus();
 //   };
 // }
 
 
 
 // ADD LISTENER TO START BUTTON
-$("#start").on("click", function() {
+$("#start-button").on("click", function() {
   // console.log("start clicked");
   // NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
   // WORKING ONLY FIRST TIME COS LEVELBUTTONS WILL CHANGE HEIGHT
-  // $('#container').animate({height:'340'});
+  // $('#player-container').animate({height:'340'});
   // TRY WRAPPING ALL OF THIS IN .ready() !!!
   // THIS IS NOW WORKING, NEXT TRY TO FADEIN ONE BY ONE
   // $(".levelButtons").delay(100).fadeIn(1000);
@@ -346,10 +347,10 @@ $("#start").on("click", function() {
   // THIS IS WHERE LEVELBUTTONS LISTENER USED TO BE
 })
 
-$(".levelButtons").on("click", function() {
+$(".level-buttons").on("click", function() {
   startButton.classList.add("hidden");
   playButton.classList.remove("hidden");
-  // $("#dispLevelMain").delay(100).fadeIn(1000);
+  // $("#level-message").delay(100).fadeIn(1000);
   mainDispLevel.classList.remove("hidden");
 })
 
@@ -358,7 +359,7 @@ $(".levelButtons").on("click", function() {
   // NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
 // KEYUP INSTEAD OF CLICK : PLAY BUTTON NOW WORKS AT FIRST CLICK BUT RIGHTANSWERMESSAGE ONLY SHOWS WHILE KEY IS PRESSED 
 // DELAY STYLE FUNCTIONS ???
-$("#play").on("keyup", function() {
+$("#play-button").on("keyup", function() {
   // console.log("play clicked ");
     // NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
 
@@ -371,10 +372,10 @@ $("#play").on("keyup", function() {
   setFocusInput();
 
   // ELSE IF NOTWORKING
-  // if (container.height = 400) {
-  //   $('#container').animate({height:'550'});
+  // if (playerContainer.height = 400) {
+  //   $('#player-container').animate({height:'550'});
   // } else {
-  //   $('#container').css("height","630px");
+  //   $('#player-container').css("height","630px");
   // }
 
  // CALL randomSq()
@@ -385,7 +386,7 @@ $("#play").on("keyup", function() {
   // SHOW QUESTION
   question.classList.remove("hidden");
   // CLEAR PLACEHOLDER IN TEXTBOX 
-  $("#numberIn").val("");
+  $("#number-input").val("");
   message.classList.remove("hidden");
   // CLEAR MESSAGE FROM PREV GAME
   userInput.placeholder="Your guess";
@@ -416,12 +417,12 @@ $("input[type='number']").keyup(function(event){
   // ON HITTING ENTER
   if(event.which === 13) {
     // console.log("you hit enter");
-    // dispFractionProbs.classList.remove("hidden");
-    // dispFractionProbs.style="display: inline";
+    // fractionsContainer.classList.remove("hidden");
+    // fractionsContainer.style="display: inline";
     // WORKING
-    // $('#container').animate({height:'630'});
+    // $('#player-container').animate({height:'630'});
     // IF 630 , KEEP 630 (NOT TESTED)
-    // $('#container').css("height","630px");
+    // $('#player-container').css("height","630px");
 
     // SAVE USER INPUT IN VAR ANSWER
     answer = Number($(this).val());
@@ -457,7 +458,7 @@ $("input[type='number']").keyup(function(event){
         }
       }
       // AAAAAAAAAAAAAAAAAARGH!!!!!! THIS NOW WORKS WITH PROBNUMS BUT NO COUNT YET !!!
-      probSpan.textContent= Object.keys(reducedProbNumbers);
+      problemNumbersSpan.textContent= Object.keys(reducedProbNumbers);
       console.log("REDUCED PROBNUMS: " + Object.keys(reducedProbNumbers));
       //  + Object.values(reducedProbNumbers);
       // THIS WORKS IN CONSOLEBUT NOT AS TEXTCONTENT (DISPLAYS ONLY FIRST PROBNUM) !!!
@@ -466,7 +467,7 @@ $("input[type='number']").keyup(function(event){
       for (var i = 0; i < keysArr.length; i++) {
         for (var i = 0; i < valuesArr.length; i++) {
           console.log(keysArr[i] + " -> " + valuesArr[i]);
-          // probSpan.textContent=keysArr[i] + " -> " + valuesArr[i];
+          // problemNumbersSpan.textContent=keysArr[i] + " -> " + valuesArr[i];
         }
       }
       // ADD NUM IN FRONT OF STATLIST - WORKING
@@ -509,7 +510,7 @@ $("input[type='number']").keyup(function(event){
         }
         return acc;
       },{})
-      probSpan.textContent= Object.keys(reducedProbNumbers);
+      problemNumbersSpan.textContent= Object.keys(reducedProbNumbers);
       // NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
     }
     if (isCorrect) {
