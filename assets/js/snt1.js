@@ -173,24 +173,32 @@ displayLevel.textContent = (levelButtonIndex + " (" + minNum + "-" + maxNum + ")
   instruction.textContent="Click Play!";
 }
 
-// GENERATE RANDOM NUMBER BETWEEN minNUM AND maxNUM 
-const randomSq = () => {
-  num = Math.floor(Math.random() * (maxNum - minNum +1)) + minNum;
+// GENERATE RANDOM NUMBER BETWEEN minNUM AND maxNUM BASED ON SELECTED LEVEL (11-20 ... 91-100 )
+const randomNum = (maxNum, minNum) => {
+  return (Math.floor(Math.random() * (maxNum - minNum +1)) + minNum);
+}
+
+const calcNumAndSolution = () => {
+  // num = Math.floor(Math.random() * (maxNum - minNum +1)) + minNum;
+  num = randomNum(maxNum, minNum);
+
   console.log("Number: " + num);
   // NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
   // !!! THIS CONSOLE.LOGS TWICE EVERY TIME NUM === 1 0R LAST 5 AND DOES NOT WORK FOR 1 FOR THE VERY FIRST TIME!!!
   for (let i = 0; i < lastNumbers.length; i++) {
     if (num === 1 || num === lastNumbers[i]) {
       console.log("num === 1 or Last 5 numbers");
-      randomSq();
+      calcNumAndSolution();
     }
     // NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
   }
   randomSqStyle();
   // CALCULATE ITS SQUARE
-  solution = Math.pow(num, 2);
+  solution = square(num);
   console.log("Solution: " + solution);
 }
+
+const square = (num) => Math.pow(num, 2);
 
 const randomSqStyle = () => {
   questionSpan.textContent = num;
@@ -199,7 +207,7 @@ const randomSqStyle = () => {
 }
 
 //  CALCULATE ACCURACY PERCENTAGE
-const accuracyFunc = () => {
+const calcAccuracy = () => {
   totalAttempts = rightA + wrongA;
   // ROUND TO 2 DECIMAL PLACES (66.67 = 66.6666666)
   accuracy = ((rightA / totalAttempts) * 100).toFixed(2);
@@ -380,7 +388,7 @@ $("#play-button").on("keyup", function() {
   // }
 
  // CALL randomSq()
-  randomSq();
+ calcNumAndSolution();
   // PLACE MOUSE CURSOR TO INPUT FIELD (STACK OVERFLOW)
   // setFocusInput();
   
@@ -521,7 +529,7 @@ $("input[type='number']").keyup(function(event){
       wrongA ++;
       // console.log("Wrong answers: " + wrongA);
     }
-    accuracyFunc();
+    calcAccuracy();
   }
 })
 
