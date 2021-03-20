@@ -136,9 +136,8 @@ const setFocusInput = () => {
   userInput.select();
 }
 
-// DECLARE FUNCTION setupLevelButtons()
-function setupLevelButtons() {
-  for (var i = 0; i < levelButtons.length; i++) {
+const setupLevelButtons = function() {
+  for (let i = 0; i < levelButtons.length; i++) {
     // STEP 1- REMOVE CLASS FROM ALL
     levelButtons[i].classList.remove("selected");
   }
@@ -154,6 +153,8 @@ function setupLevelButtons() {
   minNum = maxNum - 9;
   levelButtonsStyle();
 }
+
+
 
 const levelButtonsStyle = () => {
   // UPDATE DISPLEVEL TEXTCONTENT
@@ -178,7 +179,7 @@ const randomSq = () => {
   console.log("Number: " + num);
   // NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
   // !!! THIS CONSOLE.LOGS TWICE EVERY TIME NUM === 1 0R LAST 5 AND DOES NOT WORK FOR 1 FOR THE VERY FIRST TIME!!!
-  for (var i = 0; i < lastNumbers.length; i++) {
+  for (let i = 0; i < lastNumbers.length; i++) {
     if (num === 1 || num === lastNumbers[i]) {
       console.log("num === 1 or Last 5 numbers");
       randomSq();
@@ -262,7 +263,7 @@ $(document).ready(function(){
     // NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
     // SORT REDUCEDSTATLIST BY NUMBER OF WRONG ATTEMPTS (BY KEY: SWAP a and b)
     var sortable = [];
-    for (var key in reducedStatList) {
+    for (let key in reducedStatList) {
       sortable.push([key, reducedStatList[key]]);
     }
     sortable.sort(function(a, b) {
@@ -304,7 +305,7 @@ $(document).ready(function(){
 });
 
 // THIS USED TO BE IN SETUPLEVBUTTONS FUNCTION (NESTED LOOP)
-for (var i = 0; i < levelButtons.length; i++) {
+for (let i = 0; i < levelButtons.length; i++) {
   levelButtons[i].addEventListener("click", setupLevelButtons) 
 }
 
@@ -451,7 +452,7 @@ $("input[type='number']").keyup(function(event){
         // console.log(finalProbNumbers);
       }
       // WORKING BUT SEE COMMENT BELOW! (ONLY WORKS IN CONSOLE)
-      for (var key in reducedProbNumbers) {
+      for (let key in reducedProbNumbers) {
         if (reducedProbNumbers.hasOwnProperty(key)) {
           // MAKE THIS CONSOLE.LOG TEXT CONTENT OF PROBSPAN2 !!! 
           // console.log(key + " -> " + reducedProbNumbers[key]);
@@ -462,10 +463,10 @@ $("input[type='number']").keyup(function(event){
       console.log("REDUCED PROBNUMS: " + Object.keys(reducedProbNumbers));
       //  + Object.values(reducedProbNumbers);
       // THIS WORKS IN CONSOLEBUT NOT AS TEXTCONTENT (DISPLAYS ONLY FIRST PROBNUM) !!!
-      var keysArr = Object.keys(reducedProbNumbers);
-      var valuesArr = Object.values(reducedProbNumbers);
-      for (var i = 0; i < keysArr.length; i++) {
-        for (var i = 0; i < valuesArr.length; i++) {
+      let keysArr = Object.keys(reducedProbNumbers);
+      let valuesArr = Object.values(reducedProbNumbers);
+      for (let i = 0; i < keysArr.length; i++) {
+        for (let i = 0; i < valuesArr.length; i++) {
           console.log(keysArr[i] + " -> " + valuesArr[i]);
           // problemNumbersSpan.textContent=keysArr[i] + " -> " + valuesArr[i];
         }
