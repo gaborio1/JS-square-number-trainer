@@ -104,7 +104,6 @@ const problemNumbersSpan = document.getElementById("problem-numbers__span");
 
 //               FUNCTIONS
 
-
 // PLACE CURSOR TO START WHEN PAGE LOADS??? DOES NOT WORK ???
 // function setFocusStart() {
 //   startButton.focus();
@@ -136,29 +135,27 @@ const setFocusInput = () => {
   userInput.select();
 }
 
-const setupLevelButtons = function() {
+const styleLevelButtons = function() {
   for (let i = 0; i < levelButtons.length; i++) {
     // STEP 1- REMOVE CLASS FROM ALL
     levelButtons[i].classList.remove("selected");
   }
   // STEP 2- ADD CLASS TO this ONLY !!! (OUTSIDE OF LOOP)
-  this.classList.add("selected");
+  // this.classList.add("selected");
   setFocusPlay();
   // console.log(this);
-  // RETRIEVE INDEX FROM TEXT CONTENT
-  levelButtonIndex = Number(this.innerHTML);
-  // CALCULATE MAXNUM BY MULTIPLYING INDEX BY 10
-  maxNum = levelButtonIndex * 10;
-  // SET MINNUM BY SUBSTRACTING 9 FROM MAXNUM
-  minNum = maxNum - 9;
-  levelButtonsStyle();
 }
 
+// CALCULATE MAXNUM BY MULTIPLYING INDEX BY 10
+const getMaxNum = (index) => index * 10;
 
+// SET MINNUM BY SUBSTRACTING 9 FROM MAXNUM
+const getMinNum = (max) => max - 9;
 
-const levelButtonsStyle = () => {
+// APPLY SYLES WHEN LEVEL SELECTION IN MADE
+const styleLevelSelection = () => {
   // UPDATE DISPLEVEL TEXTCONTENT
-displayLevel.textContent = (levelButtonIndex + " (" + minNum + "-" + maxNum + ")");
+  displayLevel.textContent = (levelButtonIndex + " (" + minNum + "-" + maxNum + ")");
   // HIDE INPUT FIELD
   userInput.classList.add("hidden");
   // HIDE QUESTION
@@ -173,6 +170,20 @@ displayLevel.textContent = (levelButtonIndex + " (" + minNum + "-" + maxNum + ")
   instruction.textContent="Click Play!";
 }
 
+// LEVEL SELECTION BUTTONS
+const handleLevelButtons = function() {
+  styleLevelButtons();
+  // STEP 2- ADD CLASS TO this ONLY !!! (OUTSIDE OF LOOP)
+  this.classList.add("selected");
+  setFocusPlay();
+  // console.log(this);
+  // RETRIEVE INDEX FROM TEXT CONTENT
+  levelButtonIndex = Number(this.innerHTML);
+  maxNum = getMaxNum(levelButtonIndex);
+  minNum = getMinNum(maxNum);
+  styleLevelSelection();
+}
+
 // GENERATE RANDOM NUMBER BETWEEN minNUM AND maxNUM BASED ON SELECTED LEVEL (11-20 ... 91-100 )
 const randomNum = (maxNum, minNum) => {
   return (Math.floor(Math.random() * (maxNum - minNum +1)) + minNum);
@@ -181,7 +192,6 @@ const randomNum = (maxNum, minNum) => {
 const calcNumAndSolution = () => {
   // num = Math.floor(Math.random() * (maxNum - minNum +1)) + minNum;
   num = randomNum(maxNum, minNum);
-
   console.log("Number: " + num);
   // NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
   // !!! THIS CONSOLE.LOGS TWICE EVERY TIME NUM === 1 0R LAST 5 AND DOES NOT WORK FOR 1 FOR THE VERY FIRST TIME!!!
@@ -314,7 +324,7 @@ $(document).ready(function(){
 
 // THIS USED TO BE IN SETUPLEVBUTTONS FUNCTION (NESTED LOOP)
 for (let i = 0; i < levelButtons.length; i++) {
-  levelButtons[i].addEventListener("click", setupLevelButtons) 
+  levelButtons[i].addEventListener("click", handleLevelButtons) 
 }
 
 
