@@ -151,11 +151,30 @@ const showElement = (el) => {
   el.classList.remove("hidden");
 }
 
+const elementStyleBlock = (el) => {
+  el.style = "display: block";
+}
+
+const elementDisplayNone = (el) => {
+  el.style = "display: none";
+} 
+
+const makeTextContent = (el, text) => {
+  el.textContent = text;
+}
+
+const addClassListToElement = (el, classlist) => {
+  el.classList.add(classlist);
+}
+
+const removeClassListFromElement = (el, classlist) => {
+  el.classList.remove(classlist);
+}
 
 // APPLY SYLES WHEN LEVEL SELECTION IN MADE
 const styleLevelSelection = () => {
   // UPDATE DISPLEVEL TEXTCONTENT
-  displayLevel.textContent = (levelButtonIndex + " (" + minNum + "-" + maxNum + ")");
+  makeTextContent(displayLevel, (levelButtonIndex + " (" + minNum + "-" + maxNum + ")"));
   // HIDE ELEMENTS
   hideElement(userInput);
   hideElement(question);
@@ -163,16 +182,16 @@ const styleLevelSelection = () => {
 // SHOW INSTRUCTION - NOT WORKING !!!
   // instruction.classList.remove("hidden");
   // THIS WORKS !!! WHYYYYY ???????????
-  instruction.style="display: block";
+  elementStyleBlock(instruction);
   // UPDATE INSTRUCTION
-  instruction.textContent="Click Play!";
+  makeTextContent(instruction, "Click Play!");
 }
 
 // LEVEL SELECTION BUTTONS
 const handleLevelButtons = function() {
   styleLevelButtons();
   // STEP 2- ADD CLASS TO this ONLY !!! (OUTSIDE OF LOOP)
-  this.classList.add("selected");
+  addClassListToElement(this, "selected");
   setFocusPlay();
   // console.log(this);
   // RETRIEVE INDEX FROM TEXT CONTENT
@@ -224,22 +243,21 @@ const calcAccuracy = () => {
 // STYLE RIGHT ANSWER
 const rightAnswerStyle = () => {
   userInput.placeholder = solution;
-  message.textContent = "That's right, madafaka!";
+  makeTextContent(message, "That's right, madafaka!");
   message.style.color= " #0E7C4A";
-  message.classList.remove("blink");
+  removeClassListFromElement(message, "blink");
 }
 
 // STYLE WRONG ANSWER
 const wrongAnswerStyle = () => {
   $("#number-input").val("");
   userInput.placeholder="Try again!";
-  message.textContent="You're wrong, punk!";
+  makeTextContent(message, "You're wrong, punk!");
   message.style.color= "#dd1534";
-  message.classList.add("blink");
+  addClassListToElement(message, "blink");
   showElement(problemNumbers);
-  fractionTotal.classList.remove("green");
-  fractionTotal.classList.add("red");
-
+  removeClassListFromElement(fractionTotal, "green");
+  addClassListToElement(fractionTotal, "red");
 }
 
 // STYLE ACCURACY INDICATORS AND PROGBAR
@@ -255,8 +273,8 @@ const accuracyStyle = () => {
   progBar.style.width = accuracy + '%'; 
   showElement(progBar);
   // SET ACCURACY FRACTIONS
-  fractionTotal.textContent = rightA;
-  fractionRight.textContent = totalAttempts;
+  makeTextContent(fractionTotal, rightA);
+  makeTextContent(fractionRight, totalAttempts);
   // SHOW ACCURACY FRACTIONS PARAGRAPH
   showElement(displayFraction);
   // HIDE intro2
@@ -424,10 +442,10 @@ $("#play-button").on("keyup", function() {
   showElement(message);
   // CLEAR MESSAGE FROM PREV GAME
   userInput.placeholder="Your guess";
-  message.textContent="Now, think!";
+  makeTextContent(message, "Now, think!");
   message.style.color= "yellow";
   showElement(userInput);
-  instruction.style="display: none";
+  elementDisplayNone(instruction);
   // THIS WILL CAUSE A SUDDEN CHANGE IN CONTAINER SIZE (NOT NICE)
   // $("#instruction").delay(100).fadeOut(1000);
   // ADD LAST NUM TO FRONT OF ARRAY 
