@@ -1,3 +1,4 @@
+
 console.log("CONNECTED")
 
 //  17/9/19 1115
@@ -113,22 +114,11 @@ const setFocusStart = () => {
   startButton.focus();
 }
 
-// PLACE CURSOR AT PLAY
-// function setFocusPlay() {
-//   playButton.focus();
-// }
-
 const setFocusPlay = () => {
   playButton.focus();
 }
 
 // PLACE MOUSE CURSOR TO INPUT FIELD (STACK OVERFLOW)
-// function setFocusInput() {
-//   userInput.focus();
-//   // NOT WORKING
-//   userInput.select();
-// }
-
 const setFocusInput = () => {
   userInput.focus();
   // NOT WORKING
@@ -152,17 +142,25 @@ const getMaxNum = (index) => index * 10;
 // SET MINNUM BY SUBSTRACTING 9 FROM MAXNUM
 const getMinNum = (max) => max - 9;
 
+// HIDE/SHOW ELEMENTS
+const hideElement = (el) => {
+  el.classList.add("hidden");
+}
+
+const showElement = (el) => {
+  el.classList.remove("hidden");
+}
+
+
 // APPLY SYLES WHEN LEVEL SELECTION IN MADE
 const styleLevelSelection = () => {
   // UPDATE DISPLEVEL TEXTCONTENT
   displayLevel.textContent = (levelButtonIndex + " (" + minNum + "-" + maxNum + ")");
-  // HIDE INPUT FIELD
-  userInput.classList.add("hidden");
-  // HIDE QUESTION
-  question.classList.add("hidden");
-  // HIDE MESSAGE
-  message.classList.add("hidden");
-  // SHOW INSTRUCTION - NOT WORKING !!!
+  // HIDE ELEMENTS
+  hideElement(userInput);
+  hideElement(question);
+  hideElement(message);
+// SHOW INSTRUCTION - NOT WORKING !!!
   // instruction.classList.remove("hidden");
   // THIS WORKS !!! WHYYYYY ???????????
   instruction.style="display: block";
@@ -210,8 +208,8 @@ const calcSquare = (num) => Math.pow(num, 2);
 
 const randomSqStyle = () => {
   questionSpan.textContent = num;
-  question.classList.remove("hidden");
-  instruction.classList.add("hidden");
+  showElement(question);
+  hideElement(instruction);
 }
 
 //  CALCULATE ACCURACY PERCENTAGE
@@ -238,7 +236,7 @@ const wrongAnswerStyle = () => {
   message.textContent="You're wrong, punk!";
   message.style.color= "#dd1534";
   message.classList.add("blink");
-  problemNumbers.classList.remove("hidden");
+  showElement(problemNumbers);
   fractionTotal.classList.remove("green");
   fractionTotal.classList.add("red");
 
@@ -252,17 +250,17 @@ const accuracyStyle = () => {
     progBarTextSpan.textContent = "";
   }
   // SHOW ACCURACY PERCENTAGE
-  progBarText.classList.remove("hidden");
+  showElement(progBarText);
   // SET BAR WIDTH / SHOW BAR
   progBar.style.width = accuracy + '%'; 
-  progBar.classList.remove("hidden");
+  showElement(progBar);
   // SET ACCURACY FRACTIONS
   fractionTotal.textContent = rightA;
   fractionRight.textContent = totalAttempts;
   // SHOW ACCURACY FRACTIONS PARAGRAPH
-  displayFraction.classList.remove("hidden");
+  showElement(displayFraction);
   // HIDE intro2
-  introText.classList.add("hidden");
+  hideElement(introText);
 }
 
 // ========================================================================
@@ -346,14 +344,11 @@ for (let i = 0; i < levelButtons.length; i++) {
   levelButtons[i].addEventListener("click", handleLevelButtons) 
 }
 
-
 // window.onload=function(){
 //   document.getElementById('play-button').onclick = function() {
 //       document.getElementById('number-input').focus();
 //   };
 // }
-
-
 
 // ADD LISTENER TO START BUTTON
 $("#start-button").on("click", function() {
@@ -380,16 +375,17 @@ $("#start-button").on("click", function() {
   // INSTRUCTION FADE IN - NOT WORKING (because classlist.remove was active)
   $("#instruction").delay(100).fadeIn(2000);
   // NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
-  buttonsRow.classList.remove("hidden");
+  // buttonsRow.classList.remove("hidden");
+  showElement(buttonsRow);
   instruction.textContent = "Set level of difficulty";
   // THIS IS WHERE LEVELBUTTONS LISTENER USED TO BE
 })
 
 $(".level-buttons").on("click", function() {
-  startButton.classList.add("hidden");
-  playButton.classList.remove("hidden");
+  hideElement(startButton);
+  showElement(playButton);
   // $("#level-message").delay(100).fadeIn(1000);
-  mainDispLevel.classList.remove("hidden");
+  showElement(mainDispLevel);
 })
 
 
@@ -401,8 +397,7 @@ $("#play-button").on("keyup", function() {
   // console.log("play clicked ");
     // NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
 
-
-  // !!! NOT WORKING !!!
+// !!! NOT WORKING !!!
   // instruction.classList.add("hidden");
   // THIS WORKS BUT SOMETIMES ONLY SECONT TIME AROUND- WHYYYY ???
   // instruction.style="display: none";
@@ -422,16 +417,16 @@ $("#play-button").on("keyup", function() {
   // setFocusInput();
   
   // SHOW QUESTION
-  question.classList.remove("hidden");
+  showElement(question);
   // CLEAR PLACEHOLDER IN TEXTBOX 
   $("#number-input").val("");
-  message.classList.remove("hidden");
+  // message.classList.remove("hidden");
+  showElement(message);
   // CLEAR MESSAGE FROM PREV GAME
   userInput.placeholder="Your guess";
   message.textContent="Now, think!";
   message.style.color= "yellow";
-  userInput.classList.remove("hidden");
-  // instruction.classList.add("hidden");
+  showElement(userInput);
   instruction.style="display: none";
   // THIS WILL CAUSE A SUDDEN CHANGE IN CONTAINER SIZE (NOT NICE)
   // $("#instruction").delay(100).fadeOut(1000);
@@ -579,10 +574,3 @@ $("input[type='number']").keyup(function(event){
     calcAccuracy();
   }
 })
-
-
-
-
-
-
-
