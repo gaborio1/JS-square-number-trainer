@@ -32,7 +32,7 @@ body {
     margin-left: 10%;
 }
 
-#fractions-container {
+.fractions-container {
     /* text-align: center; */
     width: 55.5%;
     /* height: 40px; */
@@ -43,7 +43,7 @@ body {
 
 /* NNNNNNNNNNNNNNNNNNNNN */
 
-.table-play {
+.player__toggle, .table__toggle {
     /* background: grey; */
     background: #ffa600;
     border: 5px solid black;
@@ -60,6 +60,8 @@ body {
     box-shadow: 0px 0px 45px 10px rgba(0,0,0,0.58); */
 }
 
+
+
 li {
     /* The list items will not be marked */
     list-style-type: none;
@@ -67,7 +69,7 @@ li {
     /* margin-right: 10px; */
 }
 
-#sq-table-img {
+.sq-table-img {
     max-width: 54.9%;
     margin-left: 22.20%;
     margin-top: 20px;
@@ -82,7 +84,7 @@ li {
     font-size: 1.2rem;
 }
 
-#player-container {
+.player-container {
     margin: 20px auto;
     /* max-width: 600px; */
     max-width: 55%;
@@ -122,23 +124,23 @@ li {
 } 
 
 
-#buttons-row {
+.buttons-row {
     height: 65px;
     background: #676668;
     /* background: red; */
 
 }
 
-#display-level {
+.display-level {
     font-size: 1.8rem;
 }
 
-#question {
+.question {
     color: darkcyan;
     font-size: 2rem;
 }
 
-#question-span {
+.question-span {
     font-size: 2.2rem;
     color: darkcyan;
 }
@@ -178,17 +180,17 @@ h2 {
     text-transform: uppercase;
 }
 
-#myPage #logo {
+.logo {
     margin: 0px 20px 10% 0%;
     padding-right: 15px;
     font-size: 2.5rem;
 }
 
-#instruction {
+.instruction {
     font-size: 1.8rem;
 }
 
-#message {
+.message {
     text-align: center;
     font-size: 2rem;
 }
@@ -204,7 +206,7 @@ h2 {
 }
 
 
-#prog-bar-text {
+.prog-bar-text {
     text-align: right;
     font-weight: 700;
     font-size: 1.3rem;
@@ -216,7 +218,7 @@ h2 {
 }
 
 
-#myProgress {
+.prog-bar-container {
     width: 80%;
     margin: auto;
     /* ??? border not hidden??? */
@@ -228,13 +230,13 @@ h2 {
 /* NOT WORKING COS ITS NOT EMPTY */
 /* HAVE TO REMOVE BORDER  ???*/
 /* MAYBE ADD BORDER ONLY WHEN ITS DISPLAYED??? */
-#myProgress:empty{
+.prog-bar-container:empty{
     /* display:none; */
     /* OR */
     border:none;
 }
 
-#prog-bar {
+.prog-bar {
     width: 0%;
     height: 45px;
     padding-top: 1px;
@@ -251,7 +253,7 @@ h2 {
 /* NNNNNNNNNNNNNNNNNNNNNNNNNNNN */
 /* TEXTCONTENT KEY VALUE PAIRS OF OBJECT
  */
-#my-div{
+.ordered-stat-container {
     background: #ffa600;
     float:left;
     border: 5px solid black;
@@ -264,13 +266,13 @@ h2 {
 }
 
 /* HIDE BORDER WHEN DIV'S EMPTY */
-#my-div:empty{
+.ordered-stat-container:empty{ 
     display:none;
     /* OR */
     /* border:none */
 }
 
-#my-div span {
+.ordered-stat-container span {
     float: left;
     width: 100%;
     padding: 2px 2px;
@@ -286,7 +288,7 @@ span:nth-child(odd){
 
 /* NNNNNNNNNNNNNNNNNNNNNNNNNNNN */
 
-#orderedStatTest {
+.ordered-stat {
     background: #ffa600;
     float:left;
     border: 5px solid black;
@@ -298,13 +300,13 @@ span:nth-child(odd){
     text-align: center;
 }
 
-#orderedStatTest:empty{
+.ordered-stat:empty {
     display:none;
     /* OR */
     /* border:none */
 }
 
-#orderedStatTest span {
+.ordered-stat span {
     float: left;
     width: 100%;
     padding: 2px 2px;

@@ -290,11 +290,11 @@ setFocusStart();
 //              LISTENERS
 
 $(document).ready(function(){
-  $("#toggle1").click(function(){
+  $("#player__toggle").click(function(){
     $("#player-container").fadeOut(300);
     $("#sq-table-img").delay(300).fadeIn(300);
-    $("#toggle1").addClass("hidden");
-    $("#toggle2").removeClass("hidden");
+    $("#player__toggle").addClass("hidden");
+    $("#table__toggle").removeClass("hidden");
 
 
 
@@ -316,9 +316,9 @@ $(document).ready(function(){
     for (let i = 0; i < sortable.length; i++) {
       const counter = document.createElement("span");
       counter.textContent = `Number: ${sortable[i][0]}  /  count: ${sortable[i][1]}`;
-      document.getElementById("orderedStatTest").appendChild(counter);
+      document.getElementById("ordered-stat").appendChild(counter);
     }
-    $("#orderedStatTest").delay(1000).fadeIn(300);
+    $("#ordered-stat").delay(1000).fadeIn(300);
     // NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN 
 
 
@@ -326,10 +326,10 @@ $(document).ready(function(){
     // DIV 2
     // STEP 1 = DISPLAY REDUCEDPROBNUMS{} CONTENT AS TEXT
     $.each(reducedStatList,function(key,value){
-        $('#my-div').append("<span>"+"number: "+key+" / " +"count: "+value+"</span>")
+        $('#ordered-stat-container').append("<span>"+"number: "+key+" / " +"count: "+value+"</span>")
       });
       // FADE IN NOT WORKING FOR THE FIRST TIME. AFTER ITS OK !!!
-    $("#my-div").delay(650).fadeIn(300);
+    $("#ordered-stat-container").delay(650).fadeIn(300);
   });
 
 
@@ -338,18 +338,18 @@ $(document).ready(function(){
 
 
 
-  $("#toggle2").click(function(){
+  $("#table__toggle").click(function(){
     $("#sq-table-img").delay(650).fadeOut(300);
     $("#player-container").delay(1000).fadeIn(300);
-    $("#toggle2").addClass("hidden");
-    $("#toggle1").removeClass("hidden");
+    $("#table__toggle").addClass("hidden");
+    $("#player__toggle").removeClass("hidden");
     setFocusInput();
-    $("#my-div").delay(300).fadeOut(300);
-    $("#orderedStatTest").fadeOut(300);
+    $("#ordered-stat-container").delay(300).fadeOut(300);
+    $("#ordered-stat").fadeOut(300);
     // STEP 2 = CLEAR CONTENT OF DIV
     function clearBox(){
-      document.getElementById('my-div').innerHTML = "";
-      document.getElementById('orderedStatTest').innerHTML = "";
+      document.getElementById('ordered-stat-container').innerHTML = "";
+      document.getElementById('ordered-stat').innerHTML = "";
     }
     setTimeout(function() {
       clearBox();
