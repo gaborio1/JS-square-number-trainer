@@ -43,7 +43,7 @@ let num;
 let minNum = 0;
 let maxNum = 0;
 let solution;
-let answer;
+// let answer;
 let baseNum = 1;
 let lastProbNumber;
 
@@ -192,7 +192,6 @@ const randomNum = (maxNum, minNum) => {
 const calcNumAndSolution = () => {
   // num = Math.floor(Math.random() * (maxNum - minNum +1)) + minNum;
   num = randomNum(maxNum, minNum);
-  console.log("Number: " + num);
   // NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
   // !!! THIS CONSOLE.LOGS TWICE EVERY TIME NUM === 1 0R LAST 5 AND DOES NOT WORK FOR 1 FOR THE VERY FIRST TIME!!!
   for (let i = 0; i < lastNumbers.length; i++) {
@@ -204,11 +203,10 @@ const calcNumAndSolution = () => {
   }
   randomSqStyle();
   // CALCULATE ITS SQUARE
-  solution = square(num);
-  console.log("Solution: " + solution);
+  solution = calcSquare(num);
 }
 
-const square = (num) => Math.pow(num, 2);
+const calcSquare = (num) => Math.pow(num, 2);
 
 const randomSqStyle = () => {
   questionSpan.textContent = num;
@@ -225,6 +223,7 @@ const calcAccuracy = () => {
   accuracyStyle();
 }
 
+// STYLE RIGHT ANSWER
 const rightAnswerStyle = () => {
   userInput.placeholder = solution;
   message.textContent = "That's right, madafaka!";
@@ -232,6 +231,7 @@ const rightAnswerStyle = () => {
   message.classList.remove("blink");
 }
 
+// STYLE WRONG ANSWER
 const wrongAnswerStyle = () => {
   $("#number-input").val("");
   userInput.placeholder="Try again!";
@@ -244,6 +244,7 @@ const wrongAnswerStyle = () => {
 
 }
 
+// STYLE ACCURACY INDICATORS AND PROGBAR
 const accuracyStyle = () => {
   // ADD VALUE TO ACC SPAN
   progBarTextSpan.textContent = accuracy + "%";
@@ -278,23 +279,35 @@ $(document).ready(function(){
     $("#sq-table-img").delay(300).fadeIn(300);
     $("#toggle1").addClass("hidden");
     $("#toggle2").removeClass("hidden");
-    // NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+
+
+
+    // NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN 
+    // DIV 1
     // SORT REDUCEDSTATLIST BY NUMBER OF WRONG ATTEMPTS (BY KEY: SWAP a and b)
-    var sortable = [];
+    let sortable = [];
     for (let key in reducedStatList) {
       sortable.push([key, reducedStatList[key]]);
     }
     sortable.sort(function(a, b) {
       return b[1] - a[1];
     });
+
+    // KEY IS STRING AND VALUTE IS NUMBER !!!
     console.log("sortable: " + sortable);
-    for (var i=0; i<sortable.length; i++) {
-      var para = document.createElement("SPAN");
-      para.textContent = "Number " + sortable[i] + " Time(s)";
-      document.getElementById("orderedStatTest").appendChild(para);
+    console.log("sortable1: " + sortable[0][0],sortable[0][1], typeof sortable[0]);
+    
+    for (let i = 0; i < sortable.length; i++) {
+      const counter = document.createElement("span");
+      counter.textContent = `Number: ${sortable[i][0]}  /  count: ${sortable[i][1]}`;
+      document.getElementById("orderedStatTest").appendChild(counter);
     }
     $("#orderedStatTest").delay(1000).fadeIn(300);
-    // NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+    // NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN 
+
+
+
+    // DIV 2
     // STEP 1 = DISPLAY REDUCEDPROBNUMS{} CONTENT AS TEXT
     $.each(reducedStatList,function(key,value){
         $('#my-div').append("<span>"+"number: "+key+" / " +"count: "+value+"</span>")
@@ -302,6 +315,12 @@ $(document).ready(function(){
       // FADE IN NOT WORKING FOR THE FIRST TIME. AFTER ITS OK !!!
     $("#my-div").delay(650).fadeIn(300);
   });
+
+
+
+
+
+
 
   $("#toggle2").click(function(){
     $("#sq-table-img").delay(650).fadeOut(300);
@@ -430,6 +449,24 @@ $("#play-button").on("keyup", function() {
 
 // ========================================================================
 
+// REMOVE DUPLICATE ITEMS IN PROBNUMS AND RETURN NUMBER/COUNT OBJECTS
+const reduceArr = (arr) => {
+   return arr.reduce(function (acc, curr) {
+    if (typeof acc[curr] == 'undefined') {
+      acc[curr] = 1;
+    } else {
+      acc[curr] += 1;
+    }
+    return acc;
+  },{})
+}
+
+// UNSHIFT NUM TO BEGINNING OF ARRAY
+const addToStartOfArr = (el, arr) => {
+  arr.unshift(el);
+  return arr;
+}
+
 // GET USER INPUT
 // THIS USED TO BE KEYPRESS() BUT NOW IT WORKS BETTER
 $("input[type='number']").keyup(function(event){
@@ -443,32 +480,28 @@ $("input[type='number']").keyup(function(event){
     // IF 630 , KEEP 630 (NOT TESTED)
     // $('#player-container').css("height","630px");
 
-    // SAVE USER INPUT IN VAR ANSWER
-    answer = Number($(this).val());
-    // console.log("your guess: " + answer);
+    // SAVE ANSWER
+    let answer = Number($(this).val());
+    // IF WRONG ANSWER
     if (answer !== solution) {
       // ??? CLEAR INPUT FIELD AGAIN ???
       isCorrect = false;
       wrongAnswerStyle();
-      // ADD NUM TO FRONT OF PROBNUMBERS
-      probNumbers.unshift(num);
+
+      // 1. ADD NUM TO BEGINNING OF PROBNUMBERS
+      probNumbers = addToStartOfArr(num, probNumbers);
       console.log("PROBNUMBERS: " + probNumbers);
 
-      // REDUCE ARRAY AND RETURN NUMBER/COUNT OBJECTS
-      reducedProbNumbers = probNumbers.reduce(function (acc, curr) {
-        if (typeof acc[curr] == 'undefined') {
-          acc[curr] = 1;
-        } else {
-          acc[curr] += 1;
-        }
-        return acc;
-      },{})
+      // 2. REDUCE ARRAY AND RETURN NUMBER/COUNT OBJECTS
+      reducedProbNumbers = reduceArr(probNumbers);      
+
       // GET PROPERTY NAMES - The Object.keys() method returns an array of a given object's own property names.
       for (let [key, value] of Object.entries(reducedProbNumbers)) {
         // console.log(`${key}: ${value}`);
         finalProbNumbers.unshift(`${key}: ${value}`);
         // console.log(finalProbNumbers);
       }
+
       // WORKING BUT SEE COMMENT BELOW! (ONLY WORKS IN CONSOLE)
       for (let key in reducedProbNumbers) {
         if (reducedProbNumbers.hasOwnProperty(key)) {
@@ -476,6 +509,7 @@ $("input[type='number']").keyup(function(event){
           // console.log(key + " -> " + reducedProbNumbers[key]);
         }
       }
+
       // AAAAAAAAAAAAAAAAAARGH!!!!!! THIS NOW WORKS WITH PROBNUMS BUT NO COUNT YET !!!
       problemNumbersSpan.textContent= Object.keys(reducedProbNumbers);
       console.log("REDUCED PROBNUMS: " + Object.keys(reducedProbNumbers));
@@ -501,7 +535,10 @@ $("input[type='number']").keyup(function(event){
         }
         return acc;
       },{})
-    } else {
+    } 
+
+    // IF RIGHT ANSWER 
+    else {
       rightAnswerStyle();
       // PLACE CURSOR TO PLAYBUTTON IF CORRECT !!!
       setFocusPlay();
@@ -512,7 +549,7 @@ $("input[type='number']").keyup(function(event){
       // NOT WORKING IF NUM==PROBNUMS[0]
       // IF i IS SET TO 0 THEN IT WONT LIST NUMBERS, ONLY THE CURRENT WRONG ANSWER IS DISPLAYED UNTIL RIGHT ANSWER
       // MAKE i A VARIABLE (0 OR 1) DEPENDING ON WHETHER NUM IS ALREADY LISTED ???
-      for( var i = 1; i < probNumbers.length; i++){ 
+      for( let i = 1; i < probNumbers.length; i++){ 
         // &&
         if (probNumbers[i] === num) {
           probNumbers.splice(i, 1); 
@@ -520,7 +557,7 @@ $("input[type='number']").keyup(function(event){
         }
       }
       console.log("SPLICE: " + probNumbers);
-      // REDUCE ARRAY AND RETURN NUMBER/COUNT OBJECTS
+      // REDUCE ARRAY AND RETURN NUMBER/COUNT OBJECTSs
       reducedProbNumbers = probNumbers.reduce(function (acc, curr) {
         if (typeof acc[curr] == 'undefined') {
           acc[curr] = 1;
