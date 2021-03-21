@@ -171,6 +171,10 @@ const removeClassListFromElement = (el, classlist) => {
   el.classList.remove(classlist);
 }
 
+const setElementColor = (el, color) => {
+  el.style.color = color;
+}
+
 // APPLY SYLES WHEN LEVEL SELECTION IN MADE
 const styleLevelSelection = () => {
   // UPDATE DISPLEVEL TEXTCONTENT
@@ -244,7 +248,7 @@ const calcAccuracy = () => {
 const rightAnswerStyle = () => {
   userInput.placeholder = solution;
   makeTextContent(message, "That's right, madafaka!");
-  message.style.color= " #0E7C4A";
+  setElementColor(message," #0E7C4A");
   removeClassListFromElement(message, "blink");
 }
 
@@ -253,7 +257,7 @@ const wrongAnswerStyle = () => {
   $("#number-input").val("");
   userInput.placeholder="Try again!";
   makeTextContent(message, "You're wrong, punk!");
-  message.style.color= "#dd1534";
+  setElementColor(message,"#dd1534");
   addClassListToElement(message, "blink");
   showElement(problemNumbers);
   removeClassListFromElement(fractionTotal, "green");
@@ -296,9 +300,6 @@ $(document).ready(function(){
     $("#player__toggle").addClass("hidden");
     $("#table__toggle").removeClass("hidden");
 
-
-
-    // NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN 
     // DIV 1
     // SORT REDUCEDSTATLIST BY NUMBER OF WRONG ATTEMPTS (BY KEY: SWAP a and b)
     let sortable = [];
@@ -319,9 +320,6 @@ $(document).ready(function(){
       document.getElementById("ordered-stat").appendChild(counter);
     }
     $("#ordered-stat").delay(1000).fadeIn(300);
-    // NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN 
-
-
 
     // DIV 2
     // STEP 1 = DISPLAY REDUCEDPROBNUMS{} CONTENT AS TEXT
@@ -332,10 +330,25 @@ $(document).ready(function(){
     $("#ordered-stat-container").delay(650).fadeIn(300);
   });
 
+  // ADD EVENTLISTENER TO LEVELBUTTONS
+  // THIS USED TO BE IN SETUPLEVBUTTONS FUNCTION (NESTED LOOP)
+  const addEvtListenerToElements = (arr, func) => {
+    for (let i = 0; i < arr.length; i++) {
+      arr[i].addEventListener("click", func) 
+    }
+  }
 
+  addEvtListenerToElements(levelButtons, handleLevelButtons);
 
+  const orderedStatContainer = document.getElementById('ordered-stat-container');
+  const orderedStat = document.getElementById('ordered-stat');
 
-
+  const clearStatsText = (...args) => {
+    for (let arg of args) {
+      arg.innerHTML = "";
+      console.log("div cleared");
+    }
+  }
 
 
   $("#table__toggle").click(function(){
@@ -347,20 +360,12 @@ $(document).ready(function(){
     $("#ordered-stat-container").delay(300).fadeOut(300);
     $("#ordered-stat").fadeOut(300);
     // STEP 2 = CLEAR CONTENT OF DIV
-    function clearBox(){
-      document.getElementById('ordered-stat-container').innerHTML = "";
-      document.getElementById('ordered-stat').innerHTML = "";
-    }
     setTimeout(function() {
-      clearBox();
+      clearStatsText(orderedStatContainer, orderedStat);
+      // clearBox();
     }, 650);
   });
 });
-
-// THIS USED TO BE IN SETUPLEVBUTTONS FUNCTION (NESTED LOOP)
-for (let i = 0; i < levelButtons.length; i++) {
-  levelButtons[i].addEventListener("click", handleLevelButtons) 
-}
 
 // window.onload=function(){
 //   document.getElementById('play-button').onclick = function() {
@@ -371,12 +376,7 @@ for (let i = 0; i < levelButtons.length; i++) {
 // ADD LISTENER TO START BUTTON
 $("#start-button").on("click", function() {
   // console.log("start clicked");
-  // NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
-  // WORKING ONLY FIRST TIME COS LEVELBUTTONS WILL CHANGE HEIGHT
-  // $('#player-container').animate({height:'340'});
-  // TRY WRAPPING ALL OF THIS IN .ready() !!!
-  // THIS IS NOW WORKING, NEXT TRY TO FADEIN ONE BY ONE
-  // $(".levelButtons").delay(100).fadeIn(1000);
+
   // LEVELBUTTONS FADEIN ONE BY ONE - TRY WITH LOOP MAYBE??
   $("#lev1").delay(100).fadeIn(1000);
   $("#lev2").delay(200).fadeIn(1000);
@@ -389,10 +389,8 @@ $("#start-button").on("click", function() {
   $("#lev9").delay(900).fadeIn(1000);
   $("#lev10").delay(1000).fadeIn(1000);
 
-
   // INSTRUCTION FADE IN - NOT WORKING (because classlist.remove was active)
   $("#instruction").delay(100).fadeIn(2000);
-  // NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
   // buttonsRow.classList.remove("hidden");
   showElement(buttonsRow);
   instruction.textContent = "Set level of difficulty";
@@ -408,18 +406,10 @@ $(".level-buttons").on("click", function() {
 
 
 // ADD LISTENER TO PLAY BUTTON 
-  // NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
 // KEYUP INSTEAD OF CLICK : PLAY BUTTON NOW WORKS AT FIRST CLICK BUT RIGHTANSWERMESSAGE ONLY SHOWS WHILE KEY IS PRESSED 
 // DELAY STYLE FUNCTIONS ???
 $("#play-button").on("keyup", function() {
   // console.log("play clicked ");
-    // NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
-
-// !!! NOT WORKING !!!
-  // instruction.classList.add("hidden");
-  // THIS WORKS BUT SOMETIMES ONLY SECONT TIME AROUND- WHYYYY ???
-  // instruction.style="display: none";
-
   setFocusInput();
 
   // ELSE IF NOTWORKING
@@ -443,7 +433,7 @@ $("#play-button").on("keyup", function() {
   // CLEAR MESSAGE FROM PREV GAME
   userInput.placeholder="Your guess";
   makeTextContent(message, "Now, think!");
-  message.style.color= "yellow";
+  setElementColor(message, "yellow");
   showElement(userInput);
   elementDisplayNone(instruction);
   // THIS WILL CAUSE A SUDDEN CHANGE IN CONTAINER SIZE (NOT NICE)
