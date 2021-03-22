@@ -37,6 +37,12 @@ console.log("CONNECTED")
 // +++FIXED+++LIST TOP PROBLEM NUMBERS (NO REPEAT)
 // +++FIXED+++FIND A WAY TO DISPLAY HOW MANY TIMES A PROB NUMBER OCCOURS !!! 
 
+// SHOW INSTRUCTION - NOT WORKING !!!
+  // instruction.classList.remove("hidden");
+  // THIS WORKS !!! WHYYYYY ???????????
+  // elementStyleBlock(instruction);
+
+
 // ========================================================================
 
 //              MAIN LOGIC VARIABLES
@@ -175,21 +181,17 @@ const setElementColor = (el, color) => {
   el.style.color = color;
 }
 
-// APPLY SYLES WHEN LEVEL SELECTION IN MADE
+// APPLY SYLES, UPDATE MESSAGES WHEN LEVEL SELECTION IN MADE
 const styleLevelSelection = () => {
-  // UPDATE DISPLEVEL TEXTCONTENT
-  makeTextContent(displayLevel, (levelButtonIndex + " (" + minNum + "-" + maxNum + ")"));
-  // HIDE ELEMENTS
+  // makeTextContent(displayLevel, (levelButtonIndex + " (" + minNum + "-" + maxNum + ")")); 
+  makeTextContent(displayLevel, (levelButtonIndex + " (" + minNum + "-" + maxNum + ")")); 
   hideElement(userInput);
   hideElement(question);
   hideElement(message);
-// SHOW INSTRUCTION - NOT WORKING !!!
-  // instruction.classList.remove("hidden");
-  // THIS WORKS !!! WHYYYYY ???????????
   elementStyleBlock(instruction);
-  // UPDATE INSTRUCTION
   makeTextContent(instruction, "Click Play!");
 }
+
 
 // LEVEL SELECTION BUTTONS
 const handleLevelButtons = function() {
@@ -198,7 +200,7 @@ const handleLevelButtons = function() {
   addClassListToElement(this, "selected");
   setFocusPlay();
   // console.log(this);
-  // RETRIEVE INDEX FROM TEXT CONTENT
+  // RETRIEVE INDEX FROM TEXT CONTENT AND DEFINE RANGE FOR CHOSEN LEVEL (MIN-MAX)
   levelButtonIndex = Number(this.innerHTML);
   maxNum = getMaxNum(levelButtonIndex);
   minNum = getMinNum(maxNum);
@@ -206,21 +208,18 @@ const handleLevelButtons = function() {
 }
 
 // GENERATE RANDOM NUMBER BETWEEN minNUM AND maxNUM BASED ON SELECTED LEVEL (11-20 ... 91-100 )
-const randomNum = (maxNum, minNum) => {
-  return (Math.floor(Math.random() * (maxNum - minNum +1)) + minNum);
+const randomNumBetween = (max, min) => {
+  return (Math.floor(Math.random() * (max - min +1)) + min);
 }
 
 const calcNumAndSolution = () => {
-  // num = Math.floor(Math.random() * (maxNum - minNum +1)) + minNum;
-  num = randomNum(maxNum, minNum);
-  // NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+  num = randomNumBetween(maxNum, minNum);
   // !!! THIS CONSOLE.LOGS TWICE EVERY TIME NUM === 1 0R LAST 5 AND DOES NOT WORK FOR 1 FOR THE VERY FIRST TIME!!!
   for (let i = 0; i < lastNumbers.length; i++) {
     if (num === 1 || num === lastNumbers[i]) {
       console.log("num === 1 or Last 5 numbers");
       calcNumAndSolution();
     }
-    // NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
   }
   randomSqStyle();
   // CALCULATE ITS SQUARE
