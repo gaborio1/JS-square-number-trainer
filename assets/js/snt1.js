@@ -1,49 +1,5 @@
-
 console.log("CONNECTED")
-
 //  17/9/19 1115
-
-//          ISSUES TO FIX / FUNCTIONS TO ADD
-
-// CURSOR FOCUS  !!! TRY blur() TO CLEAR FOCUS !!!
-// ??? HAVE TO PRESS PLAY TWICE AFTER CHANGING DIFF LEVEL TO GET FOCUS INTO INPUT SO A NEW NUMBER IS GENERATED THEN 
-// CLEAR LASTNUMBERS[] WHEN CHANGING DIFF LEVEL ???
-// ADD RANDOM 2-100 DIFF LEVEL BY CLICKING ON LOGO???
-// ADD SQUARE NUMBERS TABLE AS GUIDE (TOGGLE) HIGHLIGHT PROBLEM NUMBERS
-// FLASH MESSAGE IF WRONG ANSWER GIVEN WITH JS 
-// FLASH/HIGHLIGHT TABLESQUARE BUTTON IF WRONG
-// STATISTICS FADE IN NOT WORKING FOR FIRST CLICK
-// PROGBAR BORDER APPEARS WHEN PAGE POADS
-// IF PROBNUM COMES UP AGAIN AND GUESSED RIGHT REMOVE IT FROM PROBNUMS
-// FADEIN LEVELBUTTONS WITH FAST DELAY
-// FADEIN MESSAGE, INPUT FIELD, PROGBAR ???
-
-// MAKE SEPARATE ARRAY FOR STATISTICS SO IT IS NOT AFFECTED BY CHANGES IN BROBNUMS
-
-// DO CSS
-// RENAME VARIABLES/IDS/CLASSES
-// ------------------------------------------------------------------------
-// +++FIXED+++ SELECT ONLY ONE LEVEL AT ONCE
-// +++FIXED+++ ZONAL DIFF LEVELS
-// +++FIXED+++ SHOW FRACTIONAL RESULT
-//  +++FIXED+++   STOP BUBBLING IN random FUNCTION   (CAUSE: NESTED FUNCTIONS)
-//  +++FIXED+++ MAKE solution GLOBAL !!!
-//  +++FIXED+++ DISPQUESTION STYLE (SPAN)
-// +++FIXED+++ SHOW ACCURACY PERCENTAGE BAR
-// +++FIXED+++ FLASH MESSAGE IF WRONG WITH CSS
-//  +++FIXED+++ DO NOT GENERATE 1 OR SAME NUMBER TWICE FOR 5 TURNS
-// +++OK TO USE+++ ???  AVOID ONCLICK ???
-// +++FIXED+++ ADD .startPlay TO START AND PLAY FOR CSS
-// +++FIXED+++LIST TOP PROBLEM NUMBERS (NO REPEAT)
-// +++FIXED+++FIND A WAY TO DISPLAY HOW MANY TIMES A PROB NUMBER OCCOURS !!! 
-
-// SHOW INSTRUCTION - NOT WORKING !!!
-  // instruction.classList.remove("hidden");
-  // THIS WORKS !!! WHYYYYY ???????????
-  // elementStyleBlock(instruction);
-
-
-// ========================================================================
 
 //              MAIN LOGIC VARIABLES
 let num;
@@ -57,10 +13,8 @@ let lastProbNumber;
 //              LAST NUMBERS & PROBLEM NUMBERS ARRAYS
 let lastNumbers = [];
 let probNumbers = [];
-
 let reducedProbNumbers = {};
 let finalProbNumbers = [];
-
 let statList = [];
 let reducedStatList = {};
 
@@ -72,6 +26,8 @@ let rightA = 0;
 let wrongA = 0;
 let totalAttempts = 0;
 let accuracy;
+let levelButtonIndex;
+
 //              STYLE VARIABLES
 // var tablePlay = document.getElementById("tablePlay");
 const playerContainer = document.getElementById("player-container");
@@ -82,17 +38,13 @@ const fractionTotal = document.getElementById("fraction-total");
 const fractionRight = document.getElementById("fraction-right");
 const displayLevel = document.querySelector("#display-level");
 const questionSpan = document.querySelector("#question-span");
-
 // THIS IS VALUED AS NULL !!!
 const fractionsContainer = document.getElementById("fractions-container");
-
 const question = document.querySelector("#question");
 const message = document.querySelector("#message");
 const startButton = document.querySelector("#start-button");
 const playButton = document.querySelector("#play-button");
 const levelButtons = document.querySelectorAll(".level-buttons");
-
-let levelButtonIndex;
 // OR AS BELOW:
 // var levelButtons = Array.from(document.querySelectorAll(".level-buttons"));
 const mainDispLevel = document.getElementById("level-message");
@@ -102,10 +54,10 @@ const buttonsRow = document.getElementById("buttons-row");
 const progBarText = document.getElementById("prog-bar-text");
 const progBarTextSpan = document.getElementById("prog-bar-text__span");
 const progBar = document.getElementById("prog-bar");
-
-
 const problemNumbers = document.getElementById("problem-numbers");
 const problemNumbersSpan = document.getElementById("problem-numbers__span");
+const orderedStatContainer = document.getElementById('ordered-stat-container');
+const orderedStat = document.getElementById('ordered-stat');
 
 // ========================================================================
 
@@ -169,6 +121,10 @@ const makeTextContent = (el, text) => {
   el.textContent = text;
 }
 
+const makePlaceholderText = (el, text) => {
+  el.placeholder = text;
+}
+
 const addClassListToElement = (el, classlist) => {
   el.classList.add(classlist);
 }
@@ -181,9 +137,26 @@ const setElementColor = (el, color) => {
   el.style.color = color;
 }
 
+// UNSHIFT NUM TO BEGINNING OF ARRAY
+const addToStartOfArr = (el, arr) => {
+  arr.unshift(el);
+  return arr;
+}
+
+// REMOVE DUPLICATE ITEMS IN ARRAY AND RETURN NUMBER/COUNT OBJECTS
+const reduceArr = (arr) => {
+  return arr.reduce(function (acc, curr) {
+   if (typeof acc[curr] == 'undefined') {
+     acc[curr] = 1;
+   } else {
+     acc[curr] += 1;
+   }
+   return acc;
+ },{})
+}
+
 // APPLY SYLES, UPDATE MESSAGES WHEN LEVEL SELECTION IN MADE
 const styleLevelSelection = () => {
-  // makeTextContent(displayLevel, (levelButtonIndex + " (" + minNum + "-" + maxNum + ")")); 
   makeTextContent(displayLevel, (levelButtonIndex + " (" + minNum + "-" + maxNum + ")")); 
   hideElement(userInput);
   hideElement(question);
@@ -192,60 +165,61 @@ const styleLevelSelection = () => {
   makeTextContent(instruction, "Click Play!");
 }
 
-
-// LEVEL SELECTION BUTTONS
-const handleLevelButtons = function() {
+// WHEN LEVEL SELECTION BUTTON IS CLICKED
+const handleLevelSelection = function() {
   styleLevelButtons();
   // STEP 2- ADD CLASS TO this ONLY !!! (OUTSIDE OF LOOP)
   addClassListToElement(this, "selected");
-  setFocusPlay();
-  // console.log(this);
-  // RETRIEVE INDEX FROM TEXT CONTENT AND DEFINE RANGE FOR CHOSEN LEVEL (MIN-MAX)
+  setFocusPlay();  
+  // 1. RETREIVE INDEX FROM BUTTON'S TEXT (1-10)
   levelButtonIndex = Number(this.innerHTML);
+  // 2. DEFINE MIN AND MAX NUMBER BASED ON SELECTED LEVEL (LEVEL 5 - MIN:41, MAX:50)
   maxNum = getMaxNum(levelButtonIndex);
   minNum = getMinNum(maxNum);
   styleLevelSelection();
 }
 
-// GENERATE RANDOM NUMBER BETWEEN minNUM AND maxNUM BASED ON SELECTED LEVEL (11-20 ... 91-100 )
+// 3. GENERATE RANDOM NUMBER BETWEEN minNUM AND maxNUM BASED ON SELECTED LEVEL (11-20 ... 91-100 )
 const randomNumBetween = (max, min) => {
+  // ON LEVEL 1, DO NOT GENERATE NUMBER 1, RANGE IS 2-10
+  if (max === 10) {
+    min += 1;
+  }
   return (Math.floor(Math.random() * (max - min +1)) + min);
 }
 
+// DON'T GENERATE SAME NUMBER IF IT HAD COME UP IN THE LAST AT LEAST 5 TURNS 
 const calcNumAndSolution = () => {
   num = randomNumBetween(maxNum, minNum);
   // !!! THIS CONSOLE.LOGS TWICE EVERY TIME NUM === 1 0R LAST 5 AND DOES NOT WORK FOR 1 FOR THE VERY FIRST TIME!!!
   for (let i = 0; i < lastNumbers.length; i++) {
-    if (num === 1 || num === lastNumbers[i]) {
-      console.log("num === 1 or Last 5 numbers");
+    if (num === lastNumbers[i]) {
+      console.log("num === Last 5 numbers");
       calcNumAndSolution();
     }
   }
   randomSqStyle();
-  // CALCULATE ITS SQUARE
   solution = calcSquare(num);
 }
 
 const calcSquare = (num) => Math.pow(num, 2);
 
 const randomSqStyle = () => {
-  questionSpan.textContent = num;
+  makeTextContent(questionSpan, num);
   showElement(question);
   hideElement(instruction);
 }
 
-//  CALCULATE ACCURACY PERCENTAGE
+//  CALCULATE ACCURACY PERCENTAGE, ROUNDED TO 2 DECIMAL PLACES (66.67 = 66.6666666)
 const calcAccuracy = () => {
   totalAttempts = rightA + wrongA;
-  // ROUND TO 2 DECIMAL PLACES (66.67 = 66.6666666)
   accuracy = ((rightA / totalAttempts) * 100).toFixed(2);
-  // console.log("Accuracy:" + accuracy);
   accuracyStyle();
 }
 
 // STYLE RIGHT ANSWER
 const rightAnswerStyle = () => {
-  userInput.placeholder = solution;
+  makePlaceholderText(userInput, solution);
   makeTextContent(message, "That's right, madafaka!");
   setElementColor(message," #0E7C4A");
   removeClassListFromElement(message, "blink");
@@ -254,7 +228,7 @@ const rightAnswerStyle = () => {
 // STYLE WRONG ANSWER
 const wrongAnswerStyle = () => {
   $("#number-input").val("");
-  userInput.placeholder="Try again!";
+  makePlaceholderText(userInput, "Try again!");
   makeTextContent(message, "You're wrong, punk!");
   setElementColor(message,"#dd1534");
   addClassListToElement(message, "blink");
@@ -265,7 +239,6 @@ const wrongAnswerStyle = () => {
 
 // STYLE ACCURACY INDICATORS AND PROGBAR
 const accuracyStyle = () => {
-  // ADD VALUE TO ACC SPAN
   progBarTextSpan.textContent = accuracy + "%";
   if (accuracy <= 10) {
     progBarTextSpan.textContent = "";
@@ -310,8 +283,8 @@ $(document).ready(function(){
     });
 
     // KEY IS STRING AND VALUTE IS NUMBER !!!
-    console.log("sortable: " + sortable);
-    console.log("sortable1: " + sortable[0][0],sortable[0][1], typeof sortable[0]);
+    // console.log("sortable: " + sortable);
+    // console.log("sortable1: " + sortable[0][0],sortable[0][1], typeof sortable[0]);
     
     for (let i = 0; i < sortable.length; i++) {
       const counter = document.createElement("span");
@@ -337,15 +310,11 @@ $(document).ready(function(){
     }
   }
 
-  addEvtListenerToElements(levelButtons, handleLevelButtons);
-
-  const orderedStatContainer = document.getElementById('ordered-stat-container');
-  const orderedStat = document.getElementById('ordered-stat');
+  addEvtListenerToElements(levelButtons, handleLevelSelection);
 
   const clearStatsText = (...args) => {
     for (let arg of args) {
       arg.innerHTML = "";
-      console.log("div cleared");
     }
   }
 
@@ -393,7 +362,6 @@ $("#start-button").on("click", function() {
   // buttonsRow.classList.remove("hidden");
   showElement(buttonsRow);
   instruction.textContent = "Set level of difficulty";
-  // THIS IS WHERE LEVELBUTTONS LISTENER USED TO BE
 })
 
 $(".level-buttons").on("click", function() {
@@ -430,18 +398,14 @@ $("#play-button").on("keyup", function() {
   // message.classList.remove("hidden");
   showElement(message);
   // CLEAR MESSAGE FROM PREV GAME
-  userInput.placeholder="Your guess";
+  makePlaceholderText(userInput, "Your guess");
   makeTextContent(message, "Now, think!");
   setElementColor(message, "yellow");
   showElement(userInput);
   elementDisplayNone(instruction);
-  // THIS WILL CAUSE A SUDDEN CHANGE IN CONTAINER SIZE (NOT NICE)
-  // $("#instruction").delay(100).fadeOut(1000);
   // ADD LAST NUM TO FRONT OF ARRAY 
   lastNumbers.unshift(num);
-  // console.log(lastNumbers);
-  // DO NOT GENERATE SAME NUMBER TWICE FOR 5 TURNS
-  //  KEEP ARRAY LENGTH AT 5 (REMOVE 6th (LAST) FROM ARRAY)
+  // DO NOT GENERATE SAME NUMBER TWICE FOR 5 TURNS, KEEP ARRAY LENGTH AT 5 (REMOVE 6th (LAST)
   if (lastNumbers.length >= 5) {
     lastNumbers.pop();
   }
@@ -450,24 +414,6 @@ $("#play-button").on("keyup", function() {
 })
 
 // ========================================================================
-
-// REMOVE DUPLICATE ITEMS IN PROBNUMS AND RETURN NUMBER/COUNT OBJECTS
-const reduceArr = (arr) => {
-   return arr.reduce(function (acc, curr) {
-    if (typeof acc[curr] == 'undefined') {
-      acc[curr] = 1;
-    } else {
-      acc[curr] += 1;
-    }
-    return acc;
-  },{})
-}
-
-// UNSHIFT NUM TO BEGINNING OF ARRAY
-const addToStartOfArr = (el, arr) => {
-  arr.unshift(el);
-  return arr;
-}
 
 // GET USER INPUT
 // THIS USED TO BE KEYPRESS() BUT NOW IT WORKS BETTER
@@ -504,48 +450,40 @@ $("input[type='number']").keyup(function(event){
         // console.log(finalProbNumbers);
       }
 
+    // NOT IN USE !!!
       // WORKING BUT SEE COMMENT BELOW! (ONLY WORKS IN CONSOLE)
       for (let key in reducedProbNumbers) {
         if (reducedProbNumbers.hasOwnProperty(key)) {
           // MAKE THIS CONSOLE.LOG TEXT CONTENT OF PROBSPAN2 !!! 
-          // console.log(key + " -> " + reducedProbNumbers[key]);
+          console.log(key + " -> " + reducedProbNumbers[key]);
         }
       }
 
       // AAAAAAAAAAAAAAAAAARGH!!!!!! THIS NOW WORKS WITH PROBNUMS BUT NO COUNT YET !!!
       problemNumbersSpan.textContent= Object.keys(reducedProbNumbers);
-      console.log("REDUCED PROBNUMS: " + Object.keys(reducedProbNumbers));
+      // console.log("REDUCED PROBNUMS: " + Object.keys(reducedProbNumbers));
       //  + Object.values(reducedProbNumbers);
       // THIS WORKS IN CONSOLEBUT NOT AS TEXTCONTENT (DISPLAYS ONLY FIRST PROBNUM) !!!
       let keysArr = Object.keys(reducedProbNumbers);
       let valuesArr = Object.values(reducedProbNumbers);
       for (let i = 0; i < keysArr.length; i++) {
         for (let i = 0; i < valuesArr.length; i++) {
-          console.log(keysArr[i] + " -> " + valuesArr[i]);
+          // console.log(keysArr[i] + " -> " + valuesArr[i]);
           // problemNumbersSpan.textContent=keysArr[i] + " -> " + valuesArr[i];
         }
       }
       // ADD NUM IN FRONT OF STATLIST - WORKING
       statList.unshift(num);
-      console.log("STATLIST: " + statList);
+      // console.log("STATLIST: " + statList);
       // REDUCE ARRAY AND RETURN NUMBER/COUNT OBJECTS
-      reducedStatList = statList.reduce(function (acc, curr) {
-        if (typeof acc[curr] == 'undefined') {
-          acc[curr] = 1;
-        } else {
-          acc[curr] += 1;
-        }
-        return acc;
-      },{})
+      reducedStatList = reduceArr(statList);
     } 
 
     // IF RIGHT ANSWER 
     else {
       rightAnswerStyle();
-      // PLACE CURSOR TO PLAYBUTTON IF CORRECT !!!
       setFocusPlay();
       isCorrect = true;
-      // NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
       console.log("PROBNUMBERS: " + probNumbers);
       // IF ANSWER WAS WRONG PREVIOUSLY (EVEN MULTIPLE TIMES OR IN A ROW) DELETE FROM PROBNUMS 
       // NOT WORKING IF NUM==PROBNUMS[0]
@@ -559,24 +497,14 @@ $("input[type='number']").keyup(function(event){
         }
       }
       console.log("SPLICE: " + probNumbers);
-      // REDUCE ARRAY AND RETURN NUMBER/COUNT OBJECTSs
-      reducedProbNumbers = probNumbers.reduce(function (acc, curr) {
-        if (typeof acc[curr] == 'undefined') {
-          acc[curr] = 1;
-        } else {
-          acc[curr] += 1;
-        }
-        return acc;
-      },{})
-      problemNumbersSpan.textContent= Object.keys(reducedProbNumbers);
-      // NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+      // REDUCE ARRAY AND RETURN NUMBER/COUNT OBJECTSs, THEN DISPLAY KEYS AS PROBLEM NUMBERS 
+      reducedProbNumbers = reduceArr(probNumbers);
+      makeTextContent(problemNumbersSpan, Object.keys(reducedProbNumbers));
     }
     if (isCorrect) {
       rightA ++;
-      // console.log("Right answers: " + rightA);
     } else {
       wrongA ++;
-      // console.log("Wrong answers: " + wrongA);
     }
     calcAccuracy();
   }
