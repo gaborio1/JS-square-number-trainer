@@ -272,7 +272,7 @@ $(document).ready(function(){
     $("#player__toggle").addClass("hidden");
     $("#table__toggle").removeClass("hidden");
 
-    // DIV 1
+    // -------------------------- DIV 1 --------------------------
     // SORT REDUCEDSTATLIST BY NUMBER OF WRONG ATTEMPTS (BY KEY: SWAP a and b)
     let sortable = [];
     for (let key in reducedStatList) {
@@ -292,14 +292,16 @@ $(document).ready(function(){
       document.getElementById("ordered-stat").appendChild(counter);
     }
     $("#ordered-stat").delay(1000).fadeIn(300);
+    // ------------------------------------------------------------
 
-    // DIV 2
-    // STEP 1 = DISPLAY REDUCEDPROBNUMS{} CONTENT AS TEXT
-    $.each(reducedStatList,function(key,value){
-        $('#ordered-stat-container').append("<span>"+"number: "+key+" / " +"count: "+value+"</span>")
-      });
+
+    // NOT IN USE
+    // -------------------------- DIV 2 --------------------------
+    // $.each(reducedStatList,function(key,value) {
+    //     $('#ordered-stat-container').append("<span>"+"number: "+key+" / " +"count: "+value+"</span>")
+    //   });
       // FADE IN NOT WORKING FOR THE FIRST TIME. AFTER ITS OK !!!
-    $("#ordered-stat-container").delay(650).fadeIn(300);
+    // $("#ordered-stat-container").delay(650).fadeIn(300);
   });
 
   // ADD EVENTLISTENER TO LEVELBUTTONS
