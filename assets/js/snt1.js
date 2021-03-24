@@ -155,6 +155,12 @@ const reduceArr = (arr) => {
  },{})
 }
 
+const removeChildElements = (el) => {
+  while (el.firstChild) {
+      el.removeChild(el.firstChild);
+  }
+}
+
 // APPLY SYLES, UPDATE MESSAGES WHEN LEVEL SELECTION IN MADE
 const styleLevelSelection = () => {
   makeTextContent(displayLevel, (levelButtonIndex + " (" + minNum + "-" + maxNum + ")")); 
@@ -285,13 +291,16 @@ $(document).ready(function(){
     // KEY IS STRING AND VALUTE IS NUMBER !!!
     // console.log("sortable: " + sortable);
     // console.log("sortable1: " + sortable[0][0],sortable[0][1], typeof sortable[0]);
-    
+
+    // CLEAR CONTENT OF ordered-stat-container
+    removeChildElements(orderedStatContainer);
+
     for (let i = 0; i < sortable.length; i++) {
-      const counter = document.createElement("span");
-      counter.textContent = `Number: ${sortable[i][0]}  /  count: ${sortable[i][1]}`;
-      document.getElementById("ordered-stat").appendChild(counter);
+      const statCounterSpan = document.createElement("span");
+      statCounterSpan.textContent = `Number: ${sortable[i][0]}  /  count: ${sortable[i][1]}`;
+      orderedStatContainer.appendChild(statCounterSpan);
     }
-    $("#ordered-stat").delay(1000).fadeIn(300);
+    $("#ordered-stat-container").delay(1000).fadeIn(300);
     // ------------------------------------------------------------
 
 
@@ -359,10 +368,10 @@ $("#start-button").on("click", function() {
   $("#lev9").delay(900).fadeIn(1000);
   $("#lev10").delay(1000).fadeIn(1000);
 
-  // INSTRUCTION FADE IN - NOT WORKING (because classlist.remove was active)
   $("#instruction").delay(100).fadeIn(2000);
+  $("#buttons-row").delay(100).fadeIn(1000);
   // buttonsRow.classList.remove("hidden");
-  showElement(buttonsRow);
+  // showElement(buttonsRow);
   instruction.textContent = "Set level of difficulty";
 })
 
