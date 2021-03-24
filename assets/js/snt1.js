@@ -386,7 +386,7 @@ $(".level-buttons").on("click", function() {
 // ADD LISTENER TO PLAY BUTTON 
 // KEYUP INSTEAD OF CLICK : PLAY BUTTON NOW WORKS AT FIRST CLICK BUT RIGHTANSWERMESSAGE ONLY SHOWS WHILE KEY IS PRESSED 
 // DELAY STYLE FUNCTIONS ???
-$("#play-button").on("keyup", function() {
+$("#play-button").on("click", function() {
   // console.log("play clicked ");
   setFocusInput();
 

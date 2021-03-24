@@ -11,7 +11,7 @@
     }
     
     body {
-        font-family: 'Bungee Inline', cursive;
+        /* font-family: 'Bungee Inline', cursive; */
         /* background: #6b5a3a81; */
         /* background: #376293dd; */
         /* background: wheat; */
@@ -21,7 +21,7 @@
         display: flex;
         flex-direction: column;
         /* align-items: center; */
-        justify-content: center;
+        justify-content: start;
         /* width: 100vw; */
         height: 100vh;
         /* border: 2px solid green; */
@@ -31,7 +31,7 @@
 
     .intro {
         text-align: center;
-        font-size: 18px;
+        font-size: 24px;
         margin: 10px 0px 10px 0px;
         
     }
@@ -52,8 +52,8 @@
     /* NNNNNNNNNNNNNNNNNNNNN */
     /* TRY ALIGNING ONE TO THE LEFT AND THE OTHER TO THE RIGHT */
     
-    .introStats {
-        /* border: 2px solid red; */
+    .description.introStats {
+        border: 2px solid red;
         margin: 0px;
         font-size: 12px;
         /* float: left; */
@@ -69,7 +69,8 @@
         width: 100vw;
         display: flex;
         justify-content: space-around;
-        margin-bottom: 20px;
+        /* margin-bottom: 20px; */
+        margin-bottom: 5%;
     }
     
     /* NNNNNNNNNNNNNNNNNNNNN */
@@ -80,12 +81,10 @@
         border: 3px solid black;
         /* border-radius: 10px; */
         /* padding-right: 5px; */
-        height: 40px;
-        /* width: 55.5%; */
-        /* width: 700px; */
+        height: 35px;
+       
         width: 100%;
-        font-size: 1.4rem;
-        font-weight: 700;  
+        /* font-weight: 700;   */
         /* outline: none; */
     }
     
@@ -110,25 +109,30 @@
     
     /* FONT SIZES */
 
-    h1 {
-        font-size: 16px;
-    }
+    /* h1 {
+        font-size: 24px;
+    } */
 
+
+    /* CHOOSE YOUR LEVEL-CLICK PLAY-GUESS SQUARE */
     .description {
-        font-size: 12px;
+        font-size: 14px;
     }
     
+    /* SQ TABLE/STATISTICS - PLAY */
     .player__toggle, .table__toggle {
         font-size: 16px;
     }
 
+    /* YOU ARE ON LEVEL ...  */
     h2.player-row {
         font-size: 16px;
-        margin: 30px 0px 0px 0px;
+        margin: 20px 0px 0px 0px;
     }
 
+    /* WHAT IS ... SQUARED? */
     .question.player-row {
-        margin: 20px 0px 5px 0px;
+        margin: 15px 0px 5px 0px;
     }
 
     .player-container {
@@ -141,6 +145,7 @@
         background: #ffa600;
         /* background: #00a2ff; */
         border:3px solid black;
+        text-transform: uppercase;
     }
     
     .level-buttons {
@@ -150,9 +155,9 @@
         margin: 0px 0px 2px 0px;
         height: 50%;
         /* width: 9.52%; */
-        width: 19%;
-        font-size: 16px;
-        font-weight: 600;
+        width: 18.9%;
+        font-size: 24px;
+        /* font-weight: 600; */
     }
     
     .level-buttons:hover {
@@ -172,7 +177,7 @@
         /* width: 100%; */
         /* width: 688px; */
         width: 100%;
-        height: 65px;
+        height: 140px;
         background: #676668;
         background: #000000;
         /* display: flex;
@@ -186,11 +191,12 @@
     
     h2.question {
         color: darkcyan;
-        font-size: 24px;
+        font-size: 20px;
+        font-weight: 700;
     }
     
     .question-span {
-        font-size: 28px;
+        font-size: 24px;
         color: darkcyan;
     }
     
@@ -201,7 +207,7 @@
         /* border: 3px solid #676668; */
         background: beige;
         background: wheat;
-        font-size: 24px;
+        font-size: 20px;
         padding: 13px 13px 13px 13px;
         /* border: 5px solid black; */
         /* border-radius: 10px; */
@@ -212,14 +218,14 @@
         background: grey;
         /* border: 4px solid #676668; */
         /* border-radius: 10px; */
-        padding-right: 5px;
+        /* padding-right: 5px; */
         /* margin: none; */
         height: 40px;
         width: 60px;
         font-size: 24px;
         font-size: 16px;
-        font-weight: 700;  
-        margin: 20px 20px 20px 20px;
+        /* font-weight: 700;   */
+        margin: 10px 0px 20px 20px;
         /* outline: none; */
     }
     
@@ -229,11 +235,11 @@
         margin: none;
         text-align: center;
         text-transform: uppercase;
-        font-size: 24px;
+        font-size: 19px;
     }
     
     .logo {
-        margin: 0px 20px 10% 0%;
+        margin: 0px 0px 10% 20%;
         padding-right: 15px;
         font-size: 24px;
     }
@@ -244,7 +250,8 @@
     
     .message {
         text-align: center;
-        font-size: 24px;
+        font-size: 20px;
+        font-weight: 700;
     }
     
     /* CSS BLINKER */
@@ -273,7 +280,7 @@
     .prog-bar-container {
         width: 80%;
         /* height: 25px; */
-        margin: 20px auto 10px auto;
+        margin: 15px auto 10px auto;
         /* ??? border not hidden??? */
         /* border: 3px solid #676668; */
         /* border-radius: 10px; */
@@ -322,7 +329,7 @@
         border: 3px solid black;
         /* width: 690px; */
         width: 100%;
-        margin: 20px auto;
+        /* margin: 20px auto; */
         /* min-height: 60px; */
         min-height: 40px;
         height: fit-content;
