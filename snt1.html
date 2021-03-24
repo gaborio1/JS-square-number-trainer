@@ -4,59 +4,69 @@
 <html>
     <head>
         <title>Square Number Trainer</title>    
+        <!-- FIX DEV TOOLS DEVICE, WITHOUT THIS STYLES NOT APPLIED  -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script type="text/javascript" src="assets/js/lib/jquery-2.1.4.min.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Bungee+Inline&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="assets/css/snt1.css">
+
+        <link rel='stylesheet' type="text/css" media='screen and (min-width: 100px) and (max-width: 600px)' href='assets/css/xsmall.css' />
+        <!-- <link rel='stylesheet' type="text/css" media='screen and (min-width: 601px) and (max-width: 1024px)' href='src/css/medium.css' /> -->
+        <link rel="stylesheet" type="text/css" media="screen and (min-width: 1025px)" href="assets/css/snt1.css" />
+
+        <!-- <link rel="stylesheet" type="text/css" href="assets/css/snt1.css"> -->
     </head>
     <body id="my-page" class="my-page">
         <div class="main">
+            <!-- TITLE,INTRO TEXT, INSTRUCTIONS -->
             <div>
-                <h1 id="header" class="intro">Square.100 - Square Number Trainer</h1>
+                <h1 id="header" class="intro"><span class="title-span">Square.100 - </span> Square Number Trainer</h1>
                 <p id="intro-text" class="intro description">Squares of 1 to 100</p>
                 <p class="intro description">Choose your level -> click play -> guess square.</p>
             </div>
+            <!-- STATS -->
             <div id="fractions-container" class="fractions-container">
-    
                 <p id="display-fraction" class="intro description introStats hidden">
                     Accuracy: <span id="fraction-total" class="green" >0</span>
                      / <span   id="fraction-right" class="green">0</span>
                 </p>
-    
                 <p id="problem-numbers" class="intro description introStats hidden">
                     Problem Numbers: <span id="problem-numbers__span" class="red" ></span>
                 </p>
-                
             </div>
             <!-- TEST -->
             <!-- <p id="problem-numbers" class="intro description hidden">Problem Numbers: <span id="problem-numbers__span"></span></p> -->
+            <!-- TOGGLE PLAYER / -->
             <div>
                 <button id="player__toggle" class="player__toggle"  >SqTable / Statistics</button>
                 <button id="table__toggle" class="table__toggle table-play hidden" >Play</button>
             </div>
-            </div>
                 <div id="player-container" class="player-container">
                     <div id="buttons-row" class="buttons-row hidden">
-                        <button class="level-buttons hidden" id="lev1">1</button>
-                        <button class="level-buttons hidden" id="lev2">2</button>
-                        <button class="level-buttons hidden" id="lev3">3</button>
-                        <button class="level-buttons hidden" id="lev4">4</button>
-                        <button class="level-buttons hidden" id="lev5">5</button>
-                        <button class="level-buttons hidden" id="lev6">6</button>
-                        <button class="level-buttons hidden" id="lev7">7</button>
-                        <button class="level-buttons hidden" id="lev8">8</button>
-                        <button class="level-buttons hidden" id="lev9">9</button>
-                        <button class="level-buttons hidden" id="lev10">10</button>
+                        <!-- <div class="buttons-row__first--xsmall"> -->
+                            <button class="level-buttons hidden" id="lev1">1</button>
+                            <button class="level-buttons hidden" id="lev2">2</button>
+                            <button class="level-buttons hidden" id="lev3">3</button>
+                            <button class="level-buttons hidden" id="lev4">4</button>
+                            <button class="level-buttons hidden" id="lev5">5</button>
+                        <!-- </div> -->
+                        <!-- <div class="buttons-row__second--xsmall"> -->
+                            <button class="level-buttons hidden" id="lev6">6</button>
+                            <button class="level-buttons hidden" id="lev7">7</button>
+                            <button class="level-buttons hidden" id="lev8">8</button>
+                            <button class="level-buttons hidden" id="lev9">9</button>
+                            <button class="level-buttons hidden" id="lev10">10</button>
+                        <!-- </div> -->
                     </div>
-                    <h2 id="level-message" class="hidden">you are on level <span id="display-level" class="display-level">1 (2-10)</span></h2>
-                    <h2 id="instruction" class="instruction hidden"></h2>
-                    <h2 id="question" class=" question hidden">what is <span id="question-span" class="question-span"></span> squared?</h2>
+                    <h2 id="level-message" class="player-row hidden">you are on level <span id="display-level" class="display-level">1 (2-10)</span></h2>
+                    <h2 id="instruction" class="instruction player-row hidden"></h2>
+                    <h2 id="question" class=" question player-row hidden">what is <span id="question-span" class="question-span"></span> squared?</h2>
                     <!-- !!! autofocus WILL PLACE CURSOR TO INPUT FIELD WHEN PAGE LOADED !!! -->
-                    <input  autofocus="autofocus" id="number-input" class="hidden" type="number" placeholder="Your guess" required>
-                    <p id="message" class="message hidden"></p>
+                    <input  autofocus="autofocus" id="number-input" class="hidden player-row" type="number" placeholder="Your guess" required>
+                    <p id="message" class="message player-row hidden"></p>
                     <div id="prog-bar-container" class="prog-bar-container">
-                        <div id="prog-bar" class="prog-bar hidden">
-                        <h2 id="prog-bar-text" class="prog-bar-text hidden"><span id="prog-bar-text__span"></span></h2>
+                        <div id="prog-bar" class="prog-bar player-row hidden">
+                        <p id="prog-bar-text" class="prog-bar-text hidden"><span id="prog-bar-text__span"></span></p>
                     </div>
                 </div>
                 <h1><button id="start-button" class="startPlay">Start</button>
@@ -68,10 +78,10 @@
                     <img id="sq-table-img" class="sq-table-img hidden" src="images/math-tables-1to-100.jpg" alt="">
                 </div>
             <img id="sq-table-img" class="sq-table-img hidden" src="images/math-tables-1to-100.jpg" alt="">
-    
+            <div id="ordered-stat-container" class="ordered-stat hidden"></div>     
             <!-- TEXTCONTENT KEY VALUE PAIRS OF OBJECT -->                
             </div>
-            <div id="ordered-stat-container" class="ordered-stat hidden"></div>        
+            <!-- <div id="ordered-stat-container" class="ordered-stat hidden"></div>         -->
         <script src="assets/js/snt1.js" type="text/javascript"></script>
     </body>
 </html>
