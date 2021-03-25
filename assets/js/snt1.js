@@ -56,8 +56,10 @@ const progBarTextSpan = document.getElementById("prog-bar-text__span");
 const progBar = document.getElementById("prog-bar");
 const problemNumbers = document.getElementById("problem-numbers");
 const problemNumbersSpan = document.getElementById("problem-numbers__span");
-const orderedStatContainer = document.getElementById('ordered-stat-container');
-const orderedStat = document.getElementById('ordered-stat');
+const firstOrderedStatContainer = document.getElementById('first-ordered-stat-container');
+const secondOrderedStatContainer = document.getElementById('second-ordered-stat-container');
+// OLD DIV NOT IN USE
+// const orderedStat = document.getElementById('ordered-stat');
 
 // ========================================================================
 
@@ -293,14 +295,39 @@ $(document).ready(function(){
     // console.log("sortable1: " + sortable[0][0],sortable[0][1], typeof sortable[0]);
 
     // CLEAR CONTENT OF ordered-stat-container
-    removeChildElements(orderedStatContainer);
+    removeChildElements(firstOrderedStatContainer);
+    removeChildElements(secondOrderedStatContainer);
 
     for (let i = 0; i < sortable.length; i++) {
       const statCounterSpan = document.createElement("span");
       statCounterSpan.textContent = `Number: ${sortable[i][0]}  /  count: ${sortable[i][1]}`;
-      orderedStatContainer.appendChild(statCounterSpan);
+      firstOrderedStatContainer.appendChild(statCounterSpan);
     }
-    $("#ordered-stat-container").delay(1000).fadeIn(300);
+    $("#first-ordered-stat-container").delay(1000).fadeIn(300);
+
+
+    for (let i = 0; i < sortable.length; i++) {
+      const secondStatAccuracySpan = document.createElement("span");
+      const secondStatProbNumsSpan = document.createElement("span");
+      secondStatAccuracySpan.textContent = `Accuracy: ${rightA} / ${totalAttempts}`;
+      secondStatProbNumsSpan.textContent = `Problem Numbers: ${Object.keys(reducedProbNumbers)}`;
+      secondOrderedStatContainer.appendChild(secondStatAccuracySpan);
+      secondOrderedStatContainer.appendChild(secondStatProbNumsSpan);
+    }
+    $("#second-ordered-stat-container").delay(1000).fadeIn(600);
+
+    // for (let i = 0; i < sortable.length; i++) {
+    //   const thirdStatCounterSpan = document.createElement("span");
+    //   thirdStatCounterSpan.textContent = `Number: ${sortable[i][0]}  /  count: ${sortable[i][1]}`;
+    //   orderedStatContainer.appendChild(thirdStatCounterSpan);
+    // }
+    // $("#ordered-stat-container").delay(1000).fadeIn(300);
+
+
+
+
+
+
     // ------------------------------------------------------------
 
 
@@ -336,8 +363,11 @@ $(document).ready(function(){
     $("#table__toggle").addClass("hidden");
     $("#player__toggle").removeClass("hidden");
     setFocusInput();
-    $("#ordered-stat-container").delay(300).fadeOut(300);
-    $("#ordered-stat").fadeOut(300);
+    $("#first-ordered-stat-container").delay(300).fadeOut(600);
+    $("#second-ordered-stat-container").delay(300).fadeOut(300);
+    // OLD DIV NOT IN USE
+    // $("#ordered-stat").fadeOut(300);
+
     // STEP 2 = CLEAR CONTENT OF DIV
     setTimeout(function() {
       clearStatsText(orderedStatContainer, orderedStat);
