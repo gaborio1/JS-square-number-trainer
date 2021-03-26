@@ -275,8 +275,8 @@ setFocusStart();
 
 $(document).ready(function(){
   $("#player__toggle").click(function(){
-    $("#player-container").fadeOut(300);
-    $("#sq-table-img").delay(300).fadeIn(300);
+    $("#player-container").fadeOut(500);
+    $("#sq-table-img").delay(500).fadeIn(500);
     $("#player__toggle").addClass("hidden");
     $("#table__toggle").removeClass("hidden");
 
@@ -296,25 +296,52 @@ $(document).ready(function(){
 
     // CLEAR CONTENT OF ordered-stat-container
     removeChildElements(firstOrderedStatContainer);
-    removeChildElements(secondOrderedStatContainer);
+    // removeChildElements(secondOrderedStatContainer);
+
+    // for (let i = 0; i < sortable.length; i++) {
+    //   const statCounterSpan = document.createElement("span");
+    //   statCounterSpan.textContent = `Number: ${sortable[i][0]}  /  count: ${sortable[i][1]}`;
+    //   firstOrderedStatContainer.appendChild(statCounterSpan);
+    // }
+    // $("#first-ordered-stat-container").delay(1000).fadeIn(500);
+
+
+    // for (let i = 0; i < sortable.length; i++) {
+    //   const secondStatAccuracySpan = document.createElement("span");
+    //   const secondStatProbNumsSpan = document.createElement("span");
+    //   secondStatAccuracySpan.textContent = `Accuracy: ${rightA} / ${totalAttempts}`;
+    //   secondStatProbNumsSpan.textContent = `Problem Numbers: ${Object.keys(reducedProbNumbers)}`;
+    //   secondOrderedStatContainer.appendChild(secondStatAccuracySpan);
+    //   secondOrderedStatContainer.appendChild(secondStatProbNumsSpan);
+    // }
+    // $("#second-ordered-stat-container").delay(1500).fadeIn(500);
+
 
     for (let i = 0; i < sortable.length; i++) {
+      // CLEAR CONTENT OF ordered-stat-container
+      // removeChildElements(firstOrderedStatContainer);
+      removeChildElements(secondOrderedStatContainer);
       const statCounterSpan = document.createElement("span");
       statCounterSpan.textContent = `Number: ${sortable[i][0]}  /  count: ${sortable[i][1]}`;
       firstOrderedStatContainer.appendChild(statCounterSpan);
-    }
-    $("#first-ordered-stat-container").delay(1000).fadeIn(300);
 
-
-    for (let i = 0; i < sortable.length; i++) {
       const secondStatAccuracySpan = document.createElement("span");
-      const secondStatProbNumsSpan = document.createElement("span");
       secondStatAccuracySpan.textContent = `Accuracy: ${rightA} / ${totalAttempts}`;
-      secondStatProbNumsSpan.textContent = `Problem Numbers: ${Object.keys(reducedProbNumbers)}`;
       secondOrderedStatContainer.appendChild(secondStatAccuracySpan);
+
+      const secondStatProbNumsSpan = document.createElement("span");
+      secondStatProbNumsSpan.textContent = `Problem Numbers: ${Object.keys(reducedProbNumbers)}`;
       secondOrderedStatContainer.appendChild(secondStatProbNumsSpan);
+
+      // statCounterSpan.textContent = `Number: ${sortable[i][0]}  /  count: ${sortable[i][1]}`;
+      // secondStatAccuracySpan.textContent = `Accuracy: ${rightA} / ${totalAttempts}`;
+      // secondStatProbNumsSpan.textContent = `Problem Numbers: ${Object.keys(reducedProbNumbers)}`;
+      // firstOrderedStatContainer.appendChild(statCounterSpan);
+      // secondOrderedStatContainer.appendChild(secondStatAccuracySpan);
+      // secondOrderedStatContainer.appendChild(secondStatProbNumsSpan);
     }
-    $("#second-ordered-stat-container").delay(1000).fadeIn(600);
+    $("#first-ordered-stat-container").delay(1000).fadeIn(500);
+    $("#second-ordered-stat-container").delay(1500).fadeIn(500);
 
     // for (let i = 0; i < sortable.length; i++) {
     //   const thirdStatCounterSpan = document.createElement("span");
@@ -358,13 +385,13 @@ $(document).ready(function(){
 
 
   $("#table__toggle").click(function(){
-    $("#sq-table-img").delay(650).fadeOut(300);
-    $("#player-container").delay(1000).fadeIn(300);
+    $("#sq-table-img").delay(1000).fadeOut(500);
+    $("#player-container").delay(1500).fadeIn(500);
     $("#table__toggle").addClass("hidden");
     $("#player__toggle").removeClass("hidden");
     setFocusInput();
-    $("#first-ordered-stat-container").delay(300).fadeOut(600);
-    $("#second-ordered-stat-container").delay(300).fadeOut(300);
+    $("#first-ordered-stat-container").delay(500).fadeOut(500);
+    $("#second-ordered-stat-container").fadeOut(500);
     // OLD DIV NOT IN USE
     // $("#ordered-stat").fadeOut(300);
 

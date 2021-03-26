@@ -165,7 +165,6 @@
         /* border: none; */
         margin: 0px 0px 4px 0px;
         height: 48%;
-        /* width: 9.52%; */
         width: 18.98%;
         font-size: 24px;
         /* font-weight: 600; */
@@ -236,7 +235,7 @@
         font-size: 24px;
         font-size: 16px;
         /* font-weight: 700;   */
-        margin: 10px 0px 20px 20px;
+        margin: 10px 0px 20px 8%;
         /* outline: none; */
     }
     
@@ -250,7 +249,7 @@
     }
     
     .logo {
-        margin: 0px 0px 10% 20%;
+        margin: 0px 5% 0px 0px;
         padding-right: 15px;
         font-size: 24px;
     }
@@ -324,7 +323,12 @@
         transition: all 1.0s ease-in-out;
     }
     
-    
+    .button-logo-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
     /* ALTERNATING COLOR LIST ITEMSS */
     /* span:nth-child(even){
       color:green;
@@ -355,11 +359,26 @@
         display:none;
     }
     
-    .ordered-stat span {
-        /* border: 1px solid green; */
-        /* float: left; */
-        /* width: 100%; */
-        padding: 2px 2px;
-        font-size: 12px;
+    .ordered-stat.ordered-stat.first-ordered-stat-container {
+        margin-bottom: 20px;
     }
+
+    /* SECOND STAT DIV */
+    .ordered-stat.second-ordered-stat-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        height: 40px;
+    }
+
+    /* DIV SPANS */
+    .ordered-stat.first-ordered-stat-container span {
+        margin: 4px 0px 0px 0px;
+    } 
+    
+   .ordered-stat.second-ordered-stat-container span {
+        margin: 8px 0px 0px 0px;
+
+    }
+    
 }

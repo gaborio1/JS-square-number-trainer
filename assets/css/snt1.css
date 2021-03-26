@@ -163,8 +163,8 @@
     }
     
     input.player-row {
-        margin: 20px auto 20px 35%;
-        width: 33%;
+        margin: 20px auto 20px 32%;
+        width: 40%;
         height: 50px;
         border: 6px solid #676668;
         background: beige;
@@ -184,7 +184,7 @@
         width: 90px;
         font-size: 1.4rem;
         font-weight: 700;  
-        margin: 40px 40% 5px 25px;
+        margin: 0px 0px 0px 10%;
         /* outline: none; */
     }
     
@@ -197,8 +197,7 @@
     }
     
     .logo {
-        margin: 0px 20px 10% 0%;
-        padding-right: 15px;
+        margin: 0px 10% 0px 0px;
         font-size: 2rem;
     }
     
@@ -263,6 +262,12 @@
         transition: all 1.0s ease-in-out;
     }
     
+    .button-logo-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
     
     /* ALTERNATING COLOR LIST ITEMSS */
     /* span:nth-child(even){
@@ -280,7 +285,7 @@
         background: #ffa600;
         border: 6px solid black;
         width: 700px;
-        margin: 20px auto;
+        margin: 0px auto;
         /* min-height: 60px; */
         min-height: 60px;
         height: fit-content;
@@ -295,9 +300,8 @@
         display:none;
     }
     
-    /* DIV SPANS */
-    .ordered-stat span {
-        padding: 20px 2px;
+    .ordered-stat.ordered-stat.first-ordered-stat-container {
+        margin-bottom: 20px;
     }
 
     /* SECOND STAT DIV */
@@ -305,6 +309,18 @@
         display: flex;
         flex-direction: row;
         justify-content: space-around;
+        height: 65px;
+    }
+
+    /* DIV SPANS */
+    .ordered-stat.first-ordered-stat-container span {
+        margin: 4px 0px 0px 0px;
+
+    } 
+
+
+    .ordered-stat.second-ordered-stat-container span {
+        margin: 15px 2px;
     }
     
 }
