@@ -325,7 +325,8 @@ $(document).ready(function(){
       // removeChildElements(firstOrderedStatContainer);
       removeChildElements(secondOrderedStatContainer);
       const statCounterSpan = document.createElement("span");
-      statCounterSpan.textContent = `Number: ${sortable[i][0]}  /  count: ${sortable[i][1]}`;
+      // statCounterSpan.textContent = `Number: ${sortable[i][0]}  /  count: ${sortable[i][1]}`;
+      statCounterSpan.textContent = `${sortable[i][0]}(${sortable[i][1]})`;
       firstOrderedStatContainer.appendChild(statCounterSpan);
 
       const secondStatAccuracySpan = document.createElement("span");

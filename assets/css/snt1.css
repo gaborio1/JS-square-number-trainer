@@ -58,7 +58,7 @@
     .player__toggle, .table__toggle {
         font-family: 'Bungee Inline', cursive;
         background: #ffa600;
-        border: 6px solid black;
+        border: 5px solid black;
         height: 65px;
         width: 700px;
         font-size: 1.4rem;
@@ -85,7 +85,7 @@
     
     .sq-table-img {
         width: 700px;
-        border: 6px solid black;
+        border: 5px solid black;
         -webkit-box-shadow: 0px 0px 45px 10px rgba(0,0,0,0.58);
         -moz-box-shadow: 0px 0px 45px 10px rgba(0,0,0,0.58);
         box-shadow: 0px 0px 45px 10px rgba(0,0,0,0.58);
@@ -98,9 +98,10 @@
     .player-container {
         margin: 20px auto;
         width: 700px;
+        /* height: 700px; */
         background: #ffa600;
         /* background: #00ff6e; */
-        border:6px solid black;
+        border:5px solid black;
         /* border-radius: 10px; */
     
         /* https://www.cssmatic.com/box-shadow */
@@ -130,6 +131,7 @@
     .selected {
         /* background: #39ac73; */
         background: darkcyan;
+        /* background: #376264; */
     } 
     
     
@@ -140,7 +142,7 @@
         /* display: flex;
         flex-direction: row;
         justify-content: space-around; */
-        border-bottom: 6px solid black;
+        border-bottom: 5px solid black;
     }
     
     .player-row {
@@ -154,6 +156,7 @@
     
     .question {
         color: darkcyan;
+        color: #376264;
         font-size: 2rem;
     }
     
@@ -163,29 +166,32 @@
     }
     
     input.player-row {
-        margin: 20px auto 20px 32%;
+        margin: 10px auto 10px 32%;
         width: 40%;
-        height: 50px;
-        border: 6px solid #676668;
+        height: 65px;
+        border: 5px solid #000000;
         background: beige;
         background: wheat;
-        font-size: 2.2rem;
+        background: #ffffff8f;
+        font-size: 28px;
         padding: 13px 13px 13px 25px;
-        /* border: 6px solid black; */
-        /* outline: none; */
+        /* border: none; */
+        /* border-bottom: 5px solid #000000; */
+        outline: none;
     }
     
     .startPlay {
         font-family: 'Bungee Inline', cursive;
         background: grey;
-        border: 4px solid #676668;
+        border: 5px solid #000000;
         padding-right: 5px;
-        height: 60px;
+        padding-left: 5px;
+        height: 65px;
         width: 90px;
-        font-size: 1.4rem;
-        font-weight: 700;  
+        font-size: 20px;
+        /* font-weight: 700;   */
         margin: 0px 0px 0px 10%;
-        /* outline: none; */
+        outline: none;
     }
     
     
@@ -224,48 +230,68 @@
     
     .prog-bar-text {
         text-align: right;
-        font-weight: 700;
-        font-size: 1.3rem;
+        /* font-weight: 700; */
+        font-size: 20px;
         font-weight: 100;
         margin: none;
-        margin-right: 10px;
+        margin-top: 14px;
+        margin-right: 5px;
         color: black;
     }
     
     
     .prog-bar-container {
         width: 80%;
-        /* height: 45px; */
+        /* height: 65px; */
+        max-height: 65px;
         margin: 40px auto;
         background-color: beige;
-        background-color: #c93d1b;
+        background-color: #c93e1ba0;
+        /* !!! BORDER WILL MESS UP PROG BAR POSITION !!! */
+        border: 5px solid rgb(0, 0, 0);
+        /* border-top: 5px solid black; */
+        /* border-bottom: 5px solid black; */
     }
     
     /* NOT WORKING COS ITS NOT EMPTY */
     /* HAVE TO REMOVE BORDER  ???*/
     /* MAYBE ADD BORDER ONLY WHEN ITS DISPLAYED??? */
-    .prog-bar-container:empty{
-        /* display:none; */
+    .prog-bar-container:empty {
+        display: none;
         /* OR */
-        border:none;
+        /* border: none; */
     }
     
     .prog-bar {
+        /* !!! TEMPORARY FIX FOR PROG BAR POSITION !!! */
+        position: relative;
+        top: -35px;
+
         width: 0%;
-        height: 45px;
+        height: 65px;
         padding-top: 1px;
         padding-bottom: 16px;
         text-align: center;
         /* background-color: rgba(0, 255, 98, 0.69); */
-        background-color: #0E7C4A;
+        background-color: #0e7c4a;
         -webkit-transition: all 1.0s ease-in-out;
         transition: all 1.0s ease-in-out;
+        /* border-bottom: 5px solid black; */
+        border-top: 5px solid black;
+        border-right: 5px solid black;
+        border-bottom: 5px solid black;
     }
     
+    /* .prog-bar:empty {
+        display: none;
+    } */
+
+
     .button-logo-container {
         display: flex;
         align-items: center;
         justify-content: space-between;
+        height: 100px;
         margin-bottom: 20px;
     }
     
@@ -280,10 +306,10 @@
 
     /* STAT DIVS */
     .ordered-stat {
-        display: flex;
+        /* display: flex; */
         flex-direction: column;
         background: #ffa600;
-        border: 6px solid black;
+        border: 5px solid black;
         width: 700px;
         margin: 0px auto;
         /* min-height: 60px; */
@@ -314,12 +340,16 @@
 
     /* DIV SPANS */
     .ordered-stat.first-ordered-stat-container span {
-        margin: 4px 0px 0px 0px;
+        display: inline-block;
+        margin: 8px 2px 0px 0px;
+        padding: 5px;
+        border: 3px solid black;
 
     } 
 
 
     .ordered-stat.second-ordered-stat-container span {
+        display: inline-block;
         margin: 15px 2px;
     }
     
