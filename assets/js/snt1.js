@@ -274,6 +274,9 @@ setFocusStart();
 //              LISTENERS
 
 $(document).ready(function(){
+  console.log("document.ready");
+  //  !!! TEMPORARY FIX FOR APPEARING SECOND DIV VHEN PAGE LOADS !!!
+  $( '#second-ordered-stat-container' ).hide();
   $("#player__toggle").click(function(){
     $("#player-container").fadeOut(500);
     $("#sq-table-img").delay(500).fadeIn(500);
@@ -446,13 +449,6 @@ $(".level-buttons").on("click", function() {
 $("#play-button").on("click", function() {
   // console.log("play clicked ");
   setFocusInput();
-
-  // ELSE IF NOTWORKING
-  // if (playerContainer.height = 400) {
-  //   $('#player-container').animate({height:'550'});
-  // } else {
-  //   $('#player-container').css("height","630px");
-  // }
 
  // CALL randomSq()
  calcNumAndSolution();
