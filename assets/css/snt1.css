@@ -54,7 +54,6 @@
         margin-bottom: 20px;
     }
     
-    
     .player__toggle, .table__toggle {
         font-family: 'Bungee Inline', cursive;
         background: #ffa600;
@@ -68,8 +67,6 @@
         -moz-box-shadow: 0px 0px 45px 10px rgba(0,0,0,0.58);
         box-shadow: 0px 0px 45px 10px rgba(0,0,0,0.58); */
     }
-    
-    
     
     li {
         /* The list items will not be marked */
@@ -98,7 +95,7 @@
     .player-container {
         margin: 20px auto;
         width: 700px;
-        /* height: 700px; */
+        min-height: 250px;
         background: #ffa600;
         /* background: #00ff6e; */
         border:5px solid black;

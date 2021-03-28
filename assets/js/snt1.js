@@ -58,10 +58,9 @@ const problemNumbers = document.getElementById("problem-numbers");
 const problemNumbersSpan = document.getElementById("problem-numbers__span");
 const firstOrderedStatContainer = document.getElementById('first-ordered-stat-container');
 const secondOrderedStatContainer = document.getElementById('second-ordered-stat-container');
-// OLD DIV NOT IN USE
-// const orderedStat = document.getElementById('ordered-stat');
 
-// ========================================================================
+// =========================================================================================
+// =========================================================================================
 
 //               FUNCTIONS
 
@@ -265,11 +264,10 @@ const accuracyStyle = () => {
   hideElement(introText);
 }
 
-// ========================================================================
-
 setFocusStart();
 
-// ========================================================================
+// =========================================================================================
+// =========================================================================================
 
 //              LISTENERS
 
@@ -301,25 +299,6 @@ $(document).ready(function(){
     removeChildElements(firstOrderedStatContainer);
     // removeChildElements(secondOrderedStatContainer);
 
-    // for (let i = 0; i < sortable.length; i++) {
-    //   const statCounterSpan = document.createElement("span");
-    //   statCounterSpan.textContent = `Number: ${sortable[i][0]}  /  count: ${sortable[i][1]}`;
-    //   firstOrderedStatContainer.appendChild(statCounterSpan);
-    // }
-    // $("#first-ordered-stat-container").delay(1000).fadeIn(500);
-
-
-    // for (let i = 0; i < sortable.length; i++) {
-    //   const secondStatAccuracySpan = document.createElement("span");
-    //   const secondStatProbNumsSpan = document.createElement("span");
-    //   secondStatAccuracySpan.textContent = `Accuracy: ${rightA} / ${totalAttempts}`;
-    //   secondStatProbNumsSpan.textContent = `Problem Numbers: ${Object.keys(reducedProbNumbers)}`;
-    //   secondOrderedStatContainer.appendChild(secondStatAccuracySpan);
-    //   secondOrderedStatContainer.appendChild(secondStatProbNumsSpan);
-    // }
-    // $("#second-ordered-stat-container").delay(1500).fadeIn(500);
-
-
     for (let i = 0; i < sortable.length; i++) {
       // CLEAR CONTENT OF ordered-stat-container
       // removeChildElements(firstOrderedStatContainer);
@@ -336,43 +315,12 @@ $(document).ready(function(){
       const secondStatProbNumsSpan = document.createElement("span");
       secondStatProbNumsSpan.textContent = `Problem Numbers: ${Object.keys(reducedProbNumbers)}`;
       secondOrderedStatContainer.appendChild(secondStatProbNumsSpan);
-
-      // statCounterSpan.textContent = `Number: ${sortable[i][0]}  /  count: ${sortable[i][1]}`;
-      // secondStatAccuracySpan.textContent = `Accuracy: ${rightA} / ${totalAttempts}`;
-      // secondStatProbNumsSpan.textContent = `Problem Numbers: ${Object.keys(reducedProbNumbers)}`;
-      // firstOrderedStatContainer.appendChild(statCounterSpan);
-      // secondOrderedStatContainer.appendChild(secondStatAccuracySpan);
-      // secondOrderedStatContainer.appendChild(secondStatProbNumsSpan);
     }
     $("#first-ordered-stat-container").delay(1000).fadeIn(500);
     $("#second-ordered-stat-container").delay(1500).fadeIn(500);
-
-    // for (let i = 0; i < sortable.length; i++) {
-    //   const thirdStatCounterSpan = document.createElement("span");
-    //   thirdStatCounterSpan.textContent = `Number: ${sortable[i][0]}  /  count: ${sortable[i][1]}`;
-    //   orderedStatContainer.appendChild(thirdStatCounterSpan);
-    // }
-    // $("#ordered-stat-container").delay(1000).fadeIn(300);
-
-
-
-
-
-
-    // ------------------------------------------------------------
-
-
-    // NOT IN USE
-    // -------------------------- DIV 2 --------------------------
-    // $.each(reducedStatList,function(key,value) {
-    //     $('#ordered-stat-container').append("<span>"+"number: "+key+" / " +"count: "+value+"</span>")
-    //   });
-      // FADE IN NOT WORKING FOR THE FIRST TIME. AFTER ITS OK !!!
-    // $("#ordered-stat-container").delay(650).fadeIn(300);
   });
 
   // ADD EVENTLISTENER TO LEVELBUTTONS
-  // THIS USED TO BE IN SETUPLEVBUTTONS FUNCTION (NESTED LOOP)
   const addEvtListenerToElements = (arr, func) => {
     for (let i = 0; i < arr.length; i++) {
       arr[i].addEventListener("click", func) 
@@ -387,7 +335,7 @@ $(document).ready(function(){
     }
   }
 
-
+  // PLAYER/TABLE TOGGLE
   $("#table__toggle").click(function(){
     $("#sq-table-img").delay(1000).fadeOut(500);
     $("#player-container").delay(1500).fadeIn(500);
@@ -416,7 +364,14 @@ $(document).ready(function(){
 // ADD LISTENER TO START BUTTON
 $("#start-button").on("click", function() {
   // console.log("start clicked");
-
+  // ANIMATE PLAYER SIZE IN LARGE SIZE
+  if ($(window).width() > 600) {
+    $( "#player-container" ).animate({
+      height: "350px",
+      // opacity: 0.5,
+    }, 1000 );
+  }
+  
   // LEVELBUTTONS FADEIN ONE BY ONE - TRY WITH LOOP MAYBE??
   $("#lev1").delay(100).fadeIn(1000);
   $("#lev2").delay(200).fadeIn(1000);
@@ -431,8 +386,8 @@ $("#start-button").on("click", function() {
 
   $("#instruction").delay(100).fadeIn(2000);
   $("#buttons-row").delay(100).fadeIn(1000);
-  // buttonsRow.classList.remove("hidden");
-  // showElement(buttonsRow);
+  buttonsRow.classList.remove("hidden");
+  showElement(buttonsRow);
   instruction.textContent = "Set level of difficulty";
 })
 
@@ -441,6 +396,25 @@ $(".level-buttons").on("click", function() {
   showElement(playButton);
   // $("#level-message").delay(100).fadeIn(1000);
   showElement(mainDispLevel);
+
+  // console.log($(window).width());
+
+  // ANIMATE PLAYER SIZE IN LARGE SIZE
+  if ($(window).width() > 600) {
+    if ($('#player-container').height() > 620) {
+      $( "#player-container" ).animate({
+        height: "480px",
+      }, 1000 );
+    } else if ($('#player-container').height() > 350 && $('#player-container').height() < 620) {
+      $( "#player-container" ).animate({
+        height: "480px",
+      }, 1000 );
+    } else {
+      $( "#player-container" ).animate({
+        height: "450px",
+      }, 1000 );
+    }
+  }
 })
 
 
@@ -449,14 +423,25 @@ $(".level-buttons").on("click", function() {
 // DELAY STYLE FUNCTIONS ???
 $("#play-button").on("click", function() {
   // console.log("play clicked ");
-  setFocusInput();
 
- // CALL randomSq()
+  // ANIMATE PLAYER SIZE IN LARGE SIZE
+  if ($(window).width() > 600) {
+    if ($('#player-container').height() < 450) {
+      $( "#player-container" ).animate({
+        height: "620px",
+      }, 1000 );
+    } else {
+      $( "#player-container" ).animate({
+        height: "680px",
+      }, 1000 );
+    }
+  }
+  
+  setFocusInput();
+// CALL randomSq()
  calcNumAndSolution();
   // PLACE MOUSE CURSOR TO INPUT FIELD (STACK OVERFLOW)
   // setFocusInput();
-  
-  // SHOW QUESTION
   showElement(question);
   // CLEAR PLACEHOLDER IN TEXTBOX 
   $("#number-input").val("");
@@ -478,21 +463,20 @@ $("#play-button").on("click", function() {
   // lastNumbers.length = 5;
 })
 
-// ========================================================================
-
 // GET USER INPUT
 // THIS USED TO BE KEYPRESS() BUT NOW IT WORKS BETTER
 $("input[type='number']").keyup(function(event){
   // ON HITTING ENTER
   if(event.which === 13) {
     // console.log("you hit enter");
-    // fractionsContainer.classList.remove("hidden");
-    // fractionsContainer.style="display: inline";
-    // WORKING
-    // $('#player-container').animate({height:'630'});
-    // IF 630 , KEEP 630 (NOT TESTED)
-    // $('#player-container').css("height","630px");
-
+    
+    // ANIMATE PLAYER SIZE IN LARGE SIZE
+    if ($(window).width() > 600) {
+      $( "#player-container" ).animate({
+        height: "680px",
+      }, 1000 );
+    }
+    
     // SAVE ANSWER
     let answer = Number($(this).val());
     // IF WRONG ANSWER
