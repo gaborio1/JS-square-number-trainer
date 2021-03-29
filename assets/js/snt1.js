@@ -44,6 +44,7 @@ const question = document.querySelector("#question");
 const message = document.querySelector("#message");
 const startButton = document.querySelector("#start-button");
 const playButton = document.querySelector("#play-button");
+const dispLevelPlayButton = document.querySelector("#display-level-play-button");
 const levelButtons = document.querySelectorAll(".level-buttons");
 // OR AS BELOW:
 // var levelButtons = Array.from(document.querySelectorAll(".level-buttons"));
@@ -165,6 +166,7 @@ const removeChildElements = (el) => {
 // APPLY SYLES, UPDATE MESSAGES WHEN LEVEL SELECTION IN MADE
 const styleLevelSelection = () => {
   makeTextContent(displayLevel, (levelButtonIndex + " (" + minNum + "-" + maxNum + ")")); 
+  makeTextContent(dispLevelPlayButton, (levelButtonIndex + " (" + minNum + "-" + maxNum + ")"));
   hideElement(userInput);
   hideElement(question);
   hideElement(message);
@@ -299,24 +301,22 @@ $(document).ready(function(){
     // console.log("sortable: " + sortable);
     // console.log("sortable1: " + sortable[0][0],sortable[0][1], typeof sortable[0]);
 
-    // CLEAR CONTENT OF ordered-stat-container
+    // CLEAR CONTENT OF FIRST ordered-stat-container
     removeChildElements(firstOrderedStatContainer);
     // removeChildElements(secondOrderedStatContainer);
 
-    // ONLY DISPLAY LAST 12 KEY:VALUE PAIRS IN FIRST STATS DIV, THIS FILLS UP ONE ROW IN DIV!!!
+    // !!!!! ONLY DISPLAY LAST 10 KEY:VALUE PAIRS IN FIRST STATS DIV, THIS FILLS UP ONE ROW IN DIV !!!!!
     // MAKE i = ignoredElements IN LOOP
+    // NOT IN USE
     // let ignoredElements = 0;
     // if (sortable.length > 10) {
     //   ignoredElements = sortable.length - 10;
     // } 
 
-    // ONLY DISPLAY FIRST 10 SPANS IN STATS DIV, THIS FILLS UP DIV'S LENGTH
     for (let i = 0; i < sortable.length; i++) {
+      // !!!!! ONLY DISPLAY FIRST 10 SPANS IN STATS DIV, THIS FILLS UP DIV'S LENGTH !!!!!
       if (i === 10) { break; }
-      console.log("sortable: " + sortable);
-      console.log("sortable length: " + sortable.length);
-      // CLEAR CONTENT OF ordered-stat-container
-      // removeChildElements(firstOrderedStatContainer);
+      // CLEAR CONTENT OF SECOND ordered-stat-container
       removeChildElements(secondOrderedStatContainer);
       const statCounterSpan = document.createElement("span");
       // statCounterSpan.textContent = `Number: ${sortable[i][0]}  /  count: ${sortable[i][1]}`;
@@ -411,6 +411,9 @@ $(".level-buttons").on("click", function() {
   showElement(playButton);
   // $("#level-message").delay(100).fadeIn(1000);
   showElement(mainDispLevel);
+
+  // console.log(levelButtonIndex, minNum, maxNum);
+  // makeTextContent(dispLevelPlayButton, (levelButtonIndex + " (" + minNum + "-" + maxNum + ")"));
 
   // console.log($(window).width());
 

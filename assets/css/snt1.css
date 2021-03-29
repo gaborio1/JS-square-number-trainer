@@ -192,6 +192,9 @@
         outline: none;
     }
     
+    .display-level-play-button {
+        display: none;
+    }
     
     h2 {
         height: 40px;

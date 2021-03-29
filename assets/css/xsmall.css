@@ -24,7 +24,11 @@
     .intro {
         text-align: center;
         font-size: 24px;
-        margin: 5px 0px 5px 0px;
+        margin: 5px 0px 10px 0px;
+    }
+
+    .intro.description {
+        display: none;
     }
     
     .title-span {
@@ -53,6 +57,7 @@
         justify-content: space-around;
         /* margin-bottom: 20px; */
         margin-bottom: 5%;
+        display: none;
     }
     
     .sq-table-img-container {
@@ -62,7 +67,8 @@
     
     .sq-table-img {
         width: 100%;
-        border: 3px solid black;
+        margin-bottom: 0px;
+        /* border: 3px solid black; */
     }
     
     /* FONT SIZES */
@@ -83,27 +89,32 @@
         font-size: 16px;
         /* background: grey; */
         background: #ffa600;
-        /* border: 3px solid black; */
-        /* border-top: 2px solid black;
-        border-bottom: 1px solid black; */
+        border: 3px solid #ffa600;
+        /* border-top: 2px solid #ffa600;
+        border-bottom: 1px solid #ffa600; */
         /* border-radius: 10px; */
         /* padding-right: 5px; */
-        height: 40px;
+        height: 35px;
        
         width: 100%;
         /* font-weight: 700;   */
         /* outline: none; */
     }
 
-    /* YOU ARE ON LEVEL ...  */
     h2.player-row {
         font-size: 16px;
-        margin: 20px 0px 0px 0px;
+        margin: 0px 0px 0px 0px;
+        /* display: none; */
+    }
+
+    /* YOU ARE ON LEVEL ...  */
+    h2.level-message.player-row {
+        display: none;
     }
 
     /* WHAT IS ... SQUARED? */
     .question.player-row {
-        margin: 10px 0px 5px 0px;
+        margin: 0px 0px 10px 0px;
     }
 
     .player-container {
@@ -119,11 +130,11 @@
         /* border:3px solid black; */
         /* border-top: 2px solid black;
         border-bottom: 2px solid black; */
-
-        border-top: 2px solid rgba(0, 0, 0, 0.375);
+        /* border: 2px solid #ffa600; */
+        /* border-top: 2px solid rgba(0, 0, 0, 0.375);
         border-left: 2px solid rgba(0, 0, 0, 0.375);
         border-bottom: 2px solid rgba(0, 0, 0, 0.649);
-        border-right: 2px solid rgba(0, 0, 0, 0.649);
+        border-right: 2px solid rgba(0, 0, 0, 0.649); */
         text-transform: uppercase;
     }
     
@@ -155,6 +166,7 @@
         width: 100%;
         height: 140px;
         background: #676668;
+        margin-bottom: 10px;
         /* background: #cbcbcb; */
         /* FLEX WILL MESS UP BUTTON ANIMATION  */
         /* display: flex;
@@ -178,9 +190,9 @@
     }
     
     input {
-        margin: 10px 26%;
+        margin: 0px 0px 10px 26%;
         width: 50%;
-        height: 30px;
+        height: 35px;
         /* border: 3px solid #676668; */
         background: beige;
         background: wheat;
@@ -191,15 +203,19 @@
     
     .startPlay {
         background: grey;
-        height: 40px;
-        width: 60px;
+        height: 45px;
+        width: 70px;
         font-size: 24px;
         font-size: 16px;
         /* font-weight: 700;   */
-        margin: 10px 0px 20px 8%;
+        margin: 10px 0px 8px 8%;
         /* outline: none; */
     }
     
+    .display-level-play-button {
+        margin-left: 5px;
+        /* font-size: 16px; */
+    }
     
     h2 {
         /* height: 40px; */
@@ -213,6 +229,7 @@
         margin: 0px 5% 0px 0px;
         padding-right: 15px;
         font-size: 24px;
+        font-weight: 700;
     }
     
     .instruction {
@@ -248,7 +265,7 @@
     
     
     .prog-bar-container {
-        width: 85%;
+        width: 100%;
         /* height: 25px; */
         margin: 15px auto 10px auto;
         /* ??? border not hidden??? */
@@ -271,7 +288,7 @@
     
     .prog-bar {
         width: 0%;
-        height: 25px;
+        height: 35px;
         padding-top: 1px;
         padding-bottom: 16px;
         text-align: center;
@@ -287,7 +304,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
     }
     /* ALTERNATING COLOR LIST ITEMSS */
     /* span:nth-child(even){
@@ -302,15 +319,15 @@
         flex-direction: column;
         background: #ffa600;
         /* border: 3px solid black; */
-        border-top: 2px solid rgba(0, 0, 0, 0.375);
+        /* border-top: 2px solid rgba(0, 0, 0, 0.375);
         border-left: 2px solid rgba(0, 0, 0, 0.375);
         border-bottom: 2px solid rgba(0, 0, 0, 0.649);
-        border-right: 2px solid rgba(0, 0, 0, 0.649);
+        border-right: 2px solid rgba(0, 0, 0, 0.649); */
         /* width: 690px; */
         width: 100%;
         /* margin: 20px auto; */
         /* min-height: 60px; */
-        min-height: 40px;
+        min-height: 35px;
         height: fit-content;
         text-align: center;
     }
@@ -320,6 +337,7 @@
     }
     
     .ordered-stat.ordered-stat.first-ordered-stat-container {
+        margin-top: 0px;
         margin-bottom: 20px;
     }
 
@@ -328,13 +346,16 @@
         display: flex;
         flex-direction: row;
         justify-content: space-around;
-        height: 40px;
+        height: 35px;
     }
 
     /* DIV SPANS */
     .ordered-stat.first-ordered-stat-container span {
-        margin: 4px 0px 0px 0px;
+        display: inline-block;
+        margin: 8px 2px 0px 2px;
+        /* border: 1px solid black; */
     } 
+    
     
    .ordered-stat.second-ordered-stat-container span {
         margin: 8px 0px 0px 0px;
