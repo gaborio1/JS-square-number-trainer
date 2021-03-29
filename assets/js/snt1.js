@@ -289,6 +289,7 @@ $(document).ready(function(){
       sortable.push([key, reducedStatList[key]]);
     }
 
+    // ASCENDING ORDER BY VALUE OF value (NUMBER OF WRONG ATTEMPTS)
     sortable.sort(function(a, b) {
       return b[1] - a[1];
     });
@@ -302,7 +303,16 @@ $(document).ready(function(){
     removeChildElements(firstOrderedStatContainer);
     // removeChildElements(secondOrderedStatContainer);
 
+    // ONLY DISPLAY LAST 12 KEY:VALUE PAIRS IN FIRST STATS DIV, THIS FILLS UP ONE ROW IN DIV!!!
+    // MAKE i = ignoredElements IN LOOP
+    // let ignoredElements = 0;
+    // if (sortable.length > 10) {
+    //   ignoredElements = sortable.length - 10;
+    // } 
+
+    // ONLY DISPLAY FIRST 10 SPANS IN STATS DIV, THIS FILLS UP DIV'S LENGTH
     for (let i = 0; i < sortable.length; i++) {
+      if (i === 10) { break; }
       console.log("sortable: " + sortable);
       console.log("sortable length: " + sortable.length);
       // CLEAR CONTENT OF ordered-stat-container
@@ -496,9 +506,9 @@ $("input[type='number']").keyup(function(event){
 
       // NNNNNNNNNNNNNNNNNNNNNNNNNNNN
       // LIMIT LENGTH AT 12 ?
-      if (probNumbers.length > 12) {
-        probNumbers.pop();
-      }
+      // if (probNumbers.length > 12) {
+      //   probNumbers.pop();
+      // }
       // NNNNNNNNNNNNNNNNNNNNNNNNNNNN
 
       // 2. REDUCE ARRAY AND RETURN NUMBER/COUNT OBJECTS
