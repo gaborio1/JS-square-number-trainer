@@ -283,13 +283,16 @@ $(document).ready(function(){
 
     // -------------------------- DIV 1 --------------------------
     // SORT REDUCEDSTATLIST BY NUMBER OF WRONG ATTEMPTS (BY KEY: SWAP a and b)
+    // SORTABLE IS NESTED [], [[3,2],[17,1]...ETC]
     let sortable = [];
     for (let key in reducedStatList) {
       sortable.push([key, reducedStatList[key]]);
     }
+
     sortable.sort(function(a, b) {
       return b[1] - a[1];
     });
+
 
     // KEY IS STRING AND VALUTE IS NUMBER !!!
     // console.log("sortable: " + sortable);
@@ -300,6 +303,8 @@ $(document).ready(function(){
     // removeChildElements(secondOrderedStatContainer);
 
     for (let i = 0; i < sortable.length; i++) {
+      console.log("sortable: " + sortable);
+      console.log("sortable length: " + sortable.length);
       // CLEAR CONTENT OF ordered-stat-container
       // removeChildElements(firstOrderedStatContainer);
       removeChildElements(secondOrderedStatContainer);
@@ -489,6 +494,13 @@ $("input[type='number']").keyup(function(event){
       probNumbers = addToStartOfArr(num, probNumbers);
       console.log("PROBNUMBERS: " + probNumbers);
 
+      // NNNNNNNNNNNNNNNNNNNNNNNNNNNN
+      // LIMIT LENGTH AT 12 ?
+      if (probNumbers.length > 12) {
+        probNumbers.pop();
+      }
+      // NNNNNNNNNNNNNNNNNNNNNNNNNNNN
+
       // 2. REDUCE ARRAY AND RETURN NUMBER/COUNT OBJECTS
       reducedProbNumbers = reduceArr(probNumbers);      
 
@@ -496,7 +508,7 @@ $("input[type='number']").keyup(function(event){
       for (let [key, value] of Object.entries(reducedProbNumbers)) {
         // console.log(`${key}: ${value}`);
         finalProbNumbers.unshift(`${key}: ${value}`);
-        // console.log(finalProbNumbers);
+        console.log("final probnumbers: " + finalProbNumbers);
       }
 
     // NOT IN USE !!!
