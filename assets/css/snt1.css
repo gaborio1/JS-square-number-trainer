@@ -1,6 +1,9 @@
 /*  25/8/19 2236 */
 @media only screen and (min-width : 1024px) and (max-width : 3440px) {
 
+    /* @font-face { font-family: whitrabt; src: url('whitrabt.ttf'); }  */
+
+    
     * {
         margin: 0;
         padding: 0;
@@ -12,7 +15,9 @@
     }
     
     body {
-        font-family: 'Bungee Inline', cursive;
+        /* font-family: 'Bungee Inline', cursive; */
+        /* font-family: "whitrabt"; */
+        font-family: 'Orbitron', sans-serif;
         background: #6b5a3a81;
         background: #376293dd;
         background: wheat;
@@ -56,7 +61,8 @@
     }
     
     .player__toggle, .table__toggle {
-        font-family: 'Bungee Inline', cursive;
+        /* font-family: 'Bungee Inline', cursive; */
+        font-family: 'Orbitron', sans-serif;
         background: #ffa600;
         border: 5px solid black;
         height: 65px;
@@ -103,9 +109,14 @@
         /* border-radius: 10px; */
     
         /* https://www.cssmatic.com/box-shadow */
-        -webkit-box-shadow: 0px 0px 45px 10px rgba(0,0,0,0.58);
+        /* -webkit-box-shadow: 0px 0px 45px 10px rgba(0,0,0,0.58);
         -moz-box-shadow: 0px 0px 45px 10px rgba(0,0,0,0.58);
-        box-shadow: 0px 0px 45px 10px rgba(0,0,0,0.58);
+        box-shadow: 0px 0px 45px 10px rgba(0,0,0,0.58); */
+
+        /* -webkit-box-shadow: 5px 5px 0px 0px #289FED, 10px 10px 0px 0px #5FB8FF, 15px 15px 0px 0px #A1D8FF, 20px 20px 0px 0px #CAE6FF, 25px 25px 0px 0px #E1EEFF, 5px 5px 15px 5px rgba(0,0,0,0); 
+box-shadow: 5px 5px 0px 0px #289FED, 10px 10px 0px 0px #5FB8FF, 15px 15px 0px 0px #A1D8FF, 20px 20px 0px 0px #CAE6FF, 25px 25px 0px 0px #E1EEFF, 5px 5px 15px 5px rgba(0,0,0,0); */
+
+
     }
     
     .level-buttons {
@@ -114,7 +125,7 @@
         border: none;
         margin: none;
         height: 100%;
-        width: 9.52%;
+        width: 9.43%;
         font-size: 1.7rem;
         font-weight: 600;
     }
@@ -179,7 +190,8 @@
     }
     
     .startPlay {
-        font-family: 'Bungee Inline', cursive;
+        /* font-family: 'Bungee Inline', cursive; */
+        font-family: 'Orbitron', sans-serif;
         background: grey;
         border: 5px solid #000000;
         padding-right: 5px;
