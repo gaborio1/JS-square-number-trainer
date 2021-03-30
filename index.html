@@ -23,19 +23,19 @@
         <div class="main">
             <!-- TITLE,INTRO TEXT, INSTRUCTIONS -->
             <div>
-                <h1 id="header" class="intro"><span class="title-span">Square.100 - </span> Square Number Trainer</h1>
-                <p id="intro-text" class="intro description">Squares of numbers 1 to 100</p>
+                <h1 id="title" class="title"><span class="title-span">Square.100 - </span> Square Number Trainer</h1>
+                <h2 id="intro-text" class="intro description">Squares of numbers 1 to 100</h2>
                 <!-- <p class="intro description">Choose your level -> click play -> guess square.</p> -->
             </div>
             <!-- STATS -->
             <div id="fractions-container" class="fractions-container">
-                <p id="display-fraction" class="intro description introStats hidden">
+                <h2 id="display-fraction" class="intro description introStats hidden">
                     Accuracy: <span id="fraction-total" class="green" >0</span>
                      / <span   id="fraction-right" class="green">0</span>
-                </p>
-                <p id="problem-numbers" class="intro description introStats hidden">
+                </h2>
+                <h2 id="problem-numbers" class="intro description introStats hidden">
                     Problem Numbers: <span id="problem-numbers__span" class="red" ></span>
-                </p>
+                </h2>
             </div>
             <!-- TEST -->
             <!-- <p id="problem-numbers" class="intro description hidden">Problem Numbers: <span id="problem-numbers__span"></span></p> -->
@@ -66,7 +66,7 @@
                     <h2 id="question" class=" question player-row hidden">what is <span id="question-span" class="question-span"></span> squared?</h2>
                     <!-- !!! autofocus WILL PLACE CURSOR TO INPUT FIELD WHEN PAGE LOADED !!! -->
                     <input  autofocus="autofocus" id="number-input" class="hidden player-row" type="number" placeholder="Your guess" required>
-                    <p id="message" class="message player-row hidden"></p>
+                    <h2 id="message" class="message player-row hidden"></h2>
                     <div id="prog-bar-container" class="prog-bar-container">
                         <div id="prog-bar" class="prog-bar player-row hidden">
                         <p id="prog-bar-text" class="prog-bar-text hidden"><span id="prog-bar-text__span"></span></p>

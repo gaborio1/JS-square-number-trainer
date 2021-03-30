@@ -10,6 +10,10 @@
         display: none;
     }
     
+    body {
+        font-family: 'Orbitron', sans-serif;
+    }
+
     .main {
         display: flex;
         flex-direction: column;
@@ -21,16 +25,17 @@
         /* border-radius: .5rem; */
     }
     
-    .intro {
+    .title {
         text-align: center;
-        font-size: 24px;
         margin: 5px 0px 10px 0px;
     }
-
+    
+    /* HIDDEN IN XSMALL */
     .intro.description {
         display: none;
     }
-    
+
+    /* HIDDEN IN XSMALL */
     .title-span {
         display: none;
     }
@@ -44,18 +49,11 @@
         color:  #0E7C4A;
     }
     
-    .description.introStats {
-        /* border: 2px solid red; */
-        margin: 0px;
-        font-size: 14px;
-        /* float: left; */
-    }
-    
+    /* HIDDEN IN XSMALL */
     .fractions-container {
         width: 100vw;
         display: flex;
         justify-content: space-around;
-        /* margin-bottom: 20px; */
         margin-bottom: 5%;
         display: none;
     }
@@ -73,40 +71,38 @@
     
     /* FONT SIZES */
 
-    /* h1 {
-        font-size: 24px;
-    } */
+    h1 {
+        font-size: 22px;
+        font-weight: 800;
+    }
 
+    h2 {
+        font-size: 18px;
+        text-align: center;
+        letter-spacing: .05rem;
+    }
 
     /* CHOOSE YOUR LEVEL-CLICK PLAY-GUESS SQUARE */
-    .description {
+    /* .description {
         font-size: 14px;
-
-    }
+    } */
     
-    /* SQ TABLE/STATISTICS - PLAY */
+    /* SQ TABLE/STATISTICS - PLAY BUTTON*/
     .player__toggle, .table__toggle {
+        font-family: 'Orbitron', sans-serif;
         font-size: 16px;
         /* background: grey; */
         background: #ffa600;
         border: 3px solid #ffa600;
         /* border-top: 2px solid #ffa600;
         border-bottom: 1px solid #ffa600; */
-        /* border-radius: 10px; */
-        /* padding-right: 5px; */
         height: 35px;
-       
         width: 100%;
-        /* font-weight: 700;   */
+        /* font-weight: 500;   */
         /* outline: none; */
     }
 
-    h2.player-row {
-        font-size: 16px;
-        margin: 0px 0px 0px 0px;
-        /* display: none; */
-    }
-
+    /* HIDDEN IN XSMALL */
     /* YOU ARE ON LEVEL ...  */
     h2.level-message.player-row {
         display: none;
@@ -120,32 +116,20 @@
     .player-container {
         margin: 5px auto;
         margin: 5% auto;
-        /* max-width: 600px; */
-        /* max-width: 55%; */
-        /* width: 688px; */
         width: 100%;
-
         background: #ffa600;
-        /* background: #00a2ff; */
-        /* border:3px solid black; */
-        /* border-top: 2px solid black;
-        border-bottom: 2px solid black; */
-        /* border: 2px solid #ffa600; */
-        /* border-top: 2px solid rgba(0, 0, 0, 0.375);
-        border-left: 2px solid rgba(0, 0, 0, 0.375);
-        border-bottom: 2px solid rgba(0, 0, 0, 0.649);
-        border-right: 2px solid rgba(0, 0, 0, 0.649); */
-        text-transform: uppercase;
+        text-transform: capitalize;
     }
     
     .level-buttons {
+        font-family: 'Orbitron', sans-serif;
         outline: none;
         background: grey;
         /* border: none; */
         margin: 0px 0px 4px 0px;
         height: 48%;
-        width: 18.98%;
-        font-size: 24px;
+        width: 18.90%;
+        font-size: 22px;
         /* font-weight: 600; */
     }
     
@@ -153,59 +137,50 @@
         color: darkslategrey;
         /* #1897b4 */
         background: orange;
-        font-weight: 800;
     }
     
     .selected {
-        /* background: #39ac73; */
         background: darkcyan;
     } 
-    
     
     .buttons-row {
         width: 100%;
         height: 140px;
         background: #676668;
+        /* background: orange; */
         margin-bottom: 10px;
-        /* background: #cbcbcb; */
         /* FLEX WILL MESS UP BUTTON ANIMATION  */
         /* display: flex;
         justify-content: space-around; */
-        /* border-bottom: 6px solid black; */
-    }
-    
-    .display-level {
-        font-size: 16px;
     }
     
     h2.question {
         color: darkcyan;
-        font-size: 20px;
-        font-weight: 700;
     }
     
     .question-span {
-        font-size: 24px;
+        font-size: 22px;
         color: darkcyan;
     }
     
     input {
+        font-family: 'Orbitron', sans-serif;
         margin: 0px 0px 10px 26%;
         width: 50%;
         height: 35px;
         /* border: 3px solid #676668; */
         background: beige;
         background: wheat;
-        font-size: 20px;
+        font-size: 18px;
         padding: 13px 13px 13px 13px;
         /* outline: none; */
     }
     
     .startPlay {
+        font-family: 'Orbitron', sans-serif;
         background: grey;
         height: 45px;
         width: 70px;
-        font-size: 24px;
         font-size: 16px;
         /* font-weight: 700;   */
         margin: 10px 0px 8px 8%;
@@ -214,32 +189,15 @@
     
     .display-level-play-button {
         margin-left: 5px;
-        /* font-size: 16px; */
+        /* font-size: 14px; */
     }
-    
-    h2 {
-        /* height: 40px; */
-        margin: none;
-        text-align: center;
-        text-transform: uppercase;
-        font-size: 19px;
-    }
+
     
     .logo {
         margin: 0px 5% 0px 0px;
-        padding-right: 15px;
-        font-size: 24px;
-        font-weight: 700;
-    }
-    
-    .instruction {
-        font-size: 24px;
-    }
-    
-    .message {
-        text-align: center;
-        font-size: 20px;
-        font-weight: 700;
+        padding-right: 10px;
+        font-size: 22px;
+        font-weight: 600;
     }
     
     /* CSS BLINKER */
@@ -254,15 +212,12 @@
     
     .prog-bar-text {
         text-align: right;
-        font-weight: 700;
+        /* font-weight: 100; */
+        margin-top: 6px;
+        margin-right: 4px;
         font-size: 16px;
-        font-weight: 100;
-        margin: none;
-        margin-right: 10px;
-        /* color: darkcyan; */
-        color: black;
+        /* color: black; */
     }
-    
     
     .prog-bar-container {
         width: 100%;
@@ -271,9 +226,7 @@
         /* ??? border not hidden??? */
         /* border: 3px solid #676668; */
         /* border-radius: 10px; */
-        background-color: beige;
         background-color: #c93d1b;
-        /* margin: 20px 0px 0px 0px; */
     }
     
     /* NOT WORKING COS ITS NOT EMPTY */
@@ -292,10 +245,7 @@
         padding-top: 1px;
         padding-bottom: 16px;
         text-align: center;
-    
-        /* background-color: rgba(0, 255, 98, 0.69); */
         background-color: #0E7C4A;
-    
         -webkit-transition: all 1.0s ease-in-out;
         transition: all 1.0s ease-in-out;
     }
@@ -318,18 +268,11 @@
         display: flex;
         flex-direction: column;
         background: #ffa600;
-        /* border: 3px solid black; */
-        /* border-top: 2px solid rgba(0, 0, 0, 0.375);
-        border-left: 2px solid rgba(0, 0, 0, 0.375);
-        border-bottom: 2px solid rgba(0, 0, 0, 0.649);
-        border-right: 2px solid rgba(0, 0, 0, 0.649); */
-        /* width: 690px; */
         width: 100%;
-        /* margin: 20px auto; */
-        /* min-height: 60px; */
         min-height: 35px;
         height: fit-content;
         text-align: center;
+        font-size: 12px;
     }
     
     .ordered-stat:empty {

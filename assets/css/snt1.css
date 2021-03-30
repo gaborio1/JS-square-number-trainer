@@ -15,6 +15,7 @@
     }
     
     body {
+        text-transform: uppercase;
         /* font-family: 'Bungee Inline', cursive; */
         /* font-family: "whitrabt"; */
         font-family: 'Orbitron', sans-serif;
@@ -30,12 +31,15 @@
         /* justify-content: center; */
     }
     
-    .intro {
+    .title {
         text-align: center;
         margin-top: 20px;
-        
     }
     
+    .title-span {
+        display: none;
+    }
+
     .red {
         /* color: #dd1534; */
         color: #c93d1b;
@@ -53,6 +57,7 @@
     
     .fractions-container {
         /* border: 2px solid green; */
+        /* font-weight: 200; */
         width: 688px;
         display: flex;
         justify-content: space-around;
@@ -63,12 +68,13 @@
     .player__toggle, .table__toggle {
         /* font-family: 'Bungee Inline', cursive; */
         font-family: 'Orbitron', sans-serif;
+        text-transform: uppercase;
         background: #ffa600;
         border: 5px solid black;
         height: 65px;
         width: 700px;
-        font-size: 1.4rem;
-        font-weight: 700;  
+        font-size: 20px;
+        font-weight: 500;  
         /* outline: none; */
          /* -webkit-box-shadow: 0px 0px 45px 10px rgba(0,0,0,0.58);
         -moz-box-shadow: 0px 0px 45px 10px rgba(0,0,0,0.58);
@@ -96,7 +102,7 @@
     }
     
     .description {
-        font-size: 1.2rem;
+        font-size: 20px;
     }
     
     .player-container {
@@ -114,9 +120,7 @@
         box-shadow: 0px 0px 45px 10px rgba(0,0,0,0.58); */
 
         /* -webkit-box-shadow: 5px 5px 0px 0px #289FED, 10px 10px 0px 0px #5FB8FF, 15px 15px 0px 0px #A1D8FF, 20px 20px 0px 0px #CAE6FF, 25px 25px 0px 0px #E1EEFF, 5px 5px 15px 5px rgba(0,0,0,0); 
-box-shadow: 5px 5px 0px 0px #289FED, 10px 10px 0px 0px #5FB8FF, 15px 15px 0px 0px #A1D8FF, 20px 20px 0px 0px #CAE6FF, 25px 25px 0px 0px #E1EEFF, 5px 5px 15px 5px rgba(0,0,0,0); */
-
-
+        box-shadow: 5px 5px 0px 0px #289FED, 10px 10px 0px 0px #5FB8FF, 15px 15px 0px 0px #A1D8FF, 20px 20px 0px 0px #CAE6FF, 25px 25px 0px 0px #E1EEFF, 5px 5px 15px 5px rgba(0,0,0,0); */
     }
     
     .level-buttons {
@@ -126,8 +130,9 @@ box-shadow: 5px 5px 0px 0px #289FED, 10px 10px 0px 0px #5FB8FF, 15px 15px 0px 0p
         margin: none;
         height: 100%;
         width: 9.43%;
-        font-size: 1.7rem;
-        font-weight: 600;
+        font-size: 28px;
+        font-weight: 400;
+        font-family: 'Orbitron', sans-serif;
     }
     
     .level-buttons:hover {
@@ -159,26 +164,27 @@ box-shadow: 5px 5px 0px 0px #289FED, 10px 10px 0px 0px #5FB8FF, 15px 15px 0px 0p
     }
     
     .display-level {
-        font-size: 1.8rem;
+        font-size: 24px;
         /* margin: 50px 0px 50px 0px; */
     }
     
     .question {
         color: darkcyan;
         color: #376264;
-        font-size: 2rem;
+        font-size: 28px;
     }
     
     .question-span {
-        font-size: 2.2rem;
+        font-size: 32px;
         color: darkcyan;
     }
     
     input.player-row {
+        font-family: 'Orbitron', sans-serif;
         margin: 10px auto 10px 32%;
         width: 40%;
         height: 65px;
-        border: 5px solid #000000;
+        border: 4px solid #000000;
         background: beige;
         background: wheat;
         background: #ffffff8f;
@@ -192,8 +198,9 @@ box-shadow: 5px 5px 0px 0px #289FED, 10px 10px 0px 0px #5FB8FF, 15px 15px 0px 0p
     .startPlay {
         /* font-family: 'Bungee Inline', cursive; */
         font-family: 'Orbitron', sans-serif;
+        text-transform: uppercase;
         background: grey;
-        border: 5px solid #000000;
+        border: 4px solid #000000;
         padding-right: 5px;
         padding-left: 5px;
         height: 65px;
@@ -208,25 +215,33 @@ box-shadow: 5px 5px 0px 0px #289FED, 10px 10px 0px 0px #5FB8FF, 15px 15px 0px 0p
         display: none;
     }
     
+    h1 {
+        font-size: 36px;
+        letter-spacing: .15rem;
+        word-spacing: .3rem;
+    }
+
     h2 {
         height: 40px;
-        /* margin: 40px 0px 40px 0px; */
+        font-size: 24px;
+        letter-spacing: .05rem;
         text-align: center;
-        text-transform: uppercase;
+        /* text-transform: uppercase; */
     }
     
     .logo {
         margin: 0px 10% 0px 0px;
-        font-size: 2rem;
+        font-size: 36px;
+        /* font-weight: 500; */
     }
     
     .instruction {
-        font-size: 1.8rem;
+        font-size: 32px;
     }
     
     .message {
         text-align: center;
-        font-size: 2rem;
+        font-size: 28px;
         /* margin: 50px 0px 50px 0px; */
     }
     
@@ -261,7 +276,7 @@ box-shadow: 5px 5px 0px 0px #289FED, 10px 10px 0px 0px #5FB8FF, 15px 15px 0px 0p
         background-color: beige;
         background-color: #c93e1ba0;
         /* !!! BORDER WILL MESS UP PROG BAR POSITION !!! */
-        border: 5px solid rgb(0, 0, 0);
+        border: 4px solid rgb(0, 0, 0);
         /* border-top: 5px solid black; */
         /* border-bottom: 5px solid black; */
     }
@@ -278,7 +293,7 @@ box-shadow: 5px 5px 0px 0px #289FED, 10px 10px 0px 0px #5FB8FF, 15px 15px 0px 0p
     .prog-bar {
         /* !!! TEMPORARY FIX FOR PROG BAR POSITION !!! */
         position: relative;
-        top: -35px;
+        top: -34px;
 
         width: 0%;
         height: 65px;
@@ -290,9 +305,9 @@ box-shadow: 5px 5px 0px 0px #289FED, 10px 10px 0px 0px #5FB8FF, 15px 15px 0px 0p
         -webkit-transition: all 1.0s ease-in-out;
         transition: all 1.0s ease-in-out;
         /* border-bottom: 5px solid black; */
-        border-top: 5px solid black;
-        border-right: 5px solid black;
-        border-bottom: 5px solid black;
+        border-top: 4px solid black;
+        border-right: 4px solid black;
+        border-bottom: 4px solid black;
     }
     
     /* .prog-bar:empty {
