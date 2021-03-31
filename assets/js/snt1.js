@@ -31,6 +31,8 @@ let levelButtonIndex;
 //              STYLE VARIABLES
 // var tablePlay = document.getElementById("tablePlay");
 const playerContainer = document.getElementById("player-container");
+// THIS IS A FAKE DIV TO MASK DIFFERENT FONTS IN PICTURE TEMPORARILY !!!
+const tableImgHeader = document.getElementById("table-img-header");
 const sqTableImg = document.getElementById("sq-table-img");
 const introText = document.getElementById("intro-text");
 const displayFraction = document.getElementById("display-fraction");
@@ -163,10 +165,25 @@ const removeChildElements = (el) => {
   }
 }
 
+const fillEmptyDiv = (el, text) => {
+  if (!el.firstChild) {
+    console.log('empty div !!!');
+    el.textContent = text;
+  }
+}
+
+const clearDiv = (el) => {
+  if (el.firstChild) {
+    el.textContent = "";
+  }
+}
+
 // APPLY SYLES, UPDATE MESSAGES WHEN LEVEL SELECTION IN MADE
 const styleLevelSelection = () => {
-  makeTextContent(displayLevel, (levelButtonIndex + " (" + minNum + "-" + maxNum + ")")); 
-  makeTextContent(dispLevelPlayButton, (levelButtonIndex + " (" + minNum + "-" + maxNum + ")"));
+  // LGE SIZE ONLY
+  makeTextContent(displayLevel, (`${levelButtonIndex} [${minNum} - ${maxNum}]`));
+  // XSMALL SIZE ONLY 
+  makeTextContent(dispLevelPlayButton, (`${levelButtonIndex} [${minNum} - ${maxNum}]`));
   hideElement(userInput);
   hideElement(question);
   hideElement(message);
@@ -280,6 +297,7 @@ $(document).ready(function(){
   $("#player__toggle").click(function(){
     $("#player-container").fadeOut(500);
     $("#sq-table-img").delay(500).fadeIn(500);
+    $("#table-img-header").delay(500).fadeIn(500);
     $("#player__toggle").addClass("hidden");
     $("#table__toggle").removeClass("hidden");
 
@@ -303,6 +321,10 @@ $(document).ready(function(){
 
     // CLEAR CONTENT OF FIRST ordered-stat-container
     removeChildElements(firstOrderedStatContainer);
+    fillEmptyDiv(firstOrderedStatContainer, "no stats to display");
+
+    fillEmptyDiv(secondOrderedStatContainer, "no stats to display");
+
     // removeChildElements(secondOrderedStatContainer);
 
     // !!!!! ONLY DISPLAY LAST 10 KEY:VALUE PAIRS IN FIRST STATS DIV, THIS FILLS UP ONE ROW IN DIV !!!!!
@@ -317,11 +339,14 @@ $(document).ready(function(){
       // !!!!! ONLY DISPLAY FIRST 10 SPANS IN STATS DIV, THIS FILLS UP DIV'S LENGTH !!!!!
       if (i === 10) { break; }
       // CLEAR CONTENT OF SECOND ordered-stat-container
+      clearDiv(firstOrderedStatContainer);
       removeChildElements(secondOrderedStatContainer);
       const statCounterSpan = document.createElement("span");
       // statCounterSpan.textContent = `Number: ${sortable[i][0]}  /  count: ${sortable[i][1]}`;
       statCounterSpan.textContent = `${sortable[i][0]}(${sortable[i][1]})`;
       firstOrderedStatContainer.appendChild(statCounterSpan);
+  
+      clearDiv(secondOrderedStatContainer);
 
       const secondStatAccuracySpan = document.createElement("span");
       secondStatAccuracySpan.textContent = `Accuracy: ${rightA} / ${totalAttempts}`;
@@ -353,6 +378,7 @@ $(document).ready(function(){
   // PLAYER/TABLE TOGGLE
   $("#table__toggle").click(function(){
     $("#sq-table-img").delay(1000).fadeOut(500);
+    $("#table-img-header").delay(1000).fadeOut(500);
     $("#player-container").delay(1500).fadeIn(500);
     $("#table__toggle").addClass("hidden");
     $("#player__toggle").removeClass("hidden");
