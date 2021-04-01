@@ -391,17 +391,21 @@
 
     /* DIV SPANS */
     .ordered-stat.first-ordered-stat-container span {
-        display: inline-block;
-        margin: 8px 2px 0px 0px;
-        padding: 5px;
+        /* display: inline-block; */
+        margin: 0px 2px 0px 0px;
+        padding: 4px;
         border: 3px solid black;
 
     } 
 
+    .ordered-stat.first-ordered-stat-container, .ordered-stat.second-ordered-stat-container {
+        /* color: yellow; */
+        padding-top: 15px;
+    }
 
     .ordered-stat.second-ordered-stat-container span {
-        display: inline-block;
-        margin: 15px 2px;
+        /* display: inline-block; */
+        margin: 0px 2px 0px 2px;
     }
     
 }

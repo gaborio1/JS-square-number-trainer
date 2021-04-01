@@ -321,9 +321,15 @@ $(document).ready(function(){
 
     // CLEAR CONTENT OF FIRST ordered-stat-container
     removeChildElements(firstOrderedStatContainer);
+
+
+
     fillEmptyDiv(firstOrderedStatContainer, "no stats to display");
 
     fillEmptyDiv(secondOrderedStatContainer, "no stats to display");
+
+
+
 
     // removeChildElements(secondOrderedStatContainer);
 

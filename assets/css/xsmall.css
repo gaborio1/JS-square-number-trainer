@@ -325,13 +325,17 @@
 
     /* DIV SPANS */
     .ordered-stat.first-ordered-stat-container span {
-        display: inline-block;
+        /* display: inline-block; */
         margin: 8px 2px 0px 2px;
         /* border: 1px solid black; */
     } 
     
-    
+    .ordered-stat.first-ordered-stat-container, .ordered-stat.second-ordered-stat-container {
+        /* color: yellow; */
+        padding-top: 9px;
+    }
+
    .ordered-stat.second-ordered-stat-container span {
-        margin: 8px 0px 0px 0px;
+        margin: 0px 0px 0px 0px;
     }
 }
