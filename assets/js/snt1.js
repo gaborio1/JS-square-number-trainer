@@ -323,7 +323,7 @@ $(document).ready(function(){
       removeChildElements(secondOrderedStatContainer);
       console.log("empty div");
       const emptyDivMessage = document.createElement("p");
-      emptyDivMessage.textContent = "accuracy 100% no stats available";
+      emptyDivMessage.textContent = "no stats available";
 
       // !!! ONLY WORKS FOR ONE DIV !!! 
 
@@ -333,9 +333,8 @@ $(document).ready(function(){
       //   console.log("appended child");
       // }   
 
-      firstOrderedStatContainer.appendChild(emptyDivMessage);
+      // firstOrderedStatContainer.appendChild(emptyDivMessage);
       secondOrderedStatContainer.appendChild(emptyDivMessage);
-
     } else {
       console.log("stats to display");
     }
@@ -370,8 +369,15 @@ $(document).ready(function(){
       secondOrderedStatContainer.appendChild(secondStatProbNumsSpan);
     }
 
-    $("#first-ordered-stat-container").delay(1000).fadeIn(500);
+
+    if (sortable.length > 0) {
+      $("#first-ordered-stat-container").delay(1000).fadeIn(500);
     $("#second-ordered-stat-container").delay(1500).fadeIn(500);
+    } else {
+      $("#second-ordered-stat-container").delay(1000).fadeIn(500);
+    }
+    // $("#first-ordered-stat-container").delay(1000).fadeIn(500);
+    // $("#second-ordered-stat-container").delay(1500).fadeIn(500);
   });
 
   // ADD EVENTLISTENER TO LEVELBUTTONS
