@@ -165,18 +165,18 @@ const removeChildElements = (el) => {
   }
 }
 
-const fillEmptyDiv = (el, text) => {
-  if (!el.firstChild) {
-    console.log('empty div !!!');
-    el.textContent = text;
-  }
-}
+// const fillEmptyDiv = (el, text) => {
+//   if (!el.firstChild) {
+//     console.log('empty div !!!');
+//     el.textContent = text;
+//   }
+// }
 
-const clearDiv = (el) => {
-  if (el.firstChild) {
-    el.textContent = "";
-  }
-}
+// const clearDiv = (el) => {
+//   if (el.textContent) {
+//     el.textContent = "";
+//   }
+// }
 
 // APPLY SYLES, UPDATE MESSAGES WHEN LEVEL SELECTION IN MADE
 const styleLevelSelection = () => {
@@ -293,13 +293,17 @@ setFocusStart();
 $(document).ready(function(){
   console.log("document.ready");
   //  !!! TEMPORARY FIX FOR APPEARING SECOND DIV VHEN PAGE LOADS !!!
-  $( '#second-ordered-stat-container' ).hide();
+  // $( '#second-ordered-stat-container' ).hide();
+
   $("#player__toggle").click(function(){
     $("#player-container").fadeOut(500);
     $("#sq-table-img").delay(500).fadeIn(500);
     $("#table-img-header").delay(500).fadeIn(500);
     $("#player__toggle").addClass("hidden");
     $("#table__toggle").removeClass("hidden");
+
+    // $("#first-ordered-stat-container").delay(1000).fadeIn(500);
+    // $("#second-ordered-stat-container").delay(1500).fadeIn(500);
 
     // -------------------------- DIV 1 --------------------------
     // SORT REDUCEDSTATLIST BY NUMBER OF WRONG ATTEMPTS (BY KEY: SWAP a and b)
@@ -314,45 +318,48 @@ $(document).ready(function(){
       return b[1] - a[1];
     });
 
+    if (sortable.length < 1) {
+      removeChildElements(firstOrderedStatContainer);
+      removeChildElements(secondOrderedStatContainer);
+      console.log("empty div");
+      const emptyDivMessage = document.createElement("p");
+      emptyDivMessage.textContent = "accuracy 100% no stats available";
 
+      // !!! ONLY WORKS FOR ONE DIV !!! 
+
+      // const statDivs = document.querySelectorAll(".ordered-stat");
+      // for (let el of statDivs) {
+      //   el.appendChild(emptyDivMessage);
+      //   console.log("appended child");
+      // }   
+
+      firstOrderedStatContainer.appendChild(emptyDivMessage);
+      secondOrderedStatContainer.appendChild(emptyDivMessage);
+
+    } else {
+      console.log("stats to display");
+    }
+
+    // !!! THIS CONSOLE.LOG PREVENTS EMPTY STAT DIVS FROM SHOWING UP !!!
     // KEY IS STRING AND VALUTE IS NUMBER !!!
     // console.log("sortable: " + sortable);
     // console.log("sortable1: " + sortable[0][0],sortable[0][1], typeof sortable[0]);
 
     // CLEAR CONTENT OF FIRST ordered-stat-container
     removeChildElements(firstOrderedStatContainer);
-
-
-
-    fillEmptyDiv(firstOrderedStatContainer, "no stats to display");
-
-    fillEmptyDiv(secondOrderedStatContainer, "no stats to display");
-
-
-
-
     // removeChildElements(secondOrderedStatContainer);
-
-    // !!!!! ONLY DISPLAY LAST 10 KEY:VALUE PAIRS IN FIRST STATS DIV, THIS FILLS UP ONE ROW IN DIV !!!!!
-    // MAKE i = ignoredElements IN LOOP
-    // NOT IN USE
-    // let ignoredElements = 0;
-    // if (sortable.length > 10) {
-    //   ignoredElements = sortable.length - 10;
-    // } 
 
     for (let i = 0; i < sortable.length; i++) {
       // !!!!! ONLY DISPLAY FIRST 10 SPANS IN STATS DIV, THIS FILLS UP DIV'S LENGTH !!!!!
       if (i === 10) { break; }
-      // CLEAR CONTENT OF SECOND ordered-stat-container
-      clearDiv(firstOrderedStatContainer);
+      
       removeChildElements(secondOrderedStatContainer);
       const statCounterSpan = document.createElement("span");
+
       // statCounterSpan.textContent = `Number: ${sortable[i][0]}  /  count: ${sortable[i][1]}`;
+
       statCounterSpan.textContent = `${sortable[i][0]}(${sortable[i][1]})`;
       firstOrderedStatContainer.appendChild(statCounterSpan);
-  
-      clearDiv(secondOrderedStatContainer);
 
       const secondStatAccuracySpan = document.createElement("span");
       secondStatAccuracySpan.textContent = `Accuracy: ${rightA} / ${totalAttempts}`;
@@ -362,6 +369,7 @@ $(document).ready(function(){
       secondStatProbNumsSpan.textContent = `Problem Numbers: ${Object.keys(reducedProbNumbers)}`;
       secondOrderedStatContainer.appendChild(secondStatProbNumsSpan);
     }
+
     $("#first-ordered-stat-container").delay(1000).fadeIn(500);
     $("#second-ordered-stat-container").delay(1500).fadeIn(500);
   });

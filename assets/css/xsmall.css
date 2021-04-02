@@ -219,8 +219,11 @@
     }
 
     .display-level-play-button {
-        margin-left: 5px;
-        /* font-size: 14px; */
+        display: block;
+        margin-left: 0px;
+        font-size: 12px;
+        font-weight: 400;
+        color: darkslategrey;
     }
     /* =================================================== */
     
