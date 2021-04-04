@@ -293,7 +293,7 @@ setFocusStart();
 $(document).ready(function(){
   console.log("document.ready");
   //  !!! TEMPORARY FIX FOR APPEARING SECOND DIV VHEN PAGE LOADS !!!
-  // $( '#second-ordered-stat-container' ).hide();
+  $( '#second-ordered-stat-container' ).hide();
 
   $("#player__toggle").click(function(){
     $("#player-container").fadeOut(500);
