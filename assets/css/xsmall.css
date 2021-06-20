@@ -344,9 +344,9 @@
         border: 1px solid black;
     } 
     
-    .ordered-stat.first-ordered-stat-container {
-        /* padding-top: 9px; */
-    }
+    /* .ordered-stat.first-ordered-stat-container {
+        padding-top: 9px;
+    } */
 
     .ordered-stat.second-ordered-stat-container {
         /* color: yellow; */
