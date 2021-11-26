@@ -48,6 +48,8 @@ const startButton = document.querySelector("#start-button");
 const playButton = document.querySelector("#play-button");
 const dispLevelPlayButton = document.querySelector("#display-level-play-button");
 const levelButtons = document.querySelectorAll(".level-buttons");
+// PLAY-BUTTON AND ALL LEVEL-BUTTONS (TO BE DISABLED UNTIL RIGHT ANSWER)
+const disabledInPlay = document.querySelectorAll(".disabled-in-play");
 // OR AS BELOW:
 // var levelButtons = Array.from(document.querySelectorAll(".level-buttons"));
 const mainDispLevel = document.getElementById("level-message");
@@ -246,7 +248,7 @@ const calcAccuracy = () => {
 // STYLE RIGHT ANSWER
 const rightAnswerStyle = () => {
 	makePlaceholderText(userInput, solution);
-	makeTextContent(message, "That's right, madafaka!");
+	makeTextContent(message, "correct! click play!");
 	setElementColor(message, " #0E7C4A");
 	removeClassListFromElement(message, "blink");
 }
@@ -512,7 +514,7 @@ $("#play-button").on("click", function () {
 	// message.classList.remove("hidden");
 	showElement(message);
 	// CLEAR MESSAGE FROM PREV GAME
-	makePlaceholderText(userInput, "Your guess");
+	makePlaceholderText(userInput, "Enter to submit");
 	makeTextContent(message, "Now, think!");
 	setElementColor(message, "yellow");
 	showElement(userInput);
@@ -526,8 +528,10 @@ $("#play-button").on("click", function () {
 	// !!! OR MUCH SIMPLER, SET LENGTH TO REMOVE ELEMENTS FROM END !!! NOT TESTED !!!
 	// lastNumbers.length = 5;
 
-	// DISBALE PLAY BUTTON UNTIL RIGHT ANSWER IS SUBMITTED
-	playButton.disabled = true;
+	// DISABLE PLAY/LEVEL BUTTONS UNTIL RIGHT ANSWER IS SUBMITTED
+	disabledInPlay.forEach((button) => {
+		button.disabled = true;
+	})
 })
 
 // GET USER INPUT
@@ -624,8 +628,10 @@ $("input[type='number']").keyup(function (event) {
 			reducedProbNumbers = reduceArr(probNumbers);
 			makeTextContent(problemNumbersSpan, Object.keys(reducedProbNumbers));
 
-			// ENABLE PLAY BUTTON TO ALLOW PLAYER TO CONTINUE GAME
-			playButton.disabled = false;
+			// ENABLE PLAY/LEVEL BUTTONS UNTIL RIGHT ANSWER IS SUBMITTED
+			disabledInPlay.forEach((button) => {
+				button.disabled = false;
+			})
 		}
 		if (isCorrect) {
 			rightA++;
