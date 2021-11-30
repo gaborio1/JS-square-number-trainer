@@ -1,5 +1,5 @@
 /*  25/8/19 2236 */
-@media only screen and (min-width : 1024px) and (max-width : 3440px) {
+@media only screen and (min-width : 769px) {
 
     /* @font-face { font-family: whitrabt; src: url('whitrabt.ttf'); }  */
 
@@ -146,7 +146,7 @@
         width: 700px;
         min-height: 250px;
         background: #ffa600;
-        background: #ffa600c5;
+        /* background: #ffa600c5; */
         /* background: #00ff6e; */
         border:5px solid black;
         /* border-radius: 10px; */
@@ -158,10 +158,6 @@
 
         /* -webkit-box-shadow: 5px 5px 0px 0px #289FED, 10px 10px 0px 0px #5FB8FF, 15px 15px 0px 0px #A1D8FF, 20px 20px 0px 0px #CAE6FF, 25px 25px 0px 0px #E1EEFF, 5px 5px 15px 5px rgba(0,0,0,0); 
         box-shadow: 5px 5px 0px 0px #289FED, 10px 10px 0px 0px #5FB8FF, 15px 15px 0px 0px #A1D8FF, 20px 20px 0px 0px #CAE6FF, 25px 25px 0px 0px #E1EEFF, 5px 5px 15px 5px rgba(0,0,0,0); */
-    }
-
-    .player-container:hover {
-        background: #ffa600;
     }
 
     
@@ -202,6 +198,7 @@
         border-bottom: 5px solid black;
     }
     
+
     .player-row {
         margin: 30px 0px 30px 0px;
     }
