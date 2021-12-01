@@ -48,6 +48,7 @@ const message = document.querySelector("#message");
 const startButton = document.querySelector("#start-button");
 const playButton = document.querySelector("#play-button");
 const resetButton = document.querySelector("#reset-button");
+// resetButton.disabled = true;
 const dispLevelPlayButton = document.querySelector("#display-level-play-button");
 const levelButtons = document.querySelectorAll(".level-buttons");
 // PLAY-BUTTON AND ALL LEVEL-BUTTONS (TO BE DISABLED UNTIL RIGHT ANSWER)
@@ -292,10 +293,16 @@ setFocusStart();
 // =========================================================================================
 // =========================================================================================
 
+// addClassListToElement(resetButton, "disabled-in-play");
+
 //              LISTENERS
 
 $(document).ready(function () {
 	console.log("document.ready");
+
+	addClassListToElement(resetButton, "disabled");
+	resetButton.disabled = true;
+
 	//  !!! TEMPORARY FIX FOR APPEARING SECOND DIV VHEN PAGE LOADS !!!
 	$('#second-ordered-stat-container').hide();
 
@@ -547,6 +554,8 @@ $("#reset-button").on("click", function () {
 	wrongA = 0;
 	totalAttempts = 0;
 	accuracy = 0;
+	probNumbers.splice(0, probNumbers.length);
+	console.log(probNumbers);
 
 	progBar.style.width = accuracy + '%';
 	progBarTextSpan.textContent = "";
@@ -559,7 +568,10 @@ $("#reset-button").on("click", function () {
 $("input[type='number']").keyup(function (event) {
 	// ON HITTING ENTER
 	if (event.which === 13 && !isSubmitDisabled) {
-		console.log("you hit enter");
+		console.log("				enter");
+
+		removeClassListFromElement(resetButton, "disabled");
+		resetButton.disabled = false;
 
 		// ANIMATE PLAYER SIZE IN LARGE SIZE
 		if ($(window).width() > 600) {
@@ -578,7 +590,7 @@ $("input[type='number']").keyup(function (event) {
 
 			// 1. ADD NUM TO BEGINNING OF PROBNUMBERS
 			probNumbers = addToStartOfArr(num, probNumbers);
-			console.log("PROBNUMBERS: " + probNumbers);
+			// console.log("PROBNUMBERS: " + probNumbers);
 
 			// NNNNNNNNNNNNNNNNNNNNNNNNNNNN
 			// LIMIT LENGTH AT 12 ?
@@ -594,7 +606,7 @@ $("input[type='number']").keyup(function (event) {
 			for (let [key, value] of Object.entries(reducedProbNumbers)) {
 				// console.log(`${key}: ${value}`);
 				finalProbNumbers.unshift(`${key}: ${value}`);
-				console.log("final probnumbers: " + finalProbNumbers);
+				// console.log("final probnumbers: " + finalProbNumbers);
 			}
 
 			// NOT IN USE !!!
@@ -602,7 +614,7 @@ $("input[type='number']").keyup(function (event) {
 			for (let key in reducedProbNumbers) {
 				if (reducedProbNumbers.hasOwnProperty(key)) {
 					// MAKE THIS CONSOLE.LOG TEXT CONTENT OF PROBSPAN2 !!! 
-					console.log(key + " -> " + reducedProbNumbers[key]);
+					// console.log(key + " -> " + reducedProbNumbers[key]);
 				}
 			}
 
@@ -632,7 +644,8 @@ $("input[type='number']").keyup(function (event) {
 			rightAnswerStyle();
 			setFocusPlay();
 			isCorrect = true;
-			console.log("PROBNUMBERS: " + probNumbers);
+			// console.log("PROBNUMBERS: " + probNumbers);
+
 			// IF ANSWER WAS WRONG PREVIOUSLY (EVEN MULTIPLE TIMES OR IN A ROW) DELETE FROM PROBNUMS 
 			// NOT WORKING IF NUM==PROBNUMS[0]
 			// IF i IS SET TO 0 THEN IT WONT LIST NUMBERS, ONLY THE CURRENT WRONG ANSWER IS DISPLAYED UNTIL RIGHT ANSWER
@@ -644,7 +657,7 @@ $("input[type='number']").keyup(function (event) {
 					i--;
 				}
 			}
-			console.log("SPLICE: " + probNumbers);
+			// console.log("SPLICE: " + probNumbers);
 			// REDUCE ARRAY AND RETURN NUMBER/COUNT OBJECTSs, THEN DISPLAY KEYS AS PROBLEM NUMBERS 
 			reducedProbNumbers = reduceArr(probNumbers);
 			makeTextContent(problemNumbersSpan, Object.keys(reducedProbNumbers));
