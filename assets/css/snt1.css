@@ -13,7 +13,7 @@
     .hidden {
         display: none;
     }
-    
+
     body {
         text-transform: uppercase;
         /* font-family: 'Bungee Inline', cursive; */
@@ -81,18 +81,11 @@
         box-shadow: 0px 0px 45px 10px rgba(0,0,0,0.58); */
     }
 
-    .player__toggle:hover {
-        background: #ffa600;
-        border: 4px solid black;
+    .player__toggle:hover, .table__toggle:hover {
+        background: orange;
+        border: 6px solid black;
         cursor: pointer;
         font-weight: 500;  
-    }
-    
-    .table__toggle:hover {
-        background: #ffa600;
-        border: 4px solid black;
-        cursor: pointer;
-        font-weight: 500;
     }
 
     li {
@@ -127,7 +120,7 @@
         /* top: 65px; */
         width: 100%;
         height: 65px;
-        background: #ffa600;
+        background: orange;
         border: 5px solid black;
     }
 
@@ -145,8 +138,7 @@
         margin: 20px auto;
         width: 700px;
         min-height: 250px;
-        background: #ffa600;
-        /* background: #ffa600c5; */
+        background: orange;
         /* background: #00ff6e; */
         border:5px solid black;
         /* border-radius: 10px; */
@@ -181,6 +173,10 @@
         cursor: pointer;
     }
     
+    .level-buttons.disabled:hover {
+        cursor: not-allowed;
+    }
+
     .selected {
         /* background: #39ac73; */
         background: darkcyan;
@@ -254,10 +250,20 @@
     }
 
     .startPlay:hover {
-        background: #ffa600;
+        background: orange;
         cursor: pointer;
         font-weight:600;
         border: 3px solid black;
+    }
+
+    .startPlay.disabled {
+        background: orange;
+    }
+
+    .startPlay.disabled:hover {
+        font-weight: 400;
+        cursor: not-allowed;
+        border: 4px solid #000000;
     }
     
     .display-level-play-button {
@@ -386,7 +392,7 @@
     .ordered-stat {
         /* display: flex; */
         /* flex-direction: column; */
-        background: #ffa600;
+        background: orange;
         border: 5px solid black;
         width: 700px;
         margin: 0px auto;

@@ -22,6 +22,7 @@ let reducedStatList = {};
 
 //              PROGRESS BAR/INDICATOR VARIABLES
 let isCorrect;
+let isSubmitDisabled = false;
 let rightA = 0;
 let wrongA = 0;
 let totalAttempts = 0;
@@ -452,6 +453,8 @@ $("#start-button").on("click", function () {
 	buttonsRow.classList.remove("hidden");
 	showElement(buttonsRow);
 	instruction.textContent = "Set level of difficulty";
+	startButton.disabled = true;
+	addClassListToElement(startButton, "disabled");
 })
 
 $(".level-buttons").on("click", function () {
@@ -489,6 +492,8 @@ $(".level-buttons").on("click", function () {
 // DELAY STYLE FUNCTIONS ???
 $("#play-button").on("click", function () {
 	console.log("play clicked ");
+
+	isSubmitDisabled = false;
 
 	// ANIMATE PLAYER SIZE IN LARGE SIZE
 	if ($(window).width() > 600) {
@@ -531,6 +536,7 @@ $("#play-button").on("click", function () {
 	// DISABLE PLAY/LEVEL BUTTONS UNTIL RIGHT ANSWER IS SUBMITTED
 	disabledInPlay.forEach((button) => {
 		button.disabled = true;
+		addClassListToElement(button, "disabled");
 	})
 })
 
@@ -538,7 +544,7 @@ $("#play-button").on("click", function () {
 // THIS USED TO BE KEYPRESS() BUT NOW IT WORKS BETTER
 $("input[type='number']").keyup(function (event) {
 	// ON HITTING ENTER
-	if (event.which === 13) {
+	if (event.which === 13 && !isSubmitDisabled) {
 		console.log("you hit enter");
 
 		// ANIMATE PLAYER SIZE IN LARGE SIZE
@@ -608,6 +614,7 @@ $("input[type='number']").keyup(function (event) {
 
 		// IF RIGHT ANSWER 
 		else {
+			isSubmitDisabled = true;
 			rightAnswerStyle();
 			setFocusPlay();
 			isCorrect = true;
@@ -631,6 +638,7 @@ $("input[type='number']").keyup(function (event) {
 			// ENABLE PLAY/LEVEL BUTTONS UNTIL RIGHT ANSWER IS SUBMITTED
 			disabledInPlay.forEach((button) => {
 				button.disabled = false;
+				removeClassListFromElement(button, "disabled");
 			})
 		}
 		if (isCorrect) {
