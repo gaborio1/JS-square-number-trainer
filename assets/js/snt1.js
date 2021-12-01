@@ -47,6 +47,7 @@ const question = document.querySelector("#question");
 const message = document.querySelector("#message");
 const startButton = document.querySelector("#start-button");
 const playButton = document.querySelector("#play-button");
+const resetButton = document.querySelector("#reset-button");
 const dispLevelPlayButton = document.querySelector("#display-level-play-button");
 const levelButtons = document.querySelectorAll(".level-buttons");
 // PLAY-BUTTON AND ALL LEVEL-BUTTONS (TO BE DISABLED UNTIL RIGHT ANSWER)
@@ -539,6 +540,19 @@ $("#play-button").on("click", function () {
 		addClassListToElement(button, "disabled");
 	})
 })
+
+$("#reset-button").on("click", function () {
+	console.log("reset clicked");
+	rightA = 0;
+	wrongA = 0;
+	totalAttempts = 0;
+	accuracy = 0;
+
+	progBar.style.width = accuracy + '%';
+	progBarTextSpan.textContent = "";
+	// calcAccuracy();
+})
+
 
 // GET USER INPUT
 // THIS USED TO BE KEYPRESS() BUT NOW IT WORKS BETTER
