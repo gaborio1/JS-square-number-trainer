@@ -332,7 +332,7 @@ $(document).ready(function () {
 		if (sortable.length < 1) {
 			removeChildElements(firstOrderedStatContainer);
 			removeChildElements(secondOrderedStatContainer);
-			console.log("empty div");
+			// console.log("empty div");
 			const emptyDivMessage = document.createElement("p");
 			emptyDivMessage.textContent = "no stats available";
 
@@ -548,6 +548,16 @@ $("#play-button").on("click", function () {
 	})
 })
 
+
+
+
+
+
+
+
+
+
+
 $("#reset-button").on("click", function () {
 	console.log("reset clicked");
 	rightA = 0;
@@ -555,12 +565,38 @@ $("#reset-button").on("click", function () {
 	totalAttempts = 0;
 	accuracy = 0;
 	probNumbers.splice(0, probNumbers.length);
-	console.log(probNumbers);
+	// console.log(probNumbers);
 
 	progBar.style.width = accuracy + '%';
 	progBarTextSpan.textContent = "";
+
+	makeTextContent(fractionTotal, 0);
+	makeTextContent(fractionRight, 0);
+	makeTextContent(problemNumbersSpan, "");
+
+	console.log(statList);
+	statList.splice(0, statList.length);
+	console.log(statList);
+	// !!! THESE ARE NOT DEFINED AS IT IS DYNAMICALLY CREATED WHEN VIEW STATS IS CLICKED !!!
+	// makeTextContent(secondStatProbNumsSpan, "");
+	// console.log(secondStatProbNumsSpan.textContent);
+
 	// calcAccuracy();
+	lastNumbers = [];
+	probNumbers = [];
+	reducedProbNumbers = {};
+	finalProbNumbers = [];
+	statList = [];
+	reducedStatList = {};
 })
+
+
+
+
+
+
+
+
 
 
 // GET USER INPUT
