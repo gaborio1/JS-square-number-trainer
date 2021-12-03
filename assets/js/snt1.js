@@ -214,7 +214,7 @@ const calcNumAndSolution = () => {
 	// !!! THIS CONSOLE.LOGS TWICE EVERY TIME NUM === 1 0R LAST 5 AND DOES NOT WORK FOR 1 FOR THE VERY FIRST TIME!!!
 	for (let i = 0; i < lastNumbers.length; i++) {
 		if (num === lastNumbers[i]) {
-			console.log("num === Last 5 numbers");
+			// console.log("num === Last 5 numbers");
 			calcNumAndSolution();
 		}
 	}
@@ -488,6 +488,10 @@ $("#play-button").on("click", function () {
 	$("#number-input").val("");	// CLEAR PLACEHOLDER IN TEXTBOX 
 	// message.classList.remove("hidden");
 	showElement(message);
+
+	// !!! ANIMATE THIS !!!S
+	question.style.opacity = "1";
+
 	makePlaceholderText(userInput, "Enter to submit");	// CLEAR MESSAGE FROM PREV GAME
 	makeTextContent(message, "Now, think!");
 	setElementColor(message, "yellow");
@@ -521,6 +525,14 @@ const resetCounters = () => {
 	makeTextContent(problemNumbersSpan, "");
 	progBar.style.width = accuracy + '%';
 	makeTextContent(progBarTextSpan, "");
+	makeTextContent(message, "play again!");
+
+	// !!! ANIMATE THIS !!!
+	question.style.opacity = "0";
+
+	// INPUT
+	$("#number-input").val("");
+	makePlaceholderText(userInput, "");
 	// STATS VIEW
 	probNumbers.splice(0, probNumbers.length);
 	Object.keys(reducedStatList).forEach(key => delete reducedStatList[key]);
@@ -538,9 +550,6 @@ $("#reset-button").on("click", function () {
 $("input[type='number']").keyup(function (event) {
 	if (event.which === 13 && !isSubmitDisabled) {	// ENTER KEY
 		// console.log("				enter");
-
-		removeClassListFromElement(resetButton, "disabled");
-		resetButton.disabled = false;
 
 		// ANIMATE PLAYER SIZE IN LARGE SIZE
 		if ($(window).width() > 600) {
