@@ -1,12 +1,10 @@
-console.log("CONNECTED")
-//  17/9/19 1115
+// console.log("CONNECTED");
 
 //              MAIN LOGIC VARIABLES
 let num;
 let minNum = 0;
 let maxNum = 0;
 let solution;
-// let answer;
 let baseNum = 1;
 let lastProbNumber;
 
@@ -18,8 +16,6 @@ let finalProbNumbers = [];
 let statList = [];
 let reducedStatList = {};
 
-// var broblemNumbersCount = {}
-
 //              PROGRESS BAR/INDICATOR VARIABLES
 let isCorrect;
 let isSubmitDisabled = false;
@@ -30,7 +26,6 @@ let accuracy;
 let levelButtonIndex;
 
 //              STYLE VARIABLES
-// var tablePlay = document.getElementById("tablePlay");
 const playerContainer = document.getElementById("player-container");
 // THIS IS A FAKE DIV TO MASK DIFFERENT FONTS IN PICTURE TEMPORARILY !!!
 const tableImgHeader = document.getElementById("table-img-header");
@@ -48,17 +43,13 @@ const message = document.querySelector("#message");
 const startButton = document.querySelector("#start-button");
 const playButton = document.querySelector("#play-button");
 const resetButton = document.querySelector("#reset-button");
-// resetButton.disabled = true;
 const dispLevelPlayButton = document.querySelector("#display-level-play-button");
 const levelButtons = document.querySelectorAll(".level-buttons");
 // PLAY-BUTTON AND ALL LEVEL-BUTTONS (TO BE DISABLED UNTIL RIGHT ANSWER)
 const disabledInPlay = document.querySelectorAll(".disabled-in-play");
-// OR AS BELOW:
-// var levelButtons = Array.from(document.querySelectorAll(".level-buttons"));
 const mainDispLevel = document.getElementById("level-message");
 const userInput = document.getElementById("number-input");
 const buttonsRow = document.getElementById("buttons-row");
-// var logo = document.getElementById("logo");
 const progBarText = document.getElementById("prog-bar-text");
 const progBarTextSpan = document.getElementById("prog-bar-text__span");
 const progBar = document.getElementById("prog-bar");
@@ -199,11 +190,9 @@ const styleLevelSelection = () => {
 // WHEN LEVEL SELECTION BUTTON IS CLICKED
 const handleLevelSelection = function () {
 	styleLevelButtons();
-	// STEP 2- ADD CLASS TO this ONLY !!! (OUTSIDE OF LOOP)
-	addClassListToElement(this, "selected");
+	addClassListToElement(this, "selected");	// STEP 2- ADD CLASS TO this ONLY !!! (OUTSIDE OF LOOP)
 	setFocusPlay();
-	// 1. RETREIVE INDEX FROM BUTTON'S TEXT (1-10)
-	levelButtonIndex = Number(this.innerHTML);
+	levelButtonIndex = Number(this.innerHTML);	// 1. RETREIVE INDEX FROM BUTTON'S TEXT (1-10)
 	// 2. DEFINE MIN AND MAX NUMBER BASED ON SELECTED LEVEL (LEVEL 5 - MIN:41, MAX:50)
 	maxNum = getMaxNum(levelButtonIndex);
 	minNum = getMinNum(maxNum);
@@ -245,7 +234,6 @@ const randomSqStyle = () => {
 const calcAccuracy = () => {
 	totalAttempts = rightA + wrongA;
 	accuracy = ((rightA / totalAttempts) * 100).toFixed(2);
-	accuracyStyle();
 }
 
 // STYLE RIGHT ANSWER
@@ -270,22 +258,17 @@ const wrongAnswerStyle = () => {
 
 // STYLE ACCURACY INDICATORS AND PROGBAR
 const accuracyStyle = () => {
-	progBarTextSpan.textContent = accuracy + "%";
+	makeTextContent(progBarTextSpan, accuracy + "%")
 	if (accuracy <= 10) {
-		progBarTextSpan.textContent = "";
+		makeTextContent(progBarTextSpan, "");
 	}
-	// SHOW ACCURACY PERCENTAGE
-	showElement(progBarText);
-	// SET BAR WIDTH / SHOW BAR
-	progBar.style.width = accuracy + '%';
+	showElement(progBarText);	// SHOW ACCURACY PERCENTAGE
+	progBar.style.width = accuracy + '%';	// SET BAR WIDTH / SHOW BAR
 	showElement(progBar);
-	// SET ACCURACY FRACTIONS
-	makeTextContent(fractionTotal, rightA);
+	makeTextContent(fractionTotal, rightA);	// SET ACCURACY FRACTIONS
 	makeTextContent(fractionRight, totalAttempts);
-	// SHOW ACCURACY FRACTIONS PARAGRAPH
-	showElement(displayFraction);
-	// HIDE intro2
-	hideElement(introText);
+	showElement(displayFraction);	// SHOW ACCURACY FRACTIONS PARAGRAPH
+	hideElement(introText);	// HIDE intro2
 }
 
 setFocusStart();
@@ -298,7 +281,7 @@ setFocusStart();
 //              LISTENERS
 
 $(document).ready(function () {
-	console.log("document.ready");
+	// console.log("document.ready");
 
 	addClassListToElement(resetButton, "disabled");
 	resetButton.disabled = true;
@@ -334,26 +317,11 @@ $(document).ready(function () {
 			removeChildElements(secondOrderedStatContainer);
 			// console.log("empty div");
 			const emptyDivMessage = document.createElement("p");
-			emptyDivMessage.textContent = "no stats available";
-
-			// !!! ONLY WORKS FOR ONE DIV !!! 
-
-			// const statDivs = document.querySelectorAll(".ordered-stat");
-			// for (let el of statDivs) {
-			//   el.appendChild(emptyDivMessage);
-			//   console.log("appended child");
-			// }   
-
-			// firstOrderedStatContainer.appendChild(emptyDivMessage);
+			makeTextContent(emptyDivMessage, "no stats available");
 			secondOrderedStatContainer.appendChild(emptyDivMessage);
 		} else {
-			console.log("stats to display");
+			// console.log("stats to display");
 		}
-
-		// !!! THIS CONSOLE.LOG PREVENTS EMPTY STAT DIVS FROM SHOWING UP !!!
-		// KEY IS STRING AND VALUTE IS NUMBER !!!
-		// console.log("sortable: " + sortable);
-		// console.log("sortable1: " + sortable[0][0],sortable[0][1], typeof sortable[0]);
 
 		// CLEAR CONTENT OF FIRST ordered-stat-container
 		removeChildElements(firstOrderedStatContainer);
@@ -368,15 +336,15 @@ $(document).ready(function () {
 
 			// statCounterSpan.textContent = `Number: ${sortable[i][0]}  /  count: ${sortable[i][1]}`;
 
-			statCounterSpan.textContent = `${sortable[i][0]}(${sortable[i][1]})`;
+			makeTextContent(statCounterSpan, `${sortable[i][0]} (${sortable[i][1]})`)
 			firstOrderedStatContainer.appendChild(statCounterSpan);
 
 			const secondStatAccuracySpan = document.createElement("span");
-			secondStatAccuracySpan.textContent = `Accuracy: ${rightA} / ${totalAttempts}`;
+			makeTextContent(secondStatAccuracySpan, `Accuracy: ${rightA} / ${totalAttempts}`)
 			secondOrderedStatContainer.appendChild(secondStatAccuracySpan);
 
 			const secondStatProbNumsSpan = document.createElement("span");
-			secondStatProbNumsSpan.textContent = `Problem Numbers: ${Object.keys(reducedProbNumbers)}`;
+			makeTextContent(secondStatProbNumsSpan, `Problem Numbers: ${Object.keys(reducedProbNumbers)}`)
 			secondOrderedStatContainer.appendChild(secondStatProbNumsSpan);
 		}
 
@@ -387,8 +355,6 @@ $(document).ready(function () {
 		} else {
 			$("#second-ordered-stat-container").delay(1000).fadeIn(500);
 		}
-		// $("#first-ordered-stat-container").delay(1000).fadeIn(500);
-		// $("#second-ordered-stat-container").delay(1500).fadeIn(500);
 	});
 
 	// ADD EVENTLISTENER TO LEVELBUTTONS
@@ -420,10 +386,9 @@ $(document).ready(function () {
 		// $("#ordered-stat").fadeOut(300);
 
 		// STEP 2 = CLEAR CONTENT OF DIV
-		setTimeout(function () {
-			clearStatsText(orderedStatContainer, orderedStat);
-			// clearBox();
-		}, 650);
+		// setTimeout(function () {
+		// 	clearStatsText(orderedStatContainer, orderedStat);
+		// }, 650);
 	});
 });
 
@@ -458,9 +423,9 @@ $("#start-button").on("click", function () {
 
 	$("#instruction").delay(100).fadeIn(2000);
 	$("#buttons-row").delay(100).fadeIn(1000);
-	buttonsRow.classList.remove("hidden");
+	removeClassListFromElement(buttonsRow, "hidden");
 	showElement(buttonsRow);
-	instruction.textContent = "Set level of difficulty";
+	makeTextContent(instruction, "Set level of difficulty");
 	startButton.disabled = true;
 	addClassListToElement(startButton, "disabled");
 })
@@ -499,8 +464,7 @@ $(".level-buttons").on("click", function () {
 // KEYUP INSTEAD OF CLICK : PLAY BUTTON NOW WORKS AT FIRST CLICK BUT RIGHTANSWERMESSAGE ONLY SHOWS WHILE KEY IS PRESSED 
 // DELAY STYLE FUNCTIONS ???
 $("#play-button").on("click", function () {
-	console.log("play clicked ");
-
+	// console.log("play clicked ");
 	isSubmitDisabled = false;
 
 	// ANIMATE PLAYER SIZE IN LARGE SIZE
@@ -517,23 +481,19 @@ $("#play-button").on("click", function () {
 	}
 
 	setFocusInput();
-	// CALL randomSq()
-	calcNumAndSolution();
+	calcNumAndSolution();	// CALL randomSq()
 	// PLACE MOUSE CURSOR TO INPUT FIELD (STACK OVERFLOW)
 	// setFocusInput();
 	showElement(question);
-	// CLEAR PLACEHOLDER IN TEXTBOX 
-	$("#number-input").val("");
+	$("#number-input").val("");	// CLEAR PLACEHOLDER IN TEXTBOX 
 	// message.classList.remove("hidden");
 	showElement(message);
-	// CLEAR MESSAGE FROM PREV GAME
-	makePlaceholderText(userInput, "Enter to submit");
+	makePlaceholderText(userInput, "Enter to submit");	// CLEAR MESSAGE FROM PREV GAME
 	makeTextContent(message, "Now, think!");
 	setElementColor(message, "yellow");
 	showElement(userInput);
 	elementDisplayNone(instruction);
-	// ADD LAST NUM TO FRONT OF ARRAY 
-	lastNumbers.unshift(num);
+	lastNumbers.unshift(num);	// ADD LAST NUM TO FRONT OF ARRAY 
 	// DO NOT GENERATE SAME NUMBER TWICE FOR 5 TURNS, KEEP ARRAY LENGTH AT 5 (REMOVE 6th (LAST)
 	if (lastNumbers.length >= 5) {
 		lastNumbers.pop();
@@ -548,63 +508,36 @@ $("#play-button").on("click", function () {
 	})
 })
 
-
-
-
-
-
-
-
-
-
-
-$("#reset-button").on("click", function () {
-	console.log("reset clicked");
+// 	RESET BUTTON
+const resetCounters = () => {
 	rightA = 0;
 	wrongA = 0;
-	totalAttempts = 0;
+	// totalAttempts = 0;
 	accuracy = 0;
-	probNumbers.splice(0, probNumbers.length);
-	// console.log(probNumbers);
 
-	progBar.style.width = accuracy + '%';
-	progBarTextSpan.textContent = "";
-
+	// PLAYER
 	makeTextContent(fractionTotal, 0);
 	makeTextContent(fractionRight, 0);
 	makeTextContent(problemNumbersSpan, "");
+	progBar.style.width = accuracy + '%';
+	makeTextContent(progBarTextSpan, "");
+	// STATS VIEW
+	probNumbers.splice(0, probNumbers.length);
+	Object.keys(reducedStatList).forEach(key => delete reducedStatList[key]);
+}
 
-	console.log(statList);
-	statList.splice(0, statList.length);
-	console.log(statList);
-	// !!! THESE ARE NOT DEFINED AS IT IS DYNAMICALLY CREATED WHEN VIEW STATS IS CLICKED !!!
-	// makeTextContent(secondStatProbNumsSpan, "");
-	// console.log(secondStatProbNumsSpan.textContent);
 
-	// calcAccuracy();
-	lastNumbers = [];
-	probNumbers = [];
-	reducedProbNumbers = {};
-	finalProbNumbers = [];
-	statList = [];
-	reducedStatList = {};
+$("#reset-button").on("click", function () {
+	// console.log("reset clicked");
+	resetCounters();
 })
-
-
-
-
-
-
-
-
 
 
 // GET USER INPUT
 // THIS USED TO BE KEYPRESS() BUT NOW IT WORKS BETTER
 $("input[type='number']").keyup(function (event) {
-	// ON HITTING ENTER
-	if (event.which === 13 && !isSubmitDisabled) {
-		console.log("				enter");
+	if (event.which === 13 && !isSubmitDisabled) {	// ENTER KEY
+		// console.log("				enter");
 
 		removeClassListFromElement(resetButton, "disabled");
 		resetButton.disabled = false;
@@ -616,16 +549,13 @@ $("input[type='number']").keyup(function (event) {
 			}, 1000);
 		}
 
-		// SAVE ANSWER
-		let answer = Number($(this).val());
+		let answer = Number($(this).val());	// SAVE ANSWER
 		// IF WRONG ANSWER
 		if (answer !== solution) {
 			// ??? CLEAR INPUT FIELD AGAIN ???
 			isCorrect = false;
 			wrongAnswerStyle();
-
-			// 1. ADD NUM TO BEGINNING OF PROBNUMBERS
-			probNumbers = addToStartOfArr(num, probNumbers);
+			probNumbers = addToStartOfArr(num, probNumbers);	// 1. ADD NUM TO BEGINNING OF PROBNUMBERS
 			// console.log("PROBNUMBERS: " + probNumbers);
 
 			// NNNNNNNNNNNNNNNNNNNNNNNNNNNN
@@ -644,34 +574,12 @@ $("input[type='number']").keyup(function (event) {
 				finalProbNumbers.unshift(`${key}: ${value}`);
 				// console.log("final probnumbers: " + finalProbNumbers);
 			}
-
-			// NOT IN USE !!!
-			// WORKING BUT SEE COMMENT BELOW! (ONLY WORKS IN CONSOLE)
-			for (let key in reducedProbNumbers) {
-				if (reducedProbNumbers.hasOwnProperty(key)) {
-					// MAKE THIS CONSOLE.LOG TEXT CONTENT OF PROBSPAN2 !!! 
-					// console.log(key + " -> " + reducedProbNumbers[key]);
-				}
-			}
-
-			// AAAAAAAAAAAAAAAAAARGH!!!!!! THIS NOW WORKS WITH PROBNUMS BUT NO COUNT YET !!!
-			problemNumbersSpan.textContent = Object.keys(reducedProbNumbers);
+			makeTextContent(problemNumbersSpan, Object.keys(reducedProbNumbers));
 			// console.log("REDUCED PROBNUMS: " + Object.keys(reducedProbNumbers));
-			//  + Object.values(reducedProbNumbers);
-			// THIS WORKS IN CONSOLEBUT NOT AS TEXTCONTENT (DISPLAYS ONLY FIRST PROBNUM) !!!
-			let keysArr = Object.keys(reducedProbNumbers);
-			let valuesArr = Object.values(reducedProbNumbers);
-			for (let i = 0; i < keysArr.length; i++) {
-				for (let i = 0; i < valuesArr.length; i++) {
-					// console.log(keysArr[i] + " -> " + valuesArr[i]);
-					// problemNumbersSpan.textContent=keysArr[i] + " -> " + valuesArr[i];
-				}
-			}
-			// ADD NUM IN FRONT OF STATLIST - WORKING
-			statList.unshift(num);
+
+			statList.unshift(num);	// ADD NUM IN FRONT OF STATLIST
 			// console.log("STATLIST: " + statList);
-			// REDUCE ARRAY AND RETURN NUMBER/COUNT OBJECTS
-			reducedStatList = reduceArr(statList);
+			reducedStatList = reduceArr(statList);	// REDUCE ARRAY AND RETURN NUMBER/COUNT OBJECTS
 		}
 
 		// IF RIGHT ANSWER 
@@ -687,7 +595,6 @@ $("input[type='number']").keyup(function (event) {
 			// IF i IS SET TO 0 THEN IT WONT LIST NUMBERS, ONLY THE CURRENT WRONG ANSWER IS DISPLAYED UNTIL RIGHT ANSWER
 			// MAKE i A VARIABLE (0 OR 1) DEPENDING ON WHETHER NUM IS ALREADY LISTED ???
 			for (let i = 1; i < probNumbers.length; i++) {
-				// &&
 				if (probNumbers[i] === num) {
 					probNumbers.splice(i, 1);
 					i--;
@@ -710,5 +617,6 @@ $("input[type='number']").keyup(function (event) {
 			wrongA++;
 		}
 		calcAccuracy();
+		accuracyStyle();
 	}
 })
