@@ -15,6 +15,7 @@ let reducedProbNumbers = {};
 let finalProbNumbers = [];
 let statList = [];
 let reducedStatList = {};
+let sortable = [];
 
 //              PROGRESS BAR/INDICATOR VARIABLES
 let isCorrect;
@@ -302,7 +303,9 @@ $(document).ready(function () {
 		// -------------------------- DIV 1 --------------------------
 		// SORT REDUCEDSTATLIST BY NUMBER OF WRONG ATTEMPTS (BY KEY: SWAP a and b)
 		// SORTABLE IS NESTED [], [[3,2],[17,1]...ETC]
-		let sortable = [];
+
+		// sortable IS NOW GLOBAL
+		// let sortable = [];
 		for (let key in reducedStatList) {
 			sortable.push([key, reducedStatList[key]]);
 		}
@@ -536,6 +539,20 @@ const resetCounters = () => {
 	// STATS VIEW
 	probNumbers.splice(0, probNumbers.length);
 	Object.keys(reducedStatList).forEach(key => delete reducedStatList[key]);
+
+	console.log("1:", sortable);
+	sortable.splice(0, sortable.length);
+	console.log("2:", sortable);
+	console.log(firstOrderedStatContainer.children);
+	removeChildElements(firstOrderedStatContainer);
+
+	lastNumbers = [];
+	// probNumbers = [];
+	reducedProbNumbers = {};
+	finalProbNumbers = [];
+	statList = [];
+	reducedStatList = {};
+	// sortable = [];
 }
 
 
