@@ -306,9 +306,62 @@ $(document).ready(function () {
 
 		// sortable IS NOW GLOBAL
 		// let sortable = [];
+
+
+
+
+
+		// 	THIS IS WORKING WITH ONE PROB NUMBER ONLY
 		for (let key in reducedStatList) {
-			sortable.push([key, reducedStatList[key]]);
+			let current = [key, reducedStatList[key]];
+
+			if (sortable.length === 0) {
+				sortable.push(current);
+			} else {
+				for (let i = 0; i < sortable.length; i++) {
+					if (sortable[i][0] !== key) {
+						sortable.push(current);
+					}
+				}
+			}
+
+
+			// sortable.push(current);
+
+
+
+			// console.log(reducedStatList);
+			console.log(sortable);
+			// console.log(sortable.indexOf(current));
+
+			// if (!sortable.includes([key, reducedStatList[key]])) {
+			// 	sortable.push(current);
+			// }
+
+
+			// if (sortable.length === 0) {
+			// 	sortable.push(current);
+			// } else {
+			// 	for (let i = 0; i < sortable.length; i++) {
+			// 		if (sortable[i][0] !== key) {
+			// 			sortable.push(current);
+			// 		}
+			// 	}
+			// }
 		}
+
+		// sortable = sortable.filter((v, i, a) => a.indexOf(v) === i);
+
+
+
+
+
+
+
+
+
+
+
 
 		// ASCENDING ORDER BY VALUE OF value (NUMBER OF WRONG ATTEMPTS)
 		sortable.sort(function (a, b) {
