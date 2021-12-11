@@ -13,9 +13,9 @@ let lastNumbers = [];
 let probNumbers = [];
 let reducedProbNumbers = {};
 let finalProbNumbers = [];
-let statList = [];
-let reducedStatList = {};
-let sortable = [];
+let statArr = [];
+let reducedStatObj = {};
+let reducedStatArr = [];
 
 //              PROGRESS BAR/INDICATOR VARIABLES
 let isCorrect;
@@ -303,72 +303,38 @@ $(document).ready(function () {
 		// -------------------------- DIV 1 --------------------------
 		// SORT REDUCEDSTATLIST BY NUMBER OF WRONG ATTEMPTS (BY KEY: SWAP a and b)
 		// SORTABLE IS NESTED [], [[3,2],[17,1]...ETC]
+		// reducedStatArr[] IS NOW GLOBAL !!!
 
-		// sortable IS NOW GLOBAL
-		// let sortable = [];
+		// 	THIS IS NOW WORKING WITH MULTIPLE PROB NUMBERS
 
+		let isInRedStatArr = false;
+		for (let key in reducedStatObj) {
+			let current = [key, reducedStatObj[key]];
 
-
-
-
-		// 	THIS IS WORKING WITH ONE PROB NUMBER ONLY
-		for (let key in reducedStatList) {
-			let current = [key, reducedStatList[key]];
-
-			if (sortable.length === 0) {
-				sortable.push(current);
+			// IF DIV IS EMPTY, PUSH ELEMENT INTO IT
+			if (reducedStatArr.length === 0) {
+				reducedStatArr.push(current);
 			} else {
-				for (let i = 0; i < sortable.length; i++) {
-					if (sortable[i][0] !== key) {
-						sortable.push(current);
+				// OTHERWISE, CHECK IF ELEMENT IS ALREADY IN ARRAY AND ONLY PUSH IF IT IS NOT TO AVOID DUPLICATES
+				for (let i = 0; i < reducedStatArr.length; i++) {
+					if (reducedStatArr[i][0] === key) {
+						isInRedStatArr = true;
 					}
 				}
+				if (!isInRedStatArr) {
+					reducedStatArr.push(current);
+				}
+				isInRedStatArr = false;
+				
 			}
-
-
-			// sortable.push(current);
-
-
-
-			// console.log(reducedStatList);
-			console.log(sortable);
-			// console.log(sortable.indexOf(current));
-
-			// if (!sortable.includes([key, reducedStatList[key]])) {
-			// 	sortable.push(current);
-			// }
-
-
-			// if (sortable.length === 0) {
-			// 	sortable.push(current);
-			// } else {
-			// 	for (let i = 0; i < sortable.length; i++) {
-			// 		if (sortable[i][0] !== key) {
-			// 			sortable.push(current);
-			// 		}
-			// 	}
-			// }
 		}
 
-		// sortable = sortable.filter((v, i, a) => a.indexOf(v) === i);
-
-
-
-
-
-
-
-
-
-
-
-
 		// ASCENDING ORDER BY VALUE OF value (NUMBER OF WRONG ATTEMPTS)
-		sortable.sort(function (a, b) {
+		reducedStatArr.sort(function (a, b) {
 			return b[1] - a[1];
 		});
 
-		if (sortable.length < 1) {
+		if (reducedStatArr.length < 1) {
 			removeChildElements(firstOrderedStatContainer);
 			removeChildElements(secondOrderedStatContainer);
 			// console.log("empty div");
@@ -383,16 +349,16 @@ $(document).ready(function () {
 		removeChildElements(firstOrderedStatContainer);
 		// removeChildElements(secondOrderedStatContainer);
 
-		for (let i = 0; i < sortable.length; i++) {
+		for (let i = 0; i < reducedStatArr.length; i++) {
 			// !!!!! ONLY DISPLAY FIRST 10 SPANS IN STATS DIV, THIS FILLS UP DIV'S LENGTH !!!!!
 			if (i === 10) { break; }
 
 			removeChildElements(secondOrderedStatContainer);
 			const statCounterSpan = document.createElement("span");
 
-			// statCounterSpan.textContent = `Number: ${sortable[i][0]}  /  count: ${sortable[i][1]}`;
+			// statCounterSpan.textContent = `Number: ${reducedStatArr[i][0]}  /  count: ${reducedStatArr[i][1]}`;
 
-			makeTextContent(statCounterSpan, `${sortable[i][0]} (${sortable[i][1]})`)
+			makeTextContent(statCounterSpan, `${reducedStatArr[i][0]} (${reducedStatArr[i][1]})`)
 			firstOrderedStatContainer.appendChild(statCounterSpan);
 
 			const secondStatAccuracySpan = document.createElement("span");
@@ -405,7 +371,7 @@ $(document).ready(function () {
 		}
 
 
-		if (sortable.length > 0) {
+		if (reducedStatArr.length > 0) {
 			$("#first-ordered-stat-container").delay(1000).fadeIn(500);
 			$("#second-ordered-stat-container").delay(1500).fadeIn(500);
 		} else {
@@ -591,21 +557,21 @@ const resetCounters = () => {
 	makePlaceholderText(userInput, "");
 	// STATS VIEW
 	probNumbers.splice(0, probNumbers.length);
-	Object.keys(reducedStatList).forEach(key => delete reducedStatList[key]);
+	Object.keys(reducedStatObj).forEach(key => delete reducedStatObj[key]);
 
-	console.log("1:", sortable);
-	sortable.splice(0, sortable.length);
-	console.log("2:", sortable);
-	console.log(firstOrderedStatContainer.children);
+	// console.log("1:", reducedStatArr);
+	reducedStatArr.splice(0, reducedStatArr.length);
+	// console.log("2:", reducedStatArr);
+	// console.log(firstOrderedStatContainer.children);
 	removeChildElements(firstOrderedStatContainer);
 
 	lastNumbers = [];
 	// probNumbers = [];
 	reducedProbNumbers = {};
 	finalProbNumbers = [];
-	statList = [];
-	reducedStatList = {};
-	// sortable = [];
+	statArr = [];
+	reducedStatObj = {};
+	// reducedStatArr = [];
 }
 
 
@@ -656,9 +622,9 @@ $("input[type='number']").keyup(function (event) {
 			makeTextContent(problemNumbersSpan, Object.keys(reducedProbNumbers));
 			// console.log("REDUCED PROBNUMS: " + Object.keys(reducedProbNumbers));
 
-			statList.unshift(num);	// ADD NUM IN FRONT OF STATLIST
-			// console.log("STATLIST: " + statList);
-			reducedStatList = reduceArr(statList);	// REDUCE ARRAY AND RETURN NUMBER/COUNT OBJECTS
+			statArr.unshift(num);	// ADD NUM IN FRONT OF STATLIST
+			// console.log("STATLIST: " + statArr);
+			reducedStatObj = reduceArr(statArr);	// REDUCE ARRAY AND RETURN NUMBER/COUNT OBJECTS
 		}
 
 		// IF RIGHT ANSWER 
