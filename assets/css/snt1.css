@@ -1,9 +1,7 @@
 /*  25/8/19 2236 */
-@media only screen and (min-width : 769px) {
-
+@media only screen and (min-width: 769px) {
     /* @font-face { font-family: whitrabt; src: url('whitrabt.ttf'); }  */
 
-    
     * {
         margin: 0;
         padding: 0;
@@ -18,24 +16,24 @@
         text-transform: uppercase;
         /* font-family: 'Bungee Inline', cursive; */
         /* font-family: "whitrabt"; */
-        font-family: 'Orbitron', sans-serif;
+        font-family: "Orbitron", sans-serif;
         background: #6b5a3a81;
         background: #376293dd;
         background: wheat;
     }
-    
+
     .main {
         display: flex;
         flex-direction: column;
         align-items: center;
         /* justify-content: center; */
     }
-    
+
     .title {
         text-align: center;
         margin-top: 20px;
     }
-    
+
     .title-span {
         display: none;
     }
@@ -44,17 +42,16 @@
         /* color: #dd1534; */
         color: #c93d1b;
     }
-    
+
     .green {
-        color:  #0E7C4A;
+        color: #0e7c4a;
     }
-    
-    
+
     .introStats {
         /* border: 2px solid red; */
         margin: 0px;
     }
-    
+
     .fractions-container {
         /* border: 2px solid green; */
         /* font-weight: 200; */
@@ -64,28 +61,30 @@
         margin-top: 10px;
         margin-bottom: 10px;
     }
-    
-    .player__toggle, .table__toggle {
+
+    .player__toggle,
+    .table__toggle {
         /* font-family: 'Bungee Inline', cursive; */
-        font-family: 'Orbitron', sans-serif;
+        font-family: "Orbitron", sans-serif;
         text-transform: uppercase;
         background: orange;
         border: 5px solid black;
         height: 65px;
         width: 700px;
         font-size: 20px;
-        font-weight: 400;  
+        font-weight: 400;
         /* outline: none; */
-         /* -webkit-box-shadow: 0px 0px 45px 10px rgba(0,0,0,0.58);
+        /* -webkit-box-shadow: 0px 0px 45px 10px rgba(0,0,0,0.58);
         -moz-box-shadow: 0px 0px 45px 10px rgba(0,0,0,0.58);
         box-shadow: 0px 0px 45px 10px rgba(0,0,0,0.58); */
     }
 
-    .player__toggle:hover, .table__toggle:hover {
+    .player__toggle:hover,
+    .table__toggle:hover {
         background: orange;
         border: 4px solid black;
         cursor: pointer;
-        font-weight: 500;  
+        font-weight: 500;
     }
 
     li {
@@ -94,14 +93,14 @@
         /* float: left; */
         /* margin-right: 10px; */
     }
-    
+
     .sq-table-img-container {
         width: fit-content;
         height: 530px;
         margin: 20px auto;
         /* border: 3px solid green; */
-    } 
-    
+    }
+
     .sq-table-img {
         z-index: -1;
         position: relative;
@@ -112,7 +111,7 @@
         -moz-box-shadow: 0px 0px 45px 10px rgba(0,0,0,0.58);
         box-shadow: 0px 0px 45px 10px rgba(0,0,0,0.58); */
     }
-    
+
     /* THIS IS A FAKE DIV TO MASK DIFFERENT FONTS IN PICTURE TEMPORARILY !!! */
     .table-img-header {
         /* z-index: 1; */
@@ -133,16 +132,16 @@
     .description {
         font-size: 20px;
     }
-    
+
     .player-container {
         margin: 20px auto;
         width: 700px;
         min-height: 250px;
         background: orange;
         /* background: #00ff6e; */
-        border:5px solid black;
+        border: 5px solid black;
         /* border-radius: 10px; */
-    
+
         /* https://www.cssmatic.com/box-shadow */
         /* -webkit-box-shadow: 0px 0px 45px 10px rgba(0,0,0,0.58);
         -moz-box-shadow: 0px 0px 45px 10px rgba(0,0,0,0.58);
@@ -152,7 +151,6 @@
         box-shadow: 5px 5px 0px 0px #289FED, 10px 10px 0px 0px #5FB8FF, 15px 15px 0px 0px #A1D8FF, 20px 20px 0px 0px #CAE6FF, 25px 25px 0px 0px #E1EEFF, 5px 5px 15px 5px rgba(0,0,0,0); */
     }
 
-    
     .level-buttons {
         outline: none;
         background: grey;
@@ -163,9 +161,9 @@
         width: 9.43%;
         font-size: 28px;
         font-weight: 200;
-        font-family: 'Orbitron', sans-serif;
+        font-family: "Orbitron", sans-serif;
     }
-    
+
     .level-buttons:hover {
         /* height: 108%; */
         color: rgb(0, 0, 0);
@@ -176,7 +174,7 @@
         cursor: pointer;
         border: 0px solid black;
     }
-    
+
     .level-buttons.disabled:hover {
         cursor: not-allowed;
     }
@@ -187,9 +185,8 @@
         /* background: #39ac73; */
         background: darkcyan;
         background: orange;
-    } 
-    
-    
+    }
+
     .buttons-row {
         height: 65px;
         background: #676668;
@@ -199,30 +196,29 @@
         justify-content: space-around; */
         border-bottom: 5px solid black;
     }
-    
 
     .player-row {
         margin: 30px 0px 30px 0px;
     }
-    
+
     .display-level {
         font-size: 24px;
         /* margin: 50px 0px 50px 0px; */
     }
-    
+
     .question {
         color: darkcyan;
         color: #376264;
         font-size: 28px;
     }
-    
+
     .question-span {
         font-size: 32px;
         color: darkcyan;
     }
-    
+
     input.player-row {
-        font-family: 'Orbitron', sans-serif;
+        font-family: "Orbitron", sans-serif;
         margin: 10px auto 10px 32%;
         width: 40%;
         height: 65px;
@@ -236,10 +232,10 @@
         /* border-bottom: 5px solid #000000; */
         outline: none;
     }
-    
+
     .start-play-reset {
         /* font-family: 'Bungee Inline', cursive; */
-        font-family: 'Orbitron', sans-serif;
+        font-family: "Orbitron", sans-serif;
         text-transform: uppercase;
         font-weight: 400;
         background: grey;
@@ -258,7 +254,7 @@
     .start-play-reset:hover {
         background: orange;
         cursor: pointer;
-        font-weight:600;
+        font-weight: 600;
         border: 3px solid black;
     }
 
@@ -271,11 +267,11 @@
         cursor: not-allowed;
         border: 4px solid #000000;
     }
-    
+
     .display-level-play-button {
         display: none;
     }
-    
+
     /*  !!! INCLUDE THIS IN .startPlay !!! */
     /* .reset-button {
         font-family: 'Orbitron', sans-serif;
@@ -298,49 +294,49 @@
         border: 3px solid black;
     } */
 
-
     h1 {
         font-size: 36px;
-        letter-spacing: .15rem;
-        word-spacing: .3rem;
+        letter-spacing: 0.15rem;
+        word-spacing: 0.3rem;
     }
 
     h2 {
         height: 40px;
         font-size: 24px;
-        letter-spacing: .05rem;
+        letter-spacing: 0.05rem;
         text-align: center;
         /* text-transform: uppercase; */
     }
-    
+
     .logo {
         /* margin: 0px 0% 0px 0px; */
         font-size: 36px;
         /* font-weight: 500; */
     }
-    
+
     .instruction {
         font-size: 32px;
         font-weight: 400;
     }
-    
+
     .message {
         text-align: center;
         font-size: 28px;
         /* margin: 50px 0px 50px 0px; */
     }
-    
+
     /* WRONG ANSWER MESSAGE CSS BLINKER */
     .blink {
         /* animation: blinker 1.1s linear infinite; */
         animation: blinker 1.1s cubic-bezier(0.4, 0, 0.2, 1) infinite;
     }
-    
-    @keyframes blinker {  
-        50% { opacity: 0.0; }
+
+    @keyframes blinker {
+        50% {
+            opacity: 0;
+        }
     }
-    
-    
+
     .prog-bar-text {
         text-align: right;
         /* font-weight: 700; */
@@ -351,8 +347,7 @@
         margin-right: 5px;
         color: black;
     }
-    
-    
+
     .prog-bar-container {
         width: 80%;
         /* height: 65px; */
@@ -365,7 +360,7 @@
         /* border-top: 5px solid black; */
         /* border-bottom: 5px solid black; */
     }
-    
+
     /* NOT WORKING COS ITS NOT EMPTY */
     /* HAVE TO REMOVE BORDER  ???*/
     /* MAYBE ADD BORDER ONLY WHEN ITS DISPLAYED??? */
@@ -374,7 +369,7 @@
         /* OR */
         /* border: none; */
     }
-    
+
     .prog-bar {
         /* !!! TEMPORARY FIX FOR PROG BAR POSITION !!! */
         position: relative;
@@ -387,18 +382,17 @@
         text-align: center;
         /* background-color: rgba(0, 255, 98, 0.69); */
         background-color: #0e7c4a;
-        -webkit-transition: all 1.0s ease-in-out;
-        transition: all 1.0s ease-in-out;
+        -webkit-transition: all 1s ease-in-out;
+        transition: all 1s ease-in-out;
         /* border-bottom: 5px solid black; */
         border-top: 4px solid black;
         border-right: 4px solid black;
         border-bottom: 4px solid black;
     }
-    
+
     /* .prog-bar:empty {
         display: none;
     } */
-
 
     .button-logo-container {
         display: flex;
@@ -409,7 +403,7 @@
 
         /* border: 3px solid black; */
     }
-    
+
     /* ALTERNATING COLOR LIST ITEMSS */
     /* span:nth-child(even){
       color:green;
@@ -417,7 +411,6 @@
     span:nth-child(odd){
       color:red;
     } */
-    
 
     /* STAT DIVS */
     .ordered-stat {
@@ -436,11 +429,11 @@
         -moz-box-shadow: 0px 0px 45px 10px rgba(0,0,0,0.58);
         box-shadow: 0px 0px 45px 10px rgba(0,0,0,0.58); */
     }
-    
+
     .ordered-stat:empty {
-        display:none;
+        display: none;
     }
-    
+
     .ordered-stat p {
         font-size: 20px;
     }
@@ -465,8 +458,7 @@
         margin: 8px 2px 0px 0px;
         padding: 4px;
         border: 3px solid black;
-
-    } 
+    }
 
     .ordered-stat.second-ordered-stat-container {
         /* color: yellow; */
@@ -477,8 +469,4 @@
         /* display: inline-block; */
         margin: 0px 2px 0px 2px;
     }
-    
 }
-
-
-
